@@ -87,7 +87,7 @@ app.use(cookieParser());
 app.use(session({
   resave: true,
   saveUninitialized: true,
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET || 'test',
   store: new MongoStore({
     url: process.env.MONGOLAB_URI,
     auto_reconnect: true
