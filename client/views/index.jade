@@ -77,6 +77,12 @@ html(lang='en', ng-app='jscalcApp', ng-controller='JscalcCtrl')
       .more-vert-icon {
         background-image: url('!{getImage("icons/ic_more_vert_24px.svg")}')
       }
+      .github-icon {
+        background-image: url('!{getImage("icons/github.svg")}')
+      }
+      .twitter-icon {
+        background-image: url('!{getImage("icons/twitter.svg")}')
+      }
   body(layout='horizontal', md-theme="cyan")
     md-sidenav.md-sidenav-left.md-whiteframe-z3(component-id='left',  is-locked-open="sidenavsLockedOpen", layout='vertical', ng-click="closeNav()")
       md-content#side-nav(flex)
