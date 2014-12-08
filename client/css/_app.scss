@@ -3,6 +3,7 @@
 $seam-border-color: #E0E0E0;
 $header-color: #aaa;
 $primary-color-palette: $color-cyan;
+$sidenav-width: 250px;
 
 body {
   font-size: 15px;
@@ -44,7 +45,7 @@ a, .link-button {
 
 
 md-sidenav {
-  width: 250px;
+  width: $sidenav-width;
   background-color: #FAFAFA;
 
   md-content {
@@ -890,5 +891,13 @@ md-progress-circular {
         margin-left: 15px;
       }
     }
+  }
+}
+
+
+/* Sidenavs locked open */
+@media (min-width: 1400px) {
+  .menu {
+    right: 15px + $sidenav-width;
   }
 }
