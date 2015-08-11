@@ -820,9 +820,12 @@ md-progress-circular {
   }
 
 
+  #calc-source #io-container, #script-container, #share-container {
+    margin-top: -80px;
+  }
+
   #io-container, #script-container, #share-container {
     padding: 9px;
-    margin-top: -80px;
   }
 
 
