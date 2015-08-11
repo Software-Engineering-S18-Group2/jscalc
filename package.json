@@ -33,5 +33,8 @@
   "scripts": {
     "start": "node server/app.js",
     "postinstall": "bower install"
+  },
+  "engines": {
+    "node": "0.12.x"
   }
 }
