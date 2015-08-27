@@ -1,6 +1,7 @@
 .text-input-container
   .title-row
-    .title {{metaInput.label || '[Label goes here]'}}:
+    .title {{metaInput.label || '[Label]'}}:
     .config-icons(ng-include="'/partials/input_config_icons'")
   .content-row
-    md-text-float(type="number", ng-model="inputsInner[metaInput.id]" required)
+    md-input-container
+      input(type="number", ng-model="inputsInner[metaInput.id]")

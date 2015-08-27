@@ -1,8 +1,6 @@
-button.button-action.menu-icon(ng-if='editMode', aria-label='Configure', ng-click="configureInput({metaInputs: metaInputs, metaInput: metaInput})")
-  .md-icon-container
-    .inline-icon.settings-primary-icon
-button.button-action.menu-icon(ng-if='editMode', aria-label='Delete', ng-click="deleteInput({metaInputs: metaInputs, id: metaInput.id})")
-  .md-icon-container
-    .inline-icon.delete-primary-icon
+md-button.md-icon-button(ng-if='editMode', aria-label='Configure', ng-click="configureInput({metaInputs: metaInputs, metaInput: metaInput})")
+  md-icon(md-svg-icon="/img/icons/ic_settings_24px.svg")
+md-button.md-icon-button(ng-if='editMode', aria-label='Delete', ng-click="deleteInput({metaInputs: metaInputs, id: metaInput.id})")
+  md-icon(md-svg-icon="/img/icons/ic_delete_24px.svg")
 .hidden-indicator
   .content Hidden

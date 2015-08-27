@@ -145,15 +145,6 @@ app.use(function(req, res, next) {
   });
 });
 
-app.use(function(req, res, next) {
-  res.locals.getImage = function(filename) {
-    return "data:image/svg+xml;charset=utf-8;base64," +
-        fs.readFileSync(path.join(clientDir, 'img', filename)).toString('base64') +
-         "";
-  };
-  next();
-});
-
 /**
  * Main routes.
  */

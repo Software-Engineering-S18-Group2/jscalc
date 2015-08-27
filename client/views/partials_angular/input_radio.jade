@@ -1,6 +1,6 @@
 .radio-input-container
   .title-row
-    .title {{metaInput.label || '[Label goes here]'}}:
+    .title {{metaInput.label || '[Label]'}}:
     .config-icons(ng-include="'/partials/input_config_icons'")
   md-radio-group(ng-model='inputsInner[metaInput.id]')
-    md-radio-button(ng-repeat='choice in metaInput.choices', ng-value='choice.value', aria-label='choice.label') {{choice.label}}
+    md-radio-button.md-hue-3(ng-repeat='choice in metaInput.choices', ng-value='choice.value', aria-label='choice.label') {{choice.label}}

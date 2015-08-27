@@ -1,21 +1,24 @@
 div(ng-if="getType() == 'absolute'")
-  .content(layout='horizontal', layout-align="start end")
-    select(ng-model="value.params.month", ng-options="month.value as month.label for month in months")
-    md-text-float.day(placeholder='Day', type="number", ng-model="value.params.day")
-    md-text-float.year(placeholder='Year', type="number", ng-model="value.params.year")
-  .footer(layout="horizontal")
-    span(flex='flex')
+  .content(layout='row')
+    md-input-container(flex)
+      md-select(ng-model="value.params.month")
+        md-option(ng-repeat="month in months", ng-value="month.value") {{month.label}}
+    md-input-container(flex)
+      input(type="number", ng-model="value.params.day")
+    span.form-text ,
+    md-input-container(flex)
+      input(type="number", ng-model="value.params.year")
+  .footer(layout="row")
     md-button(ng-click="toggleType()")
-      .inline-icon.forward-icon.text-button-icon-small
-      | Relative date
+      | Switch to relative date
 div(ng-if="getType() == 'relative'")
-  .content(layout='horizontal', layout-align="start end")
-    span.today-plus Today plus
-    md-text-float.delta(type="number", ng-model="value.params.delta")
-    select(ng-model="value.params.units", ng-options="unit.value as unit.label for unit in units", jscalc-default, default-value="'days'")
-  .footer(layout="horizontal")
-    span.absolute-date {{getAbsoluteDate() | date:'mediumDate'}}
-    span(flex='flex')
+  .content(layout='row')
+    md-input-container(flex)
+      input(type="number", ng-model="value.params.delta")
+    md-input-container(flex)
+      md-select(ng-model="value.params.units", jscalc-default, default-value="'days'")
+        md-option(ng-repeat="unit in units", ng-value="unit.value") {{unit.label}}
+    span.form-text from now
+  .footer(layout="row")
     md-button(ng-click="toggleType()")
-      .inline-icon.forward-icon.text-button-icon-small
-      | Absolute date
+      | Switch to absolute date

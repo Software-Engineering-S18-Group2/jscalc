@@ -1,15 +1,19 @@
-.title Choice Input Settings
+h2 Choice Input Settings
 .content(ng-if="settingsModel.metaInput")
   div(ng-include="'/partials/settings_input_common'")
   h3 Choices
-  .sortable-container(ui-sortable='{axis: "y"}', ng-model="settingsModel.metaInput.choices")
+  .sortable-container(ui-sortable='{axis: "y"}', ng-model="settingsModel.metaInput.choices", tabindex="-1")
     .choice.sortable-item(ng-repeat='choice in settingsModel.metaInput.choices track by choice.id')
-      .label-row(layout="horizontal")
-        .label(flex) Option {{$index + 1}}
-        button.button-delete-choice.menu-icon(aria-label='Delete', ng-click="deleteChoice(settingsModel.metaInput.choices, choice.id)")
-          .md-icon-container
-            .inline-icon.delete-primary-icon
-      md-text-float(label='Label', ng-model='choice.label')
-      md-text-float(label='Value', ng-model='choice.value')
+      h4
+        | Option {{$index + 1}}
+        .config-icons
+          md-button.md-icon-button(aria-label='Delete', ng-click="deleteChoice(settingsModel.metaInput.choices, choice.id)")
+            md-icon(md-svg-icon="/img/icons/ic_delete_24px.svg")
+      md-input-container
+        label Label
+        input(ng-model='choice.label')
+      md-input-container
+        label Value
+        input(ng-model='choice.value')
   .button-row
     md-button.md-primary(ng-click="addChoice(settingsModel.metaInput)") Add choice

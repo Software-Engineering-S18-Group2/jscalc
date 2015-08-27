@@ -1,23 +1,33 @@
 md-toolbar.md-whiteframe-z1
-  div.md-toolbar-tools(ng-include="'/partials/toolbar_tools'", ng-controller='ToolbarToolsCtrl')
-md-content.account-settings-content(flex)
-  md-content.section.md-padding
+  div.md-toolbar-tools.md-hue-3(ng-include="'/partials/toolbar_tools'", ng-controller='ToolbarToolsCtrl')
+md-content.account-settings-content
+  section.md-padding
     h3 Email
     p {{user.email}}
-    md-text-float(label='New email', type='email', ng-model='emailParams.email')
+    md-input-container
+      label New email
+      input(type='email', ng-model='emailParams.email')
     .action-row
       md-button.md-primary.md-raised(ng-click='changeEmail()' ng-disabled='processingEmail') Change email
-      md-progress-circular(mode='indeterminate', ng-show='processingEmail')
+      md-progress-circular(md-mode='indeterminate', ng-show='processingEmail')
+  md-divider
   md-content.section.md-padding
     h3 Password
-    md-text-float(label='Current password', type='password', ng-model='passwordParams.oldPassword')
-    md-text-float(label='New password', type='password', ng-model='passwordParams.newPassword')
-    md-text-float(label='Retype new password', type='password', ng-model='passwordParams.confirmPassword')
+    md-input-container
+      label Current password
+      input(type='password', ng-model='passwordParams.oldPassword')
+    md-input-container
+      label New password
+      input(type='password', ng-model='passwordParams.newPassword')
+    md-input-container
+      label Retype new password
+      input(type='password', ng-model='passwordParams.confirmPassword')
     .action-row
       md-button.md-primary.md-raised(ng-disabled='processingPassword' ng-click='changePassword()') Change password
-      md-progress-circular(mode='indeterminate', ng-show='processingPassword')
+      md-progress-circular(md-mode='indeterminate', ng-show='processingPassword')
+  md-divider
   md-content.section.md-padding
     h3 Delete account
     .action-row
       md-button.md-primary.md-raised(ng-disabled='processingDeleteAccount' ng-click='deleteAccount()') Delete account
-      md-progress-circular(mode='indeterminate', ng-show='processingDeleteAccount')
+      md-progress-circular(md-mode='indeterminate', ng-show='processingDeleteAccount')

@@ -1,6 +1,6 @@
 .table-output-container
   .title-row
-    span.title {{metaOutput.label || '[Label goes here]'}}
+    span.title {{metaOutput.label || '[Label]'}}
     .config-icons(ng-include="'/partials/output_config_icons'")
   .comment(ng-if='!outputs[metaOutput.id]') The table will be displayed when the script returns some rows for it.
   .content-row(ng-if="outputs[metaOutput.id]")

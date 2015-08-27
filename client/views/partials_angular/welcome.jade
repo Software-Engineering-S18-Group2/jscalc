@@ -3,14 +3,14 @@ md-toolbar.md-whiteframe-z1
 md-content.md-padding.welcome(flex)
   .centered
     .title
-      .inline-icon.logo-icon
+      md-icon(md-svg-icon="/img/icons/jscalc_full_bleed_24.svg")
       .name JSCalc
       .beta beta
     .description
       | JSCalc makes it easy to create a custom online calculator by writing a Javascript function that transforms inputs into outputs.
     .demo-container
       iframe(src="https://youtube.com/embed/Jwbhnh75HsI?rel=0" frameborder="0" allowfullscreen)
-    .section(layout='vertical', layout-sm='horizontal', layout-align="space-between")
+    .section(layout='row', layout-sm='column', layout-align="space-between")
       .item(flex)
         .heading Real-time calculations
         .content
@@ -19,7 +19,7 @@ md-content.md-padding.welcome(flex)
         .heading Variety of input types
         .content
           | You can use number inputs, checkboxes, radio buttons, date inputs (they support absolute and relative dates), and a "repeating item" input type that lets the user enter multiple items, each with its own set of inputs.
-    .section(layout='vertical', layout-sm='horizontal', layout-align="space-between")
+    .section(layout='row', layout-sm='column', layout-align="space-between")
       .item(flex)
         .heading Values or tables as outputs
         .content
@@ -28,7 +28,7 @@ md-content.md-padding.welcome(flex)
         .heading Auto-hiding of unused inputs
         .content
           | You can configure an input to be automatically hidden if given the current values of other inputs, it is not accessed by the script, and so does not affect the calculation result (this is implemented using Javascript getters).
-    .section(layout='vertical', layout-sm='horizontal', layout-align="space-between")
+    .section(layout='row', layout-sm='column', layout-align="space-between")
       .item(flex)
         .heading Powerful code editor
         .content
@@ -41,7 +41,7 @@ md-content.md-padding.welcome(flex)
         .heading Drag-and-drop
         .content
           | You can reorder items such as inputs by dragging them.
-    .section(layout='vertical', layout-sm='horizontal', layout-align="space-between")
+    .section(layout='row', layout-sm='column', layout-align="space-between")
       .item(flex)
         .heading Mobile-friendly
         .content
@@ -55,10 +55,12 @@ md-content.md-padding.welcome(flex)
           | .
     .footer
       p
-        a.social-icon.inline-icon.twitter-icon.black-icon(title='Twitter', href='https://twitter.com/ivan7237d', target='_blank')
-        a.social-icon.inline-icon.github-icon.black-icon(title='Github', href='https://github.com/ivan7237d/jscalc', target='_blank')
+        a.social-icon(title='Twitter', href='https://twitter.com/ivan7237d', target='_blank')
+          md-icon(md-svg-icon="/img/icons/twitter.svg")
+        a.social-icon(title='Github', href='https://github.com/ivan7237d/jscalc', target='_blank')
+          md-icon(md-svg-icon="/img/icons/github.svg")
       p
-        | © 2014
+        | © 2014-2015
         = ' '
         a(href='https://twitter.com/ivan7237d', target='_blank') Ivan Novikov
       p

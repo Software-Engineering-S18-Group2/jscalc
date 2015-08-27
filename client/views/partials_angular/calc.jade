@@ -1,32 +1,28 @@
-#io-container(flex='flex', ng-class="{'edit-mode': editMode}", ng-if="doc")
-  md-content#inputs
+#io-container(ng-class="{'edit-mode': editMode}", ng-if="doc", flex, layout-fill, layout-gt-md='row')
+  md-content#inputs(flex-gt-md)
     form(novalidate='novalidate', name='inputsForm', role='form')
       .frame-title Inputs
       .nonsortable-container(ng-if="!editMode", ng-include="'/partials/calc_inputs'")
-      .sortable-container(ng-if="editMode", ui-sortable='{axis: "y"}', ng-model="doc.metaInputs", ng-include="'/partials/calc_inputs'")
-      .button-row(ng-if="editMode", layout="horizontal")
+      .sortable-container(ng-if="editMode", ui-sortable='{axis: "y"}', ng-model="doc.metaInputs", ng-include="'/partials/calc_inputs'", tabindex="-1")
+      .button-row(ng-if="editMode", layout="row")
         md-button.md-primary(ng-click="addInput({$event: $event, metaInputs: doc.metaInputs, nested: false})") Add input
         span(flex)
         md-button(ng-if="showDefaultsButtons()", ng-click="updateDefaults()") Update defaults
         md-button(ng-if="showDefaultsButtons()", ng-click="loadDefaults()") Load defaults
-  md-content#outputs
+  md-content#outputs(flex-gt-md)
     .frame-title Outputs
-    .button-row(ng-if="workerError", layout='horizontal', layout-align="start center")
-      .outputs-warning.warning-colored-icon
+    .button-row(ng-if="workerError", layout='row', layout-align="start center")
+      md-icon.outputs-warning(md-svg-icon="/img/icons/ic_warning_24px.svg")
       .description(flex)
         .message {{workerError.message}}
         button.link-button(ng-if='editMode && workerError.lineNumber' ng-click='gotoLine({lineNumber: workerError.lineNumber})') Line {{workerError.lineNumber}}
     .nonsortable-container(ng-if="!editMode", ng-include="'/partials/calc_outputs'")
-    .sortable-container(ng-if="editMode", ui-sortable='{axis: "y"}', ng-model="doc.metaOutputs", ng-include="'/partials/calc_outputs'")
-    .button-row(ng-if="editMode", layout="horizontal")
+    .sortable-container(ng-if="editMode", ui-sortable='{axis: "y"}', ng-model="doc.metaOutputs", ng-include="'/partials/calc_outputs'", tabindex="-1")
+    .button-row(ng-if="editMode", layout="row")
       md-button.md-primary(ng-click="addOutput({$event: $event})") Add output
       span(flex)
-      md-button(ng-if="!debugMode", ng-click="toggleDebugMode()")
-        .inline-icon.forward-icon.text-button-icon
-        | Debug mode
-      md-button(ng-if="debugMode", ng-click="toggleDebugMode()")
-        .inline-icon.forward-icon.text-button-icon
-        | Normal mode
+      md-button(ng-if="!debugMode", ng-click="toggleDebugMode()") Switch to debug mode
+      md-button(ng-if="debugMode", ng-click="toggleDebugMode()") Switch to normal mode
       md-button(ng-if="debugMode", ng-click="calculate()") Calculate
     .debug-comment(ng-if="debugMode && debugSupported")
       | You are in debug mode. The script is not run automatically but only when you click CALCULATE button above. To pause execution at some point in your script, insert

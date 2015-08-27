@@ -5,13 +5,12 @@
 //= require angular-resource/angular-resource.min
 //= require angular-animate/angular-animate.min
 //= require angular-aria/angular-aria.min
-//= require hammerjs/hammer.min
 //= require angular-material/angular-material.min
 //= require angularytics/dist/angularytics.min
 //= require angular-ui-ace/ui-ace.min
 //= require angular-ui-sortable/sortable.min
 //= require angular-http-auth/src/http-auth-interceptor
-//= require lodash/dist/lodash.min
+//= require lodash/lodash.min
 //= require underscore.string/dist/underscore.string.min
 //= require moment/min/moment.min
 //= require app

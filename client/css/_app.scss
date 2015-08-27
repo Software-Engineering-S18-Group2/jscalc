@@ -45,7 +45,6 @@ a, .link-button {
 
 
 md-sidenav {
-  width: $sidenav-width;
   background-color: #FAFAFA;
 
   md-content {
@@ -98,7 +97,7 @@ md-sidenav {
     padding-left: 65px;
     color: map-get($primary-color-palette, '400') !important;
 
-    .logo-icon {
+    md-icon {
       position: absolute;
       top: 15px;
       left: 24px;
@@ -126,45 +125,23 @@ md-sidenav {
 }
 
 
-.menu-icon {
-  background: none;
-  border: none;
-}
-
-
-.black-icon {
-  opacity: 0.5;
-}
-
-
 #app-title {
-  font-size: 24px;
-  line-height: 64px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
 
-.button-action {
-  margin: 0 5px;
-}
-
-
-.button-more {
-  padding: 0 3px;
-}
-
-
 .rotatable-container {
   display: inline-block;
+  vertical-align: middle;
   position: relative;
   width: 24px;
   height: 24px;
 }
 
 
-.rotatable-container.inline-icon {
+.rotatable-container md-icon {
   position: absolute;
   top: 12px;
   left: 12px;
@@ -173,7 +150,7 @@ md-sidenav {
 }
 
 
-.rotating.inline-icon {
+.rotating md-icon {
   -webkit-animation:spin 4s linear infinite;
   -moz-animation:spin 4s linear infinite;
   animation:spin 4s linear infinite;
@@ -181,22 +158,6 @@ md-sidenav {
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
-
-
-.menu {
-  position: absolute;
-  z-index: 3;
-  right: 15px;
-  top: 15px;
-  background: #fff;
-  color: rgba(0, 0, 0, 0.73);
-  border-radius: 2px;
-  min-width: 168px;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 8px 16px;
-  line-height: 48px;
-}
 
 
 #toolbar-source, #toolbar-published {
@@ -211,21 +172,8 @@ md-sidenav {
 
 #toolbar-published {
   height: 64px;
-}
-
-
-#tab-content {
-  overflow: visible;
-  z-index: 0;
-}
-
-
-.md-icon-container {
-  background-repeat: no-repeat;
-}
-
-#io-container {
-  overflow: auto;
+  min-height: 64px;
+  max-height: 64px;
 }
 
 
@@ -255,17 +203,6 @@ md-sidenav {
   cursor: move;
 }
 
-.inline-icon {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-
 .input-row, .output-row, .button-row {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -281,16 +218,18 @@ md-sidenav {
 .config-icons {
   display: inline-block;
   white-space: nowrap;
-  margin-left: -7px;
-  vertical-align: baseline;
-  margin-bottom: -12px;
-  margin-top: -11px;
-  top: 7px;
-  position: relative;
-  margin-right: -11px;
 
-  button {
-    margin: 0;
+  .md-button {
+    margin: -12px 0;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+
+    md-icon {
+      vertical-align: top;
+      color: map-get($primary-color-palette, '400');
+      margin-top: 6px;
+    }
   }
 }
 
@@ -307,12 +246,16 @@ md-sidenav {
 
 
 .input-row {
-  md-input-group {
-    display: inline-block;
-    /* Prevent jumpy effect when focusing */
-    height: 32px;
-    margin-bottom: 0;
-    margin-top: 4px;
+  md-input-container {
+    padding: 4px 2px 12px;
+  }
+
+  md-input-container:first-child {
+    padding-left: 0;
+  }
+
+  md-input-container:last-child {
+    padding-right: 0;
   }
 
   md-radio-group {
@@ -332,9 +275,7 @@ md-sidenav {
   font-size: 13px;
   color: #FFF;
   padding: 1px 6px;
-  position: relative;
-  top: -7px;
-  margin-left: 10px;
+  margin: -1px 10px;
 }
 
 .edit-mode .hidden .hidden-indicator {
@@ -359,37 +300,27 @@ md-sidenav {
 }
 
 
-.text-button-icon {
-  width: 20px;
-  height: 20px;
-  margin-top: -2px;
-  margin-bottom: -4px;
+/* Text styled to align with inputs that are on the same line */
+.form-text {
+  line-height: 26px;
+  padding: 6px 2px 14px;
 }
 
 
-.text-button-icon-small {
-  width: 20px;
-  height: 20px;
-  margin-top: -3px;
-  margin-bottom: -5px;
+.form-text:first-child {
+  padding-left: 0;
+}
+
+.form-text:last-child {
+  padding-right: 0;
 }
 
 
 jscalc-date-input {
-  display: inline-block;
-  margin-right: 19px;
-
-  select {
-    margin-bottom: 6px;
-  }
-
   .content {
     height: 37px;
   }
 
-  .today-plus {
-    margin-bottom: 8px;
-  }
 
   .footer {
     margin-top: 5px;
@@ -400,29 +331,10 @@ jscalc-date-input {
     }
   }
 
-  .absolute-date {
-    color: $header-color;
-    margin-top: 6px;
-  }
-
-  .day, .year {
-    margin: 0 0 0 24px;
-
-    input {
-      width: 80px
-    }
-  }
-
-  .delta {
-    margin: 0 24px;
-
-    input {
-      width: 80px
-    }
-  }
-
-  .forward-icon {
-    opacity: 0.5;
+  .md-button {
+    font-size: 12px;
+    margin-left: -6px;
+    margin-top: -4px;
   }
 }
 
@@ -461,10 +373,7 @@ jscalc-date-input {
   height: 48px;
   width: 48px;
   margin-right: 12px;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  color: #FFEB3B;
 }
 
 
@@ -539,58 +448,13 @@ jscalc-date-input {
 
 
 .settings {
-  .title {
-    font-size: 20px;
-    line-height: 64px;
-    padding: 0 20px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    border-bottom: 1px solid $seam-border-color;
-  }
-
-  .content {
-    padding: 20px;
-    padding-top: 0;
-  }
-
-
-  .label-row {
-    margin: 16px 0;
-  }
-
-
-  .radio-label {
-    margin-top: 24px;
-  }
-
-
   .warning {
     color: map-get($color-red, '500');
     font-size: 14px;
   }
 
-  h3 {
-    font-weight: normal;
-    font-size: 20px;
-    margin-top: 40px;
-    margin-bottom: 10px;
-  }
-
-
   .choice, .column {
     margin-bottom: 40px;
-  }
-
-
-  .label {
-    display: inline-block;
-    color: map-get($primary-color-palette, '400');
-  }
-
-  .button-delete-choice, .button-delete-column {
-    margin: -9px 0 -8px;
-    vertical-align: top;
   }
 
 
@@ -604,28 +468,27 @@ jscalc-date-input {
   }
 
   .comment {
-    margin-top: -10px;
-    font-size: 14px;
+    margin-top: -7px;
+    font-size: 12px;
+    padding-bottom: 20px;
+    margin-left: 29px;
   }
 }
 
 
 md-bottom-sheet {
-  md-item {
-    p.md-grid-text {
-      width: 80px !important;
-    }
+  .md-button {
+    overflow: visible;
   }
 
-  .md-icon-container md-inline-grid-icon {
-    display: inline-block;
+  .md-grid-text {
+    width: 90px !important;
+  }
+
+  md-icon {
     height: 48px;
     width: 48px;
-    opacity: 0.5;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    opacity: 0.9;
   }
 }
 
@@ -634,7 +497,7 @@ md-bottom-sheet {
   md-content {
     width: 250px;
     background: transparent;
-    padding-bottom: 12px;
+    padding: 12px;
   }
 
   .text-rows {
@@ -657,24 +520,13 @@ md-bottom-sheet {
 
 
 .account-settings-content {
-  margin-left: auto;
-  margin-right: auto;
-
-  .section {
-    display: inline-block;
-    vertical-align: top;
-    width: 300px;
-    margin-bottom: 20px;
-
-    .action-row {
-      margin-top: 27px;
-    }
+  md-input-container {
+    max-width: 400px;
+    padding-left: 0;
   }
 
-  h3 {
-    font-weight: normal;
-    font-size: 20px;
-    color: map-get($primary-color-palette, '400');
+  .md-button {
+    margin-left: 0;
   }
 }
 
@@ -701,7 +553,7 @@ md-progress-circular {
     margin: 120px 0 30px;
 
 
-    .logo-icon {
+    md-icon {
       height: 75px;
       width: 75px;
       vertical-align: top;
@@ -761,9 +613,14 @@ md-progress-circular {
     }
 
     .social-icon {
-      width: 36px;
-      height: 36px;
       margin-right: 10px;
+      margin-bottom: 5px;
+      display: inline-block;
+
+      md-icon {
+        width: 36px;
+        height: 36px;
+      }
     }
   }
 
@@ -786,7 +643,7 @@ md-progress-circular {
 }
 
 
-@media (min-width: 800px) {
+@media (min-width: 960px) {
   #toolbar-source, #toolbar-published {
     box-shadow: none;
     z-index: 0;
@@ -795,6 +652,8 @@ md-progress-circular {
 
   #toolbar-source {
     height: 192px;
+    min-height: 192px;
+    max-height: 192px;
 
     md-tabs {
       margin-left: 18px;
@@ -824,13 +683,9 @@ md-progress-circular {
   }
 
 
-  #io-container {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -moz-flex;
-    display: -ms-flexbox;
-    display: flex;
+  #tab-content {
+    overflow: visible;
+    z-index: 0;
   }
 
 
@@ -839,16 +694,6 @@ md-progress-circular {
     z-index: 2;
     margin: 9px;
     @include z1;
-  }
-
-
-  #inputs, #outputs {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -moz-box-flex: 1;
-    -moz-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
   }
 
 
@@ -869,7 +714,7 @@ md-progress-circular {
 
   .welcome {
     .title {
-      .logo-icon {
+      md-icon {
         height: 150px;
         width: 150px;
         margin-top: -15px;
@@ -889,13 +734,5 @@ md-progress-circular {
         margin-left: 15px;
       }
     }
-  }
-}
-
-
-/* Sidenavs locked open */
-@media (min-width: 1400px) {
-  .menu {
-    right: 15px + $sidenav-width;
   }
 }

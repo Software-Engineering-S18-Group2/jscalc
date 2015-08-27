@@ -1,4 +1,8 @@
-md-text-float(label='Property name', ng-model='settingsModel.metaOutput.name')
+md-input-container
+  label Property name
+  input(ng-model='settingsModel.metaOutput.name')
 .warning(ng-if='isNameConflict(settingsModel.metaOutputs, settingsModel.metaOutput)')
   | This name conflicts with that of another output.
-md-text-float(label="Label", ng-model='settingsModel.metaOutput.label')
+md-input-container
+  label Label
+  input(ng-model='settingsModel.metaOutput.label')

@@ -182,7 +182,7 @@ angular.module('jscalcDirectives', [])
             if ($location.port()) hostUrl += ':' + $location.port();
             var imports = [hostUrl + '/js/worker.js'];
             if ($scope.doc && $scope.doc.libraries) {
-              if ($scope.doc.libraries.lodash) imports.push(hostUrl + '/bower_components/lodash/dist/lodash.min.js');
+              if ($scope.doc.libraries.lodash) imports.push(hostUrl + '/bower_components/lodash/lodash.min.js');
               if ($scope.doc.libraries.moment) imports.push(hostUrl + '/bower_components/moment/min/moment.min.js');
               if ($scope.doc.libraries.mathjs) imports.push(hostUrl + '/bower_components/mathjs/dist/math.min.js');
             }
@@ -449,18 +449,18 @@ angular.module('jscalcDirectives', [])
         return {
           pre: function($scope, element, attr) {
             $scope.months = [
-              {value: 0, label: 'Jan'},
-              {value: 1, label: 'Feb'},
-              {value: 2, label: 'Mar'},
-              {value: 3, label: 'Apr'},
+              {value: 0, label: 'January'},
+              {value: 1, label: 'February'},
+              {value: 2, label: 'March'},
+              {value: 3, label: 'April'},
               {value: 4, label: 'May'},
-              {value: 5, label: 'Jun'},
-              {value: 6, label: 'Jul'},
-              {value: 7, label: 'Aug'},
-              {value: 8, label: 'Sep'},
-              {value: 9, label: 'Oct'},
-              {value: 10, label: 'Nov'},
-              {value: 11, label: 'Dec'}
+              {value: 5, label: 'June'},
+              {value: 6, label: 'July'},
+              {value: 7, label: 'August'},
+              {value: 8, label: 'September'},
+              {value: 9, label: 'October'},
+              {value: 10, label: 'November'},
+              {value: 11, label: 'December'}
             ];
 
             $scope.units = [

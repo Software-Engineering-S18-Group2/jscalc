@@ -1,7 +1,6 @@
 md-bottom-sheet.md-grid
   md-list
-    md-item(ng-repeat='outputType in OUTPUT_TYPES', ng-click='hideBottomSheet(outputType.type)')
-      .md-item-content
-        .md-icon-container
-          md-inline-grid-icon.output-icon(input-type='{{outputType.type}}')
-        p.md-grid-text  {{ outputType.title }}
+    md-list-item(ng-repeat='outputType in OUTPUT_TYPES')
+      .md-button.md-grid-item-content(ng-click='hideBottomSheet(outputType.type)')
+        md-icon(md-svg-icon="{{outputType.iconUrl}}")
+        .md-grid-text  {{ outputType.title }}

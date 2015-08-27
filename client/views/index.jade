@@ -6,8 +6,8 @@ html(lang='en', ng-app='jscalcApp', ng-controller='JscalcCtrl')
     meta(name='fragment', content='!')
     meta(name='Description', content='{{view.description}}')
     title(ng-bind="view.title ? view.title + ' - JSCalc' : 'JSCalc'")
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic')
     link(rel='stylesheet', href='/bower_components/angular-material/angular-material.css')
-    link(rel='stylesheet', href='/bower_components/angular-material/themes/cyan-theme.css')
     // See https://github.com/ajaxorg/ace-builds/issues/45.
     script(src='/bower_components/ace-builds/src-min-noconflict/ace.js')
     != js('index')
@@ -28,78 +28,17 @@ html(lang='en', ng-app='jscalcApp', ng-controller='JscalcCtrl')
       if (navigator.userAgent.indexOf('MSIE') !== -1) {
          alert('Sorry, Internet Explorer 10 and earlier is not supported, please upgrade to 11+, or use Chrome or Firefox.');
       }
-    style.
-      .input-icon[input-type=binary] {
-        background-image: url('!{getImage("icons/ic_check_box_24px.svg")}')
-      }
-      .input-icon[input-type=number] {
-        background-image: url('!{getImage("icons/number_input_24.svg")}')
-      }
-      .input-icon[input-type=date] {
-        background-image: url('!{getImage("icons/ic_insert_invitation_24px.svg")}')
-      }
-      .input-icon[input-type=choice] {
-        background-image: url('!{getImage("icons/ic_radio_button_on_24px.svg")}')
-      }
-      .input-icon[input-type=list] {
-        background-image: url('!{getImage("icons/ic_playlist_add_24px.svg")}')
-      }
-      .output-icon[input-type=value] {
-        background-image: url('!{getImage("icons/number_output_24.svg")}')
-      }
-      .output-icon[input-type=table] {
-        background-image: url('!{getImage("icons/ic_border_all_24px.svg")}')
-      }
-      .settings-icon {
-        background-image: url('!{getImage("icons/ic_settings_24px.svg")}')
-      }
-      .settings-primary-icon {
-        background-image: url('!{getImage("icons/ic_settings_24px_primary.svg")}')
-      }
-      .delete-primary-icon {
-        background-image: url('!{getImage("icons/ic_delete_24px_primary.svg")}')
-      }
-      .forward-icon {
-        background-image: url('!{getImage("icons/ic_arrow_forward_24px.svg")}')
-      }
-      .warning-colored-icon {
-        background-image: url('!{getImage("icons/ic_warning_24px_colored.svg")}')
-      }
-      .logo-icon {
-        background-image: url('!{getImage("icons/jscalc_full_bleed_24.svg")}')
-      }
-      .menu-image-icon {
-        background-image: url('!{getImage("icons/ic_menu_24px.svg")}')
-      }
-      .save-icon {
-        background-image: url('!{getImage("icons/ic_save_24px.svg")}')
-      }
-      .more-vert-icon {
-        background-image: url('!{getImage("icons/ic_more_vert_24px.svg")}')
-      }
-      .github-icon {
-        background-image: url('!{getImage("icons/github.svg")}')
-      }
-      .twitter-icon {
-        background-image: url('!{getImage("icons/twitter.svg")}')
-      }
-  body(layout='horizontal', md-theme="cyan")
-    md-sidenav.md-sidenav-left.md-whiteframe-z3(component-id='left',  is-locked-open="sidenavsLockedOpen", layout='vertical', ng-click="closeNav()")
+  body(layout='row')
+    md-sidenav.md-sidenav-left.md-whiteframe-z3(md-component-id='left',  md-is-locked-open="sidenavsLockedOpen", layout='column', ng-click="closeNav()")
       md-content#side-nav(flex)
         a#logo(href='/', ng-class="{active: isCurrentLocation('/')}")
-          .inline-icon.logo-icon
+          md-icon(md-svg-icon="/img/icons/jscalc_full_bleed_24.svg")
           | JSCalc
           span.beta beta
         button(ng-click='new()')
-          img.new-calculator-icon.black-icon(src!=getImage('icons/ic_add_24px.svg'))
+          md-icon.new-calculator-icon(md-svg-icon="/img/icons/ic_add_24px.svg")
           div.new-calculator-label New Calculator
         .section(ng-show="calcList.length") Your Calculators
         a.indent(ng-repeat="calc in calcList | orderBy:['caption', 'url']", href="{{calc.url}}", ng-class="{active: isCurrentLocation(calc.url)}") {{calc.caption}}
         a(href='/account', ng-show='user.$resolved', ng-class="{active: isCurrentLocation('/account')}") Account Settings
-    md-content(role='main', layout='vertical', layout-fill='layout-fill', scroll-y='scroll-y', ng-view='ng-view')
-    // Stop-gap menu until it's added to Angular Material.
-    .menu.md-whiteframe-z1(ng-if="menuShown")
-      .menuitem(ng-show="view.isCalcMode" ng-click="broadcast('jscalc-copy')") Make a copy
-      .menuitem(ng-show="view.isEditMode" ng-click="broadcast('jscalc-delete')") Delete
-      .menuitem(ng-show="user === null" ng-click="login()") Sign up/sign in
-      .menuitem(ng-show="user.$resolved" ng-click="logout()") Sign out
+    md-content(role='main', layout='column', layout-fill, ng-view='ng-view')

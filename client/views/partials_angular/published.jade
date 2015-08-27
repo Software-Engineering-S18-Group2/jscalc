@@ -1,5 +1,5 @@
 md-toolbar#toolbar-published.md-tall
   div.md-toolbar-tools(ng-include="'/partials/toolbar_tools'", ng-controller='ToolbarToolsCtrl')
-md-content#tab-content(ng-if='calc !== null', flex, layout='vertical')
-  div(flex, layout='vertical')
-    jscalc-calc(flex, layout='vertical', doc="calc.doc", inputs='inputs', edit-mode='false')
+md-content#tab-content(ng-if='calc !== null', flex, layout='column', layout-fill)
+  div(flex, layout='column', layout-fill)
+    jscalc-calc(flex, layout='column', doc="calc.doc", inputs='inputs', edit-mode='false', layout-fill)

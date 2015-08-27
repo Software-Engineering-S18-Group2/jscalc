@@ -1,17 +1,17 @@
-.sidenav-container(flex, layout='horizontal')
-  .sidenav-container-content(flex, layout='vertical')
+.sidenav-container(flex, layout='row', layout-fill)
+  .sidenav-container-content(flex, layout='column', layout-fill)
     md-toolbar#toolbar-source.md-tall
       div.md-toolbar-tools(ng-include="'/partials/toolbar_tools'", ng-controller='ToolbarToolsCtrl')
-      md-tabs(selected='selectedTabIndex')
+      md-tabs(md-selected='selectedTabIndex')
         md-tab(label='IO')
         md-tab(label='SCRIPT')
         md-tab(label='SHARE')
-    md-content#tab-content(ng-if='calc !== null', flex, layout='vertical')
-      div(ng-show='selectedTabIndex == 0', flex, layout='vertical')
-        jscalc-calc#calc-source(flex, layout='vertical', doc='calc.doc', inputs='inputs', edit-mode='true',
+    md-content#tab-content(ng-if='calc !== null', flex, layout='column', layout-fill)
+      div(ng-show='selectedTabIndex == 0', flex, layout='column', layout-fill)
+        jscalc-calc#calc-source(flex, layout='column', layout-fill, doc='calc.doc', inputs='inputs', edit-mode='true',
         add-input='addInput($event, metaInputs, nested)', add-output='addOutput($event)', configure-input='configureInput(metaInputs, metaInput)', delete-input='deleteInput(metaInputs, id)', configure-output='configureOutput(metaOutputs, metaOutput)', delete-output='deleteOutput(id)', goto-line='gotoLine(lineNumber)', is-active='ioVisible()')
-      div(ng-show='selectedTabIndex == 1', flex, layout='vertical')
-        #script-container(flex, layout='horizontal')
+      div(ng-show='selectedTabIndex == 1', flex, layout='column', layout-fill)
+        #script-container(flex, layout='row', layout-sm='column', layout-fill)
           #script(flex)
             div(ui-ace='{onLoad: onAceLoad}')
           md-content.md-padding#cheat-sheet(flex="33")
@@ -58,12 +58,12 @@
                 a(href='https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts', target='_blank') on this page
                 | , and you can also hit Cmd/Ctrl + S to save all changes in the calculator.
 
-      div(ng-show='selectedTabIndex == 2', flex, layout='vertical')
-        #share-container(flex, layout='horizontal')
+      div(ng-show='selectedTabIndex == 2', flex, layout='column', layout-fill)
+        #share-container(flex, layout='row')
           md-content.md-padding#share(flex)
             p(ng-show='newAndNotSaved') After you save this calculator, it will become available on the web at the following URL:
             p(ng-show='!newAndNotSaved') This calculator is published on the web at the following URL:
             p
               a(href='/calc/{{calcId}}') https://jscalc.io/calc/{{calcId}}
-  md-sidenav.md-sidenav-right.md-whiteframe-z3(component-id='right',  is-locked-open="sidenavsLockedOpen", is-open='settingsOpen', layout='vertical')
-    md-content.settings(flex, ng-include='settingsTemplate')
+  md-sidenav.md-sidenav-right.md-whiteframe-z3(md-component-id='right',  md-is-locked-open="sidenavsLockedOpen", md-is-open='settingsOpen', layout='column')
+    md-content.md-padding.settings(flex, ng-include='settingsTemplate')

@@ -1,20 +1,28 @@
-.title Table Output Settings
+h2 Table Output Settings
 .content(ng-if="settingsModel.metaOutput")
   div(ng-include="'/partials/settings_output_common'")
   h3 Columns
-  .sortable-container(ui-sortable='{axis: "y"}', ng-model="settingsModel.metaOutput.metaOutputs")
+  .sortable-container(ui-sortable='{axis: "y"}', ng-model="settingsModel.metaOutput.metaOutputs", tabindex="-1")
     .column.sortable-item(ng-repeat='column in settingsModel.metaOutput.metaOutputs track by column.id')
-      .label-row(layout="horizontal")
-        .label(flex) Column {{$index + 1}}
-        button.button-delete-column.menu-icon(aria-label='Delete', ng-click="deleteColumn(settingsModel.metaOutput.metaOutputs, column.id)")
-          .md-icon-container.delete-primary-icon
-            .inline-icon.delete-icon.black-icon
-      md-text-float(label='Property name', ng-model='column.name')
+      h4
+        | Column {{$index + 1}}
+        .config-icons
+          md-button.md-icon-button(aria-label='Delete', ng-click="deleteColumn(settingsModel.metaOutput.metaOutputs, column.id)")
+            md-icon(md-svg-icon="/img/icons/ic_delete_24px.svg")
+      md-input-container
+        label Property name
+        input(ng-model='column.name')
       .warning(ng-if='isNameConflict(settingsModel.metaOutput.metaOutputs, column)')
         | This name conflicts with that of another column.
-      md-text-float(label="Header", ng-model='column.label')
-      md-text-float(label='Decimal places', type='number', ng-model='column.decimalPlaces')
-      md-text-float(label='Currency sign', ng-model='column.currencySign')
-      md-checkbox(ng-model='column.percent') Display in percent
+      md-input-container
+        label Header
+        input(ng-model='column.label')
+      md-input-container
+        label Decimal places
+        input(type='number', ng-model='column.decimalPlaces')
+      md-input-container
+        label Currency sign
+        input(ng-model='column.currencySign')
+      md-checkbox.md-hue-3(ng-model='column.percent') Display in percent
   .button-row
     md-button.md-primary(ng-click="addColumn(settingsModel.metaOutput)") Add column

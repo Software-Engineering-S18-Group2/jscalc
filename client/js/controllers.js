@@ -24,7 +24,6 @@ jscalcControllers.controller('JscalcCtrl', [
       $document, $templateCache, $q) {
 
     $scope.user = PRELOADED_DATA.isAuthenticated ? User.get() : null;
-    $scope.menuShown = false;
     $scope.view = {};
     $scope.calcs = {};
 
@@ -70,7 +69,7 @@ jscalcControllers.controller('JscalcCtrl', [
     };
 
     $scope.getCalcNameOrPlaceholder = function(name) {
-      return _.str.isBlank(name) ? 'Untitled calculator' : _.str.trim(name);
+      return _.trim(name) || 'Untitled calculator';
     };
 
     $scope.getCalcCaption = function(calc) {
@@ -148,17 +147,6 @@ jscalcControllers.controller('JscalcCtrl', [
             $location.path('/');
           });
     };
-
-    $scope.toggleMenu = function(event) {
-      $scope.menuShown = !$scope.menuShown;
-      event.stopPropagation();
-    };
-
-    $document.on('click', function() {
-      $scope.$apply(function() {
-        $scope.menuShown = false;
-      });
-    });
 
     window.onbeforeunload = function() {
       if(!areAllChangesSaved()) {
