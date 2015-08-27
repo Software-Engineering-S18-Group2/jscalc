@@ -11,7 +11,6 @@
 //= require angular-ui-sortable/sortable.min
 //= require angular-http-auth/src/http-auth-interceptor
 //= require lodash/lodash.min
-//= require underscore.string/dist/underscore.string.min
 //= require moment/min/moment.min
 //= require app
 //= require controllers
