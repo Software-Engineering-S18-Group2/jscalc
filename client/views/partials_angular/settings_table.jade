@@ -23,6 +23,7 @@ h2 Table Output Settings
       md-input-container
         label Currency sign
         input(ng-model='column.currencySign')
+      jscalc-mover(items="settingsModel.metaOutput.metaOutputs", item-id="column.id", get-label="getLabel", get-id="getId")
       md-checkbox.md-hue-3(ng-model='column.percent') Display in percent
   .button-row
     md-button.md-primary(ng-click="addColumn(settingsModel.metaOutput)") Add column

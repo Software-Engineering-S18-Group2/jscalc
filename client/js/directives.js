@@ -516,4 +516,70 @@ angular.module('jscalcDirectives', [])
         }
       }
     };
-  }]);
+  }])
+  .directive('jscalcMover', function() {
+    return {
+      restrict: 'E',
+      templateUrl: '/partials/jscalc_mover',
+      scope: {
+        // A non-empty list of objects.
+        items: '=',
+        // A string ID of an item from the `items` that will be moved.
+        itemId: '=',
+        // A function that takes an element of `items` as argument and returns a
+        // string label describing the item.
+        getLabel: '&',
+        // A function that takes an element of `items` as argument and returns a
+        // string ID for it.
+        getId: '&'
+      },
+      link: function($scope, element, attr) {
+        var updatePositionId = function() {
+          var newIndex = _.findIndex($scope.items, function(item) {
+            return $scope.getId()(item) == $scope.itemId;
+          });
+          if (newIndex == 0) {
+            $scope.positionId = 'first';
+          } else {
+            $scope.positionId = 'after_' +
+                $scope.getId()($scope.items[newIndex - 1]);
+          }
+        };
+
+        $scope.$watch('items', function() {
+          $scope.positions = [{id: 'first'}];
+          $scope.items.forEach(function(item, index) {
+            var currentItemId = $scope.getId()(item);
+            if (currentItemId != $scope.itemId) {
+              $scope.positions.push({
+                id: 'after_' + currentItemId,
+                item: item
+              });
+            }
+          });
+          updatePositionId();
+        }, true);
+
+        $scope.$watch('itemId', updatePositionId);
+
+        $scope.handleChange = function() {
+          var oldIndex = _.findIndex($scope.items, function(item) {
+            return $scope.getId()(item) == $scope.itemId;
+          });
+          var movedItem = $scope.items[oldIndex];
+          $scope.items.splice(oldIndex, 1);
+          if ($scope.positionId == 'first') {
+            $scope.items.unshift(movedItem);
+          } else {
+            var position = _.find($scope.positions,
+                {id: $scope.positionId});
+            var positionItemId = $scope.getId()(position.item);
+            var insertionIndex = _.findIndex($scope.items, function(item) {
+              return $scope.getId()(item) == positionItemId;
+            }) + 1;
+            $scope.items.splice(insertionIndex, 0, movedItem);
+          }
+        };
+      }
+    };
+  });

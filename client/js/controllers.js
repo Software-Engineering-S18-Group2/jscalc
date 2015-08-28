@@ -575,6 +575,14 @@ jscalcControllers.controller('SourceCtrl', [
       return _.some(otherMetaInputs, {'name': metaInput.name});
     };
 
+    $scope.getLabel = function(obj) {
+      return obj.label || '[Label]';
+    };
+
+    $scope.getId = function(obj) {
+      return obj.id;
+    };
+
     $scope.addColumn = function(metaOutput) {
       if (!('metaOutputs' in metaOutput)) {
         metaOutput.metaOutputs = [];

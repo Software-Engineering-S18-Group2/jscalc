@@ -6,5 +6,6 @@ md-input-container
 md-input-container
   label {{settingsModel.metaInput.type == 'list' ? 'Caption (singular)' : 'Label'}}
   input(ng-model='settingsModel.metaInput.label')
+jscalc-mover(items="settingsModel.metaInputs", item-id="settingsModel.metaInput.id", get-label="getLabel", get-id="getId")
 md-checkbox.md-hue-3(ng-model='settingsModel.metaInput.autohide') Auto-hide when not applicable
 .comment Hides the input if given current values of other inputs, the script does not read this input's value.

@@ -1,0 +1,4 @@
+md-input-container
+  label Position
+  md-select(ng-model="positionId", ng-disabled="positions.length <= 1", ng-change="handleChange()")
+    md-option(ng-repeat="position in positions", ng-value="position.id") {{$first ? 'First' : ($last ? 'Last' : 'After "' + getLabel()(position.item) + '"')}}
