@@ -27,7 +27,8 @@ angular.module('jscalcDirectives', [])
           deleteOutput: '&?',
           gotoLine: '&?',
           // Suspends refreshing of web worker on script change.
-          isActive: '&?'
+          isActive: '&?',
+          focusFirstInput: '&?'
         },
         link: function($scope, element, attr) {
           $scope.DEFAULTS = DEFAULTS;
@@ -400,6 +401,18 @@ angular.module('jscalcDirectives', [])
               return " and open your browser's developer tools";
             }
           }
+
+          $timeout(function() {
+            if (!$scope.focusFirstInput) { return; }
+            var inputEls = document.querySelectorAll('#inputs .md-input, #inputs md-select, #inputs md-checkbox, #inputs md-radio-group');
+            console.log(inputEls)
+            var firstDisplayed = _.find(inputEls, function(el) {
+              return el.offsetParent !== null;
+            });
+            if (firstDisplayed) {
+              firstDisplayed.focus();
+            }
+          });
         }
       };
     }])
