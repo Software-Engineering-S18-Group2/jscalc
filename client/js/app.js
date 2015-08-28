@@ -8,7 +8,6 @@ var jscalcApp = angular.module('jscalcApp', [
   'ngRoute',
   'ngMaterial',
   'ui.ace',
-  'ui.sortable',
 
   'jscalcControllers',
   'jscalcDirectives',

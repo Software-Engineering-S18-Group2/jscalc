@@ -2,8 +2,7 @@
   md-content#inputs(flex-gt-md)
     form(novalidate='novalidate', name='inputsForm', role='form')
       .frame-title Inputs
-      .nonsortable-container(ng-if="!editMode", ng-include="'/partials/calc_inputs'")
-      .sortable-container(ng-if="editMode", ui-sortable='{axis: "y"}', ng-model="doc.metaInputs", ng-include="'/partials/calc_inputs'", tabindex="-1")
+      div(ng-include="'/partials/calc_inputs'")
       .button-row(ng-if="editMode", layout="row")
         md-button.md-primary(ng-click="addInput({$event: $event, metaInputs: doc.metaInputs, nested: false})") Add input
         span(flex)
@@ -16,8 +15,7 @@
       .description(flex)
         .message {{workerError.message}}
         button.link-button(ng-if='editMode && workerError.lineNumber' ng-click='gotoLine({lineNumber: workerError.lineNumber})') Line {{workerError.lineNumber}}
-    .nonsortable-container(ng-if="!editMode", ng-include="'/partials/calc_outputs'")
-    .sortable-container(ng-if="editMode", ui-sortable='{axis: "y"}', ng-model="doc.metaOutputs", ng-include="'/partials/calc_outputs'", tabindex="-1")
+    div(ng-include="'/partials/calc_outputs'")
     .button-row(ng-if="editMode", layout="row")
       md-button.md-primary(ng-click="addOutput({$event: $event})") Add output
       span(flex)

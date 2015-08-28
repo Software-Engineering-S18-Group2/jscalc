@@ -2,8 +2,8 @@ h2 Table Output Settings
 .content(ng-if="settingsModel.metaOutput")
   div(ng-include="'/partials/settings_output_common'")
   h3 Columns
-  .sortable-container(ui-sortable='{axis: "y"}', ng-model="settingsModel.metaOutput.metaOutputs", tabindex="-1")
-    .column.sortable-item(ng-repeat='column in settingsModel.metaOutput.metaOutputs track by column.id')
+  div
+    .column(ng-repeat='column in settingsModel.metaOutput.metaOutputs track by column.id')
       h4
         | Column {{$index + 1}}
         .config-icons

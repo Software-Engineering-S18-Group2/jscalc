@@ -2,8 +2,8 @@ h2 Choice Input Settings
 .content(ng-if="settingsModel.metaInput")
   div(ng-include="'/partials/settings_input_common'")
   h3 Choices
-  .sortable-container(ui-sortable='{axis: "y"}', ng-model="settingsModel.metaInput.choices", tabindex="-1")
-    .choice.sortable-item(ng-repeat='choice in settingsModel.metaInput.choices track by choice.id')
+  div
+    .choice(ng-repeat='choice in settingsModel.metaInput.choices track by choice.id')
       h4
         | Option {{$index + 1}}
         .config-icons
