@@ -179,7 +179,7 @@ md-sidenav {
 
 #inputs, #outputs, #cheat-sheet {
   background-color: #fff;
-  padding: 0 20px;
+  padding: 0 8px;
 
   .frame-title {
     color: $header-color;
@@ -704,6 +704,7 @@ md-progress-circular {
     /* Placed above toolbar. */
     z-index: 2;
     margin: 9px;
+    padding: 0px 20px;
     @include z1;
   }
 
