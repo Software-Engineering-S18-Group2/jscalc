@@ -306,7 +306,12 @@ jscalcControllers.controller('SourceCtrl', [
         $timeout(function() {
           if ($scope.editor !== null) {
             $scope.editor.resize(true);
-            $scope.editor.focus();
+            var iOS = /iPad|iPhone|iPod/.test(navigator.platform);
+            // The editor should initially not be focused on iOS, because when
+            // the user tabs a focused editor, the keyboard is not brought up.
+            if (!iOS) {
+              $scope.editor.focus();
+            }
             $timeout(function() {
               $scope.editor.resize(true);
             }, 100)
