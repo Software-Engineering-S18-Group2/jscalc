@@ -405,7 +405,6 @@ angular.module('jscalcDirectives', [])
           $timeout(function() {
             if (!$scope.focusFirstInput) { return; }
             var inputEls = document.querySelectorAll('#inputs .md-input, #inputs md-select, #inputs md-checkbox, #inputs md-radio-group');
-            console.log(inputEls)
             var firstDisplayed = _.find(inputEls, function(el) {
               return el.offsetParent !== null;
             });
