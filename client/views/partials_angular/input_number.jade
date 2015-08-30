@@ -2,6 +2,9 @@
   .title-row
     .title {{metaInput.label || '[Label]'}}:
     .config-icons(ng-include="'/partials/input_config_icons'")
-  .content-row
-    md-input-container
+  .content-row(layout="row")
+    div(ng-if="metaInput.slider" flex="80")
+      md-slider.md-primary(ng-if="metaInput.sliderStep", ng-model="inputsInner[metaInput.id]", min="{{getValueOrDefault(metaInput.sliderMin, DEFAULTS.sliderMin)}}", max="{{getValueOrDefault(metaInput.sliderMax, DEFAULTS.sliderMax)}}", step="{{metaInput.sliderStep}}")
+      md-slider.md-primary(ng-if="!metaInput.sliderStep", ng-model="inputsInner[metaInput.id]", min="{{getValueOrDefault(metaInput.sliderMin, DEFAULTS.sliderMin)}}", max="{{getValueOrDefault(metaInput.sliderMax, DEFAULTS.sliderMax)}}")
+    md-input-container(flex)
       input(type="number", ng-model="inputsInner[metaInput.id]")

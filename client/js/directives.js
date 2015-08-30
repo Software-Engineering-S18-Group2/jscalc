@@ -402,6 +402,13 @@ angular.module('jscalcDirectives', [])
             }
           }
 
+          $scope.getValueOrDefault = function(value, defaultValue) {
+            if (!angular.isDefined(value) || value === null) {
+              return defaultValue;
+            }
+            return value;
+          };
+
           $timeout(function() {
             if (!$scope.focusFirstInput) { return; }
             var inputEls = document.querySelectorAll('#inputs .md-input, #inputs md-select, #inputs md-checkbox, #inputs md-radio-group');
@@ -415,7 +422,7 @@ angular.module('jscalcDirectives', [])
         }
       };
     }])
-  .directive('jscalcDefault', function() {
+  .directive('default', function() {
     return {
       restrict: 'A',
       require: 'ngModel',

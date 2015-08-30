@@ -1,3 +1,14 @@
 h2 Number Input Settings
 .content(ng-if="settingsModel.metaInput")
   div(ng-include="'/partials/settings_input_common'")
+  md-checkbox.md-hue-3(ng-model='settingsModel.metaInput.slider') Display slider
+  div(ng-if="settingsModel.metaInput.slider")
+    md-input-container
+      label Slider minimum value
+      input(type='number', ng-model='settingsModel.metaInput.sliderMin', required, default, default-value="DEFAULTS.sliderMin")
+    md-input-container
+      label Slider maximum value
+      input(type='number', ng-model='settingsModel.metaInput.sliderMax', required, default, default-value="DEFAULTS.sliderMax")
+    md-input-container
+      label Step
+      input(type='number', ng-model='settingsModel.metaInput.sliderStep', default, default-value="DEFAULTS.sliderStep")

@@ -18,7 +18,10 @@ var jscalcApp = angular.module('jscalcApp', [
 .constant('DEFAULTS', {
   'tabSize': 2,
   'dateInputValueType': 'relative',
-  'script': "'use strict';\n\nreturn {};\n"
+  'script': "'use strict';\n\nreturn {};\n",
+  'sliderMin': 0,
+  'sliderMax': 100,
+  'step': 5
 })
 
 .constant('INPUT_TYPES', [

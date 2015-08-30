@@ -4,7 +4,7 @@ h2 Calculator Settings
     label Title
     input(ng-model='settingsModel.name')
   h3 Tab size in editor:
-  md-radio-group(ng-model='settingsModel.tabSize', jscalc-number-to-string, jscalc-default, default-value="DEFAULTS.tabSize")
+  md-radio-group(ng-model='settingsModel.tabSize', jscalc-number-to-string, default, default-value="DEFAULTS.tabSize")
     md-radio-button.md-hue-3(value='2', aria-label='2 spaces') 2 spaces
     md-radio-button.md-hue-3(value='4', aria-label='4 spaces') 4 spaces
   div(style="height: 4px")

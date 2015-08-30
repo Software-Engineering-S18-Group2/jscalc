@@ -16,7 +16,7 @@ div(ng-if="getType() == 'relative'")
     md-input-container(flex)
       input(type="number", ng-model="value.params.delta")
     md-input-container(flex)
-      md-select(ng-model="value.params.units", jscalc-default, default-value="'days'")
+      md-select(ng-model="value.params.units", default, default-value="'days'")
         md-option(ng-repeat="unit in units", ng-value="unit.value") {{unit.label}}
     span.form-text from now
   .footer(layout="row")
