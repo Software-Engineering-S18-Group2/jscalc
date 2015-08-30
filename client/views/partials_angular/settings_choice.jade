@@ -1,6 +1,11 @@
 h2 Choice Input Settings
 .content(ng-if="settingsModel.metaInput")
   div(ng-include="'/partials/settings_input_common'")
+  md-input-container
+    label Control type
+    md-select(ng-model="settingsModel.metaInput.presentationType")
+      md-option(ng-value="'radio'") Radio
+      md-option(ng-value="'dropdown'") Dropdown
   h3 Choices
   div
     .choice(ng-repeat='choice in settingsModel.metaInput.choices track by choice.id')

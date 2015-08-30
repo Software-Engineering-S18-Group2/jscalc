@@ -31,7 +31,7 @@ var jscalcApp = angular.module('jscalcApp', [
   {type: 'date', title: 'Date',
       default: {"params":{"delta":0,"units":"days"},"type":"relative"},
       iconUrl: '/img/icons/ic_insert_invitation_24px.svg'},
-  {type: 'choice', title: 'Radio',
+  {type: 'choice', title: 'Radio/Dropdown',
       default: null, iconUrl: '/img/icons/ic_radio_button_on_24px.svg'},
   {type: 'list', title: 'Repeating item',
       default: [], iconUrl: '/img/icons/ic_playlist_add_24px.svg'}
