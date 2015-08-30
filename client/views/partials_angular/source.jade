@@ -15,7 +15,7 @@
           #script(flex)
             div(ui-ace='{onLoad: onAceLoad}')
           md-content.md-padding#cheat-sheet(flex="33")
-            .frame-title Cheatsheet
+            h2.frame-title Cheatsheet
             .content(ng-if='!(calc.doc.metaInputs.length && calc.doc.metaOutputs.length)')
               p
                 | Not so fast! First add some
