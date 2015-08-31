@@ -1,6 +1,6 @@
 .sidenav-container(flex, layout='row', layout-fill)
   .sidenav-container-content(flex, layout='column', layout-fill)
-    md-toolbar#toolbar-source.md-tall
+    md-toolbar#toolbar-source
       div.md-toolbar-tools(ng-include="'/partials/toolbar_tools'", ng-controller='ToolbarToolsCtrl')
       md-tabs(md-selected='selectedTabIndex')
         md-tab(label='IO')

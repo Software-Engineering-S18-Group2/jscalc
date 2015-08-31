@@ -160,26 +160,8 @@ md-sidenav {
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 
-#toolbar-source, #toolbar-published {
-  @include z1;
-}
-
-
-#toolbar-source {
-  height: 112px;
-}
-
-
-#toolbar-published {
-  height: 64px;
-  min-height: 64px;
-  max-height: 64px;
-}
-
-
 #inputs, #outputs, #cheat-sheet {
   background-color: #fff;
-  padding: 0 8px;
 
   .frame-title {
     color: $header-color;
@@ -192,6 +174,11 @@ md-sidenav {
     margin-left: -6px;
     margin-right: -6px;
   }
+}
+
+
+#inputs, #outputs, #cheat-sheet, #share {
+  padding: 0px 20px;
 }
 
 
@@ -552,6 +539,19 @@ md-progress-circular {
 }
 
 
+/* Actually the toolbar doesn't have 'flex' on it, but in Chrome it still
+shrinks (in Safari doesn't shrink). */
+md-toolbar {
+  flex-shrink: 0;
+}
+
+
+/* See https://github.com/angular/material/issues/4381 */
+.md-toolbar-tools h1, .md-toolbar-tools h2, .md-toolbar-tools h3 {
+  font-weight: 500;
+}
+
+
 .welcome {
   .centered {
     margin-left: auto;
@@ -656,19 +656,9 @@ md-progress-circular {
 
 
 @media (min-width: 960px) {
-  #toolbar-source, #toolbar-published {
-    box-shadow: none;
-    z-index: 0;
-  }
-
-
   #toolbar-source {
-    height: 192px;
-    min-height: 192px;
-    max-height: 192px;
-
     md-tabs {
-      margin-left: 18px;
+      margin-left: 37px;
     }
 
     md-tab {
@@ -681,32 +671,9 @@ md-progress-circular {
   }
 
 
-  #tab-content {
-    background-color: #B5DEE4;
-  }
-
-
-  #calc-source #io-container, #script-container, #share-container {
-    margin-top: -80px;
-  }
-
-  #io-container, #script-container, #share-container {
-    padding: 9px;
-  }
-
-
-  #tab-content {
-    overflow: visible;
-    z-index: 0;
-  }
-
-
-  #inputs, #outputs, #script, #cheat-sheet, #share {
-    /* Placed above toolbar. */
-    z-index: 2;
-    margin: 9px;
-    padding: 0px 20px;
-    @include z1;
+  /* Because of the border */
+  #inputs {
+    padding-right: 19px;
   }
 
 
@@ -718,11 +685,13 @@ md-progress-circular {
 
   #cheat-sheet {
     display: block;
+    border-left: 1px solid $seam-border-color;
   }
 
 
   #inputs {
     border-bottom: none;
+    border-right: 1px solid $seam-border-color;
   }
 
   .welcome {
