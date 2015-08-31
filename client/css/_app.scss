@@ -1,13 +1,9 @@
 @import 'lib/color-palette';
 
 $seam-border-color: #E0E0E0;
-$header-color: #aaa;
+$header-color: rgba(0,0,0,0.54);
 $primary-color-palette: $color-cyan;
 $sidenav-width: 250px;
-
-body {
-  font-size: 15px;
-}
 
 code, pre {
   font-family: Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace;
@@ -25,7 +21,7 @@ code, pre {
 
 
 a, .link-button {
-  color: map-get($primary-color-palette, '400');
+  color: map-get($primary-color-palette, '600');
   text-decoration: none;
   font-weight: 400;
 
@@ -56,7 +52,6 @@ md-sidenav {
 .md-sidenav-left {
   a, .section, button {
     text-decoration: none;
-    font-size: 13px;
     line-height: 44px;
     overflow: hidden;
     white-space: nowrap;
@@ -67,7 +62,7 @@ md-sidenav {
     margin: 0;
     padding: 0 24px;
     position: relative;
-    font-weight: bold;
+    font-weight: 500;
 
     &.indent {
       padding-left: 48px;
@@ -166,7 +161,7 @@ md-sidenav {
   .frame-title {
     color: $header-color;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 500;
     margin: 22px 0px;
   }
 
@@ -193,9 +188,8 @@ md-sidenav {
   margin-bottom: 30px;
 
   .comment {
-    font-size: 13px;
+    font-size: 12px;
     margin-top: 10px;
-    color: #AAA;
   }
 }
 
@@ -224,8 +218,7 @@ md-sidenav {
     display: inline-block;
     margin-right: 16px;
     color: $header-color;
-    font-weight: bold;
-    font-size: 13px;
+    font-weight: 500;
   }
 }
 
@@ -262,10 +255,11 @@ md-sidenav {
   display: none;
   background-color: rgba(43, 175, 43, 0.87);
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 500;
   color: #FFF;
-  padding: 1px 6px;
-  margin: -1px 10px;
+  padding: 0px 7px;
+  margin: 0 10px;
 }
 
 .edit-mode .hidden .hidden-indicator {
@@ -351,8 +345,7 @@ jscalc-date-input {
 
 
 .debug-comment {
-  font-size: 13px;
-  color: #AAA;
+  font-size: 12px;
   margin-top: -22px;
   margin-bottom: 30px;
 }
@@ -370,6 +363,7 @@ jscalc-date-input {
 .value-output-container {
   .content-row {
     margin-top: 12px;
+    font-size: 16px;
   }
 }
 
@@ -392,7 +386,8 @@ jscalc-date-input {
 
   th {
     color: $header-color;
-    font-size: 13px;
+    font-weight: 500;
+    font-size: 12px;
     vertical-align: bottom;
     border-bottom: 2px solid map-get($primary-color-palette, '400');
     border-top: 0;
@@ -406,7 +401,6 @@ jscalc-date-input {
 
 #cheat-sheet {
   display: none;
-  font-size: 13px;
 
   p {
     line-height: 22px;

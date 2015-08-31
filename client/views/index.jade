@@ -28,7 +28,7 @@ html(lang='en', ng-app='jscalcApp', ng-controller='JscalcCtrl')
       if (navigator.userAgent.indexOf('MSIE') !== -1) {
          alert('Sorry, Internet Explorer 10 and earlier is not supported, please upgrade to 11+, or use Chrome or Firefox.');
       }
-  body(layout='row')
+  body.md-body-1(layout='row')
     md-sidenav.md-sidenav-left.md-whiteframe-z3(md-component-id='left',  md-is-locked-open="sidenavsLockedOpen", layout='column', ng-click="closeNav()")
       md-content#side-nav(flex)
         a#logo(href='/', ng-class="{active: isCurrentLocation('/')}")
