@@ -1,5 +1,5 @@
 #io-container(ng-class="{'edit-mode': editMode}", ng-if="doc", flex, layout-fill, layout-gt-md='row')
-  md-content#inputs(flex-gt-md)
+  #inputs(flex-gt-md)
     form(novalidate='novalidate', name='inputsForm', role='form')
       h2.frame-title Inputs
       div(ng-include="'/partials/calc_inputs'")
@@ -8,7 +8,7 @@
         span(flex)
         md-button(ng-if="showDefaultsButtons()", ng-click="updateDefaults()") Update defaults
         md-button(ng-if="showDefaultsButtons()", ng-click="loadDefaults()") Load defaults
-  md-content#outputs(flex-gt-md)
+  #outputs(flex-gt-md)
     h2.frame-title Outputs
     .button-row(ng-if="workerError", layout='row', layout-align="start center")
       md-icon.outputs-warning(md-svg-icon="/img/icons/ic_warning_24px.svg")

@@ -6,7 +6,7 @@
         md-tab(label='IO')
         md-tab(label='SCRIPT')
         md-tab(label='SHARE')
-    md-content#tab-content(ng-if='calc !== null', flex, layout='column', layout-fill)
+    #tab-content(ng-if='calc !== null', flex, layout='column', layout-fill)
       div(ng-show='selectedTabIndex == 0', flex, layout='column', layout-fill)
         jscalc-calc#calc-source(flex, layout='column', layout-fill, doc='calc.doc', inputs='inputs', edit-mode='true',
         add-input='addInput($event, metaInputs, nested)', add-output='addOutput($event)', configure-input='configureInput(metaInputs, metaInput)', delete-input='deleteInput(metaInputs, id)', configure-output='configureOutput(metaOutputs, metaOutput)', delete-output='deleteOutput(id)', goto-line='gotoLine(lineNumber)', is-active='ioVisible()')
@@ -14,7 +14,7 @@
         #script-container(flex, layout='row', layout-sm='column', layout-fill)
           #script(flex)
             div(ui-ace='{onLoad: onAceLoad}')
-          md-content.md-padding#cheat-sheet(flex="33")
+          md-content#cheat-sheet(flex="33")
             h2.frame-title Cheatsheet
             .content(ng-if='!(calc.doc.metaInputs.length && calc.doc.metaOutputs.length)')
               p
@@ -60,7 +60,7 @@
 
       div(ng-show='selectedTabIndex == 2', flex, layout='column', layout-fill)
         #share-container(flex, layout='row')
-          md-content.md-padding#share(flex)
+          md-content#share(flex)
             p(ng-show='newAndNotSaved') After you save this calculator, it will become available on the web at the following URL:
             p(ng-show='!newAndNotSaved') This calculator is published on the web at the following URL:
             p

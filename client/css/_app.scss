@@ -182,6 +182,12 @@ md-sidenav {
 }
 
 
+#io-container {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
 .input-row, .output-row, .button-row {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -664,6 +670,11 @@ md-toolbar {
         font-size: 15px;
       }
     }
+  }
+
+
+  #io-container {
+    overflow: initial;
   }
 
 
