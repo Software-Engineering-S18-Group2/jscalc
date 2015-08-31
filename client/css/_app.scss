@@ -657,6 +657,21 @@ md-toolbar {
 }
 
 
+@-moz-document url-prefix() {
+  .layout-fill {
+    min-height: 0;
+  }
+
+  input[type="number"] {
+    width: auto;
+  }
+
+  md-input-container {
+    min-width: 0;
+  }
+}
+
+
 @media (min-width: 960px) {
   #toolbar-source {
     md-tabs {

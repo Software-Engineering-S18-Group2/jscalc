@@ -41,4 +41,4 @@ html(lang='en', ng-app='jscalcApp', ng-controller='JscalcCtrl')
         .section(ng-show="calcList.length") Your Calculators
         a.indent(ng-repeat="calc in calcList | orderBy:['caption', 'url']", href="{{calc.url}}", ng-class="{active: isCurrentLocation(calc.url)}") {{calc.caption}}
         a(href='/account', ng-show='user.$resolved', ng-class="{active: isCurrentLocation('/account')}") Account Settings
-    md-content(role='main', layout='column', layout-fill, ng-view='ng-view')
+    div(role='main', layout='column', layout-fill, ng-view='ng-view')
