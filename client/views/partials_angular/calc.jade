@@ -3,9 +3,8 @@
     form(novalidate='novalidate', name='inputsForm', role='form')
       h2.frame-title Inputs
       div(ng-include="'/partials/calc_inputs'")
-      .button-row(ng-if="editMode", layout="row")
+      .button-row(ng-if="editMode", layout-sm="column", layout-align-sm="center start", layout-md="column", layout-align-md="center start")
         md-button.md-primary(ng-click="addInput({$event: $event, metaInputs: doc.metaInputs, nested: false})") Add input
-        span(flex)
         md-button(ng-if="showDefaultsButtons()", ng-click="updateDefaults()") Update defaults
         md-button(ng-if="showDefaultsButtons()", ng-click="loadDefaults()") Load defaults
   #outputs(flex-gt-md)
@@ -16,9 +15,8 @@
         .message {{workerError.message}}
         button.link-button(ng-if='editMode && workerError.lineNumber' ng-click='gotoLine({lineNumber: workerError.lineNumber})') Line {{workerError.lineNumber}}
     div(ng-include="'/partials/calc_outputs'")
-    .button-row(ng-if="editMode", layout="row")
+    .button-row(ng-if="editMode", layout-sm="column", layout-align-sm="center start", layout-md="column", layout-align-md="center start")
       md-button.md-primary(ng-click="addOutput({$event: $event})") Add output
-      span(flex)
       md-button(ng-if="!debugMode", ng-click="toggleDebugMode()") Switch to debug mode
       md-button(ng-if="debugMode", ng-click="toggleDebugMode()") Switch to normal mode
       md-button(ng-if="debugMode", ng-click="calculate()") Calculate

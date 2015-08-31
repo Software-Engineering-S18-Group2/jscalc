@@ -165,9 +165,9 @@ md-sidenav {
     margin: 22px 0px;
   }
 
-  .button-row {
+  .md-button {
     margin-left: -6px;
-    margin-right: -6px;
+    margin-right: 14px;
   }
 }
 
@@ -666,6 +666,13 @@ md-toolbar {
 }
 
 
+/* Safari has default margin */
+md-input-container input {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+
 @media (min-width: 960px) {
   #toolbar-source {
     md-tabs {
@@ -687,7 +694,7 @@ md-toolbar {
   }
 
 
-  /* Because of the border */
+  /* Because of the border on #inputs */
   #inputs {
     padding-right: 19px;
   }
@@ -708,6 +715,19 @@ md-toolbar {
   #inputs {
     border-right: 1px solid $seam-border-color;
   }
+
+
+  .list-input-container {
+    & > .item > .content-row {
+      margin-left: 50px;
+    }
+
+    /* Because of the border on #inputs */
+    .item-prototype {
+      margin-right: -19px;
+    }
+  }
+
 
   .welcome {
     .title {
