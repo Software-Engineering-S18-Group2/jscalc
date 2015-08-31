@@ -182,10 +182,6 @@ md-sidenav {
 }
 
 
-#inputs {
-  border-bottom: 1px solid $seam-border-color;
-}
-
 .input-row, .output-row, .button-row {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -690,7 +686,6 @@ md-toolbar {
 
 
   #inputs {
-    border-bottom: none;
     border-right: 1px solid $seam-border-color;
   }
 
