@@ -674,6 +674,14 @@ md-input-container input {
 }
 
 
+@media (max-width: 360px) {
+  md-sidenav {
+      min-width: 85%;
+      max-width: 85%;
+  }
+}
+
+
 @media (min-width: 960px) {
   #toolbar-source {
     md-tabs {
