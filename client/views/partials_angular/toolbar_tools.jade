@@ -1,17 +1,21 @@
 md-button.md-icon-button(ng-show='!sidenavsLockedOpen', aria-label='Toggle Menu', ng-click='toggleNav()')
   md-icon(md-svg-icon="/img/icons/ic_menu_24px.svg")
 h2(ng-if='!view.showCreateCalcButton', flex)#app-title {{title}}
-md-button(ng-if='view.showCreateCalcButton', ng-click='new()') Create a calculator now!
+md-button(ng-if='view.showCreateCalcButton', ng-click='new()', hide-sm) Create a calculator now!
 span(flex ng-if='view.showCreateCalcButton')
-md-button.md-icon-button(ng-show='view.isEditMode', aria-label='Configure', ng-click="openSettings('/partials/settings_calc', calc.doc)")
+md-button.md-icon-button(ng-show='view.isEditMode', aria-label='Configure', ng-click="openSettings('/partials/settings_calc', calc.doc)", hide-sm)
   md-icon(md-svg-icon="/img/icons/ic_settings_24px.svg")
-md-button.md-icon-button(ng-show='view.isEditMode', aria-label='Save', ng-click='save($event)')
+md-button.md-icon-button(ng-show='view.isEditMode', aria-label='Save', ng-click='save($event)', hide-sm)
   .rotatable-container(ng-class="{rotating: saving}")
     md-icon(md-svg-icon="/img/icons/ic_save_24px.svg")
 md-menu
   md-button.md-icon-button(aria-label='More', ng-click="$mdOpenMenu($event)")
     md-icon(md-svg-icon="/img/icons/ic_more_vert_24px.svg")
   md-menu-content
+    md-menu-item(ng-show="view.isEditMode", hide-gt-sm)
+      md-button(ng-click="openSettings('/partials/settings_calc', calc.doc)") Configure
+    md-menu-item(ng-show="view.isEditMode", hide-gt-sm)
+      md-button(ng-click="save($event)") Save
     md-menu-item(ng-show="view.isCalcMode")
       md-button(ng-click="broadcast('jscalc-copy')") Make a copy
     md-menu-item(ng-show="view.isEditMode")
