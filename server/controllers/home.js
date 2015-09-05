@@ -53,17 +53,10 @@ exports.getCalcMetaTags = function(req, res, next) {
     if (err) return next(err);
     if (calc) {
       if (calc.published) {
-        var portNum = req.app.get('port');
-        var port;
-        if (portNum == 80 || portNum == 443) {
-          port = '';
-        } else {
-          port = ':' + portNum;
-        }
         res.render('calc_metatags', {
           title: ((calc.doc && calc.doc.name) || 'Untitled calculator').trim(),
           description: 'An online calculator',
-          url: req.protocol + '://' + req.host  + port + req.path
+          url: req.protocol + '://' + req.host + req.path
         })
       } else {
         res.sendStatus(403);
