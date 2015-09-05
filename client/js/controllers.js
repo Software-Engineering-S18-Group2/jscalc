@@ -160,10 +160,8 @@ jscalcControllers.controller('JscalcCtrl', [
     };
 
     $scope.getCanonicalUrl = function() {
-      // return 'https://jscalc.io' + $location.path();
-      var port = $location.port() ? ':' + $location.port() : '';
-      return $location.protocol() + '://' + $location.host() + port +
-          $location.path();
+      // return 'http://localhost:3000' + $location.path();
+      return $location.protocol() + '://' + $location.host() + $location.path();
     };
   }]);
 
