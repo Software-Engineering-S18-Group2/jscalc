@@ -111,7 +111,15 @@ if (process.env.NODE_ENV !== 'development') {
     next();
   });
 }
-app.use(function(req, res, next) {
+
+var maybeServeMetatags = function(req, res, next) {
+  if (req.headers['user-agent'].toLowerCase().indexOf('facebookexternalhit') == -1) {
+    return next();
+  }
+  return homeController.getCalcMetaTags(req, res, next);
+};
+
+var maybePrerender = function(req, res, next) {
   // If there is no fragment in the query params
   // then we're not serving a crawler
   if (req.url.indexOf('?_escaped_fragment_=') == -1) {
@@ -141,18 +149,18 @@ app.use(function(req, res, next) {
       return html.replace(scriptTagRegex, '');
     };
 
-    res.send(stripScriptTags(body));
+    res.send(stripScriptTags(body).replace('<meta name="fragment" content="!">', ''));
   });
-});
+};
 
 /**
  * Main routes.
  */
 
-app.get('/', homeController.index);
-app.get('/source/:calcId', homeController.index);
-app.get('/calc/:calcId', homeController.index);
-app.get('/account', homeController.index);
+app.get('/', maybePrerender, homeController.index);
+app.get('/source/:calcId', maybePrerender, homeController.index);
+app.get('/calc/:calcId', maybeServeMetatags, maybePrerender, homeController.index);
+app.get('/account', maybePrerender, homeController.index);
 app.get('/partials/:name', partialsController.partials);
 app.post('/api/login', userController.postLogin);
 app.get('/api/logout', userController.logout);

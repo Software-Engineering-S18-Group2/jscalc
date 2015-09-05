@@ -110,7 +110,11 @@ var jscalcApp = angular.module('jscalcApp', [
     '/img/icons/jscalc_full_bleed_24.svg',
     '/img/icons/number_input_24.svg',
     '/img/icons/number_output_24.svg',
-    '/img/icons/twitter.svg'
+    '/img/icons/twitter.svg',
+    '/img/icons/twitter-box.svg',
+    '/img/icons/facebook-box.svg',
+    '/img/icons/email.svg',
+    '/img/icons/link-variant.svg'
   ];
   angular.forEach(urls, function(url) {
     $http.get(url, {cache: $templateCache});
@@ -126,4 +130,8 @@ var jscalcApp = angular.module('jscalcApp', [
   $mdThemingProvider.theme('default')
     .primaryPalette('lightText')
     .accentPalette('yellow');
+  $mdThemingProvider.theme('alternative')
+    .primaryPalette('blue')
+    .accentPalette('yellow')
+    .dark();
 });

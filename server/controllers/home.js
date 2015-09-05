@@ -3,6 +3,8 @@ var async = require('async');
 var fs = require('fs');
 var jade = require('jade');
 var path = require('path');
+var Calc = require('../models/Calc');
+
 
 var rootDir = path.join(__dirname, '../..');
 var clientDir = path.join(rootDir, 'client');
@@ -38,4 +40,36 @@ exports.index = function(req, res, next) {
           });
         });
       });
+};
+
+
+/**
+ * GET '/calc/:calcId' for social network bots.
+ * Calculator OG meta tags.
+ */
+
+exports.getCalcMetaTags = function(req, res, next) {
+  Calc.findById(req.params.calcId, function(err, calc) {
+    if (err) return next(err);
+    if (calc) {
+      if (calc.published) {
+        var portNum = req.app.get('port');
+        var port;
+        if (portNum == 80 || portNum == 443) {
+          port = '';
+        } else {
+          port = ':' + portNum;
+        }
+        res.render('calc_metatags', {
+          title: ((calc.doc && calc.doc.name) || 'Untitled calculator').trim(),
+          description: 'An online calculator',
+          url: req.protocol + '://' + req.host  + port + req.path
+        })
+      } else {
+        res.sendStatus(403);
+      }
+    } else {
+      res.sendStatus(404);
+    }
+  });
 };

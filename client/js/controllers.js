@@ -74,7 +74,7 @@ jscalcControllers.controller('JscalcCtrl', [
 
     $scope.getCalcCaption = function(calc) {
       return (calc.saved ? '' : '[Unsaved] ') +
-          $scope.getCalcNameOrPlaceholder(calc.doc ? calc.doc.name: null);
+          $scope.getCalcNameOrPlaceholder(calc.doc ? calc.doc.name : null);
     };
 
     var getCalcList = function() {
@@ -109,7 +109,8 @@ jscalcControllers.controller('JscalcCtrl', [
             templateUrl: '/partials/auth_dialog',
             onComplete: function(scope, element) {
               element[0].querySelector('#email').focus();
-            }
+            },
+            clickOutsideToClose: true
           }).then(function() {
             authService.loginConfirmed();
             if ($scope.user === null) {
@@ -156,6 +157,13 @@ jscalcControllers.controller('JscalcCtrl', [
 
     $scope.broadcast = function(name) {
       $scope.$broadcast(name);
+    };
+
+    $scope.getCanonicalUrl = function() {
+      // return 'https://jscalc.io' + $location.path();
+      var port = $location.port() ? ':' + $location.port() : '';
+      return $location.protocol() + '://' + $location.host() + port +
+          $location.path();
     };
   }]);
 
@@ -759,16 +767,25 @@ jscalcControllers.controller('PublishedCtrl', [
   '$routeParams',
   'Calc',
   '$location',
-  function($scope, $routeParams, Calc, $location) {
+  '$mdDialog',
+  '$log',
+  function($scope, $routeParams, Calc, $location, $mdDialog, $log) {
     $scope.calcId = $routeParams.calcId;
     $scope.calc = null;
     $scope.inputs = {};
+    if ($location.hash()) {
+      try {
+        $scope.defaults = angular.fromJson($location.hash());
+      } catch (e) {
+        $log.warn('Hash fragment could not be JSON-parsed.', e);
+      }
+    }
     $scope.view.isEditMode = false;
     $scope.view.isCalcMode = false;
     $scope.view.showCreateCalcButton = false;
     $scope.title = '';
     $scope.view.title = '';
-    $scope.view.description = '';
+    $scope.view.description = 'An online calculator';
     Calc.get({calcId: $scope.calcId}, function(calc) {
       $scope.calc = {doc: calc.doc};
       var caption = $scope.getCalcNameOrPlaceholder(calc.doc ? calc.doc.name: null);
@@ -777,11 +794,64 @@ jscalcControllers.controller('PublishedCtrl', [
       $scope.view.isCalcMode = true;
     });
 
+    // TODO: this duplicates the handler in SourceCtrl.
     $scope.$on('jscalc-copy', function() {
       var id = $scope.getRandomString(16);
       $scope.calcs[id] = {doc: angular.copy($scope.calc.doc), saved: false};
       $location.path('/source/' + id);
     });
+
+    var getValuesUrl = function() {
+      return $scope.getCanonicalUrl() + '#' +
+          encodeURI(angular.toJson($scope.inputs));
+    };
+
+    var displayPopup = function(url) {
+      var windowOptions = 'scrollbars=yes,resizable=yes,toolbar=no,location=yes',
+      width = 550,
+      height = 420,
+      winHeight = screen.height,
+      winWidth = screen.width,
+      left = Math.round((winWidth / 2) - (width / 2)),
+      top = 0;
+
+      if (winHeight > height) {
+        top = Math.round((winHeight / 2) - (height / 2));
+      }
+
+      window.open(url, 'intent',
+          windowOptions + ',width=' + width +
+          ',height=' + height + ',left=' + left + ',top=' + top);
+
+    };
+
+    $scope.shareTwitter = function() {
+      displayPopup('https://twitter.com/intent/tweet?text=' +
+          encodeURIComponent($scope.title + ' ' + getValuesUrl()));
+    };
+
+    $scope.shareFacebook = function() {
+      displayPopup('http://www.facebook.com/sharer/sharer.php?u=' +
+          encodeURIComponent(getValuesUrl()));
+    };
+
+    $scope.shareEmail = function() {
+      window.open('mailto:?subject=' + encodeURIComponent($scope.title) +
+          '&body=' + encodeURIComponent(getValuesUrl()), '_blank')
+    };
+
+    $scope.shareLink = function($event) {
+      $mdDialog.show({
+        targetEvent: $event,
+        controller: 'ShareLinkDialogCtrl',
+        templateUrl: '/partials/share_link_dialog',
+        onComplete: function(scope, element) {
+          element[0].querySelector('#link').select();
+        },
+        clickOutsideToClose: true,
+        locals: {url: getValuesUrl()}
+      });
+    };
   }]);
 
 jscalcControllers.controller('ToolbarToolsCtrl', ['$scope',
@@ -855,6 +925,22 @@ jscalcControllers.controller('AuthDialogCtrl', [
     $scope.forgot = function() {
       window.open('/forgot', '_blank');
     }
+  }]);
+
+jscalcControllers.controller('ShareLinkDialogCtrl', [
+  '$scope',
+  '$mdDialog',
+  'url',
+  function($scope, $mdDialog, url) {
+    $scope.url = url;
+
+    $scope.openLink = function() {
+      window.open($scope.url, '_blank');
+      $mdDialog.hide();
+    };
+    $scope.close = function() {
+      $mdDialog.cancel();
+    };
   }]);
 
 jscalcControllers.controller('AccountCtrl', [

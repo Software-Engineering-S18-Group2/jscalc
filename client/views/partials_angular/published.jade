@@ -1,5 +1,10 @@
-md-toolbar#toolbar-published
-  div.md-toolbar-tools(ng-include="'/partials/toolbar_tools'", ng-controller='ToolbarToolsCtrl')
-md-content#tab-content(ng-if='calc !== null', flex, layout='column', layout-fill)
-  div(flex, layout='column', layout-fill)
-    jscalc-calc(flex, layout='column', doc="calc.doc", inputs='inputs', edit-mode='false', layout-fill, focus-first-input='true')
+div(ng-if='calc !== null', flex, layout-gt-sm='row', layout-sm="column", layout-fill)
+  #published-sidebar.published-aside(flex-gt-md="25", flex-md="33", md-theme="alternative", layout-gt-sm='column')
+    .main(flex)
+      h1.frame-title {{title}}
+      div.section(hide-sm, ng-include="'/partials/published_share'")
+    .footer(hide-sm, ng-include="'/partials/published_footer'")
+  jscalc-calc(flex, layout='column', doc="calc.doc", inputs='inputs', defaults='defaults', edit-mode='false', focus-first-input='true')
+  .published-aside(hide-gt-sm, md-theme="alternative")
+    div.section(ng-include="'/partials/published_share'")
+    .footer(ng-include="'/partials/published_footer'")

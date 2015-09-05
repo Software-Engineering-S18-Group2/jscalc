@@ -24,9 +24,10 @@ a, .link-button {
   color: map-get($primary-color-palette, '600');
   text-decoration: none;
   font-weight: 400;
+  outline: none;
 
   &:focus {
-    background-color: #EEE !important;
+    background-color: rgba(158,158,158,0.2) !important;
   }
 }
 
@@ -160,9 +161,6 @@ md-sidenav {
 
   .frame-title {
     color: $header-color;
-    font-size: 20px;
-    font-weight: 500;
-    margin: 22px 0px;
   }
 
   .md-button {
@@ -172,8 +170,14 @@ md-sidenav {
 }
 
 
-#inputs, #outputs, #cheat-sheet, #share {
+#inputs, #outputs, #cheat-sheet, #share, .published-aside {
   padding: 0px 20px;
+
+  .frame-title {
+    margin: 22px 0px 22px;
+    font-size: 20px;
+    font-weight: 500;
+  }
 }
 
 
@@ -649,6 +653,52 @@ md-toolbar {
       height: 100%;
     }
   }
+}
+
+
+.published-aside {
+  background-color: #000 !important;
+  color: #fff;
+
+  md-icon {
+    color: #fff;
+  }
+
+  .section {
+    margin: 30px 0;
+    font-weight: 500;
+  }
+
+  .section:first-child {
+    margin-top: 15px;
+  }
+
+  .footer {
+    margin-bottom: 15px;
+
+    .md-button {
+      margin: -12px 0;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      top: 1px;
+
+      md-icon {
+        vertical-align: top;
+        margin-top: 6px;
+      }
+    }
+  }
+
+  .share-buttons {
+    margin-left: -17px;
+    margin-top: -2px;
+  }
+}
+
+
+#published-sidebar {
+  min-width: 275px;
 }
 
 

@@ -1,0 +1,10 @@
+| Share current values:
+div.share-buttons
+  md-button.md-icon-button(aria-label='Twitter', ng-click="shareTwitter()")
+    md-icon(md-svg-icon="/img/icons/twitter-box.svg")
+  md-button.md-icon-button(aria-label='Facebook', ng-click="shareFacebook()")
+    md-icon(md-svg-icon="/img/icons/facebook-box.svg")
+  md-button.md-icon-button(aria-label='Email', ng-click="shareEmail()")
+    md-icon(md-svg-icon="/img/icons/email.svg")
+  md-button.md-icon-button(aria-label='Link', ng-click="shareLink($event)")
+    md-icon(md-svg-icon="/img/icons/link-variant.svg")

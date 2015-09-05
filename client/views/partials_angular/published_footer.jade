@@ -1,0 +1,13 @@
+| Powered by
+= ' '
+a(href='/') JSCalc.io
+md-menu(md-theme="default")
+  md-button.md-icon-button(aria-label='More', ng-click="$mdOpenMenu($event)")
+    md-icon(md-svg-icon="/img/icons/dots-horizontal.svg")
+  md-menu-content
+    md-menu-item
+      md-button(ng-click="broadcast('jscalc-copy')") Make a copy
+    md-menu-item(ng-show="user === null")
+      md-button(ng-click="login($event)") Sign up/sign in
+    md-menu-item(ng-show="user.$resolved")
+      md-button(ng-click="logout()") Sign out

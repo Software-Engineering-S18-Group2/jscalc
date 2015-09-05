@@ -18,6 +18,7 @@ angular.module('jscalcDirectives', [])
         scope: {
           doc: '=',
           inputs: '=',
+          defaults: '=',
           editMode: '=',
           addInput: '&?',
           addOutput: '&?',
@@ -52,8 +53,7 @@ angular.module('jscalcDirectives', [])
           $scope.debugSupported = (/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)) ||
                 (navigator.appVersion.indexOf('Trident/') > 0);
 
-
-          angular.copy($scope.doc.defaults || {}, $scope.inputs);
+          angular.copy($scope.defaults || $scope.doc.defaults || {}, $scope.inputs);
 
           if (!('metaInputs' in $scope.doc)) {
             $scope.doc.metaInputs = [];

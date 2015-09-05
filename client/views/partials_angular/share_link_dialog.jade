@@ -1,0 +1,7 @@
+md-dialog
+  md-dialog-content.md-padding(style="max-height: 280px;")
+    md-input-container(style="padding-bottom: 0;")
+      textarea#link(ng-model="url", md-autofocus, aria-label="Link to copy", readonly, style="border-color: transparent;")
+  .md-actions(layout="row")
+    md-button(ng-click='openLink()') Open link
+    md-button.md-primary(ng-click="close()") Close
