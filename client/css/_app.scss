@@ -2,6 +2,7 @@
 
 $seam-border-color: #E0E0E0;
 $header-color: rgba(0,0,0,0.54);
+$muted-on-dark-color: rgba(255, 255, 255, 0.6);
 $primary-color-palette: $color-cyan;
 $sidenav-width: 250px;
 
@@ -426,11 +427,44 @@ jscalc-date-input {
 
 
 #share {
-  text-align: center;
+  .link-title {
+    padding-top: 20px;
+  }
+
+  .link {
+    padding-top: 22px;
+  }
+
+  .description-title {
+    color: $header-color;
+    font-weight: 500;
+    padding-top: 22px;
+  }
+
+  .description {
+    padding: 6px 0 20px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+  }
 
   a {
     font-size: 24px;
     word-wrap: break-word;
+  }
+
+  textarea {
+    border: 1px solid $seam-border-color;
+    outline: none;
+    height: 82px;
+    max-width: 600px;
+    display: block;
+    border-radius: 0;
+    resize: none;
+
+    &:focus {
+      border-color: map-get($primary-color-palette, '600');
+    }
   }
 }
 
@@ -664,17 +698,31 @@ md-toolbar {
     color: #fff;
   }
 
+  a, .link-button {
+    color: rgba(0, 172, 193, 0.8);
+  }
+
   .section {
-    margin: 30px 0;
-    font-weight: 500;
+    margin: 31px 0;
+    line-height: 19px;
   }
 
   .section:first-child {
     margin-top: 15px;
   }
 
+  .section.description {
+    color: $muted-on-dark-color;
+    word-wrap: break-word;
+  }
+
+  .section.share {
+    font-weight: 500;
+  }
+
   .footer {
     margin-bottom: 15px;
+    color: $muted-on-dark-color;
 
     .md-button {
       margin: -12px 0;
@@ -686,6 +734,7 @@ md-toolbar {
       md-icon {
         vertical-align: top;
         margin-top: 6px;
+        color: $muted-on-dark-color;
       }
     }
   }

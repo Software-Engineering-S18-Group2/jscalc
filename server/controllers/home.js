@@ -55,7 +55,7 @@ exports.getCalcMetaTags = function(req, res, next) {
       if (calc.published) {
         res.render('calc_metatags', {
           title: ((calc.doc && calc.doc.name) || 'Untitled calculator').trim(),
-          description: 'An online calculator'
+          description: (calc.doc && calc.doc.description) || 'An online calculator'
         })
       } else {
         res.sendStatus(403);

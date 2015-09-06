@@ -783,12 +783,12 @@ jscalcControllers.controller('PublishedCtrl', [
     $scope.view.showCreateCalcButton = false;
     $scope.title = '';
     $scope.view.title = '';
-    $scope.view.description = 'An online calculator';
     Calc.get({calcId: $scope.calcId}, function(calc) {
       $scope.calc = {doc: calc.doc};
       var caption = $scope.getCalcNameOrPlaceholder(calc.doc ? calc.doc.name: null);
       $scope.title = caption;
       $scope.view.title = caption;
+      $scope.view.description = (calc.doc && calc.doc.description) || 'An online calculator';
       $scope.view.isCalcMode = true;
     });
 

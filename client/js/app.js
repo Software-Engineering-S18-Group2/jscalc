@@ -12,6 +12,7 @@ var jscalcApp = angular.module('jscalcApp', [
   'jscalcControllers',
   'jscalcDirectives',
   'jscalcServices',
+  'jscalcFilters',
   'preloadedData'
 ])
 
