@@ -161,6 +161,7 @@ jscalcControllers.controller('JscalcCtrl', [
 
     $scope.getCanonicalUrl = function() {
       // return 'http://localhost:3000' + $location.path();
+      // return 'https://jscalc.io' + $location.path();
       return $location.protocol() + '://' + $location.host() + $location.path();
     };
   }]);
@@ -799,9 +800,18 @@ jscalcControllers.controller('PublishedCtrl', [
       $location.path('/source/' + id);
     });
 
-    var getValuesUrl = function() {
-      return $scope.getCanonicalUrl() + '#' +
+    var getValuesUrl = function(facebookFix) {
+      var url = $scope.getCanonicalUrl();
+      if (facebookFix) {
+        // Prevent Facebook from serving cached data. The proper way to do this
+        // would have been to invalidate cache when calculator is saved, but a
+        // post to graph.facebook.com with "scrape=true" results in error saying
+        // that URL could not be parsed.
+        url += '?rnd=' + $scope.getRandomString(5);
+      }
+      url += '#' +
           encodeURI(angular.toJson($scope.inputs));
+      return url;
     };
 
     var displayPopup = function(url) {
@@ -830,7 +840,7 @@ jscalcControllers.controller('PublishedCtrl', [
 
     $scope.shareFacebook = function() {
       displayPopup('http://www.facebook.com/sharer/sharer.php?u=' +
-          encodeURIComponent(getValuesUrl()));
+          encodeURIComponent(getValuesUrl(true)));
     };
 
     $scope.shareEmail = function() {
