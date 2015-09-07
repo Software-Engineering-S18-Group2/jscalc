@@ -33,8 +33,8 @@ jscalcControllers.controller('JscalcCtrl', [
 
     $scope.$watch(function() {
       return $mdMedia('min-width: 1400px');
-    }, function(sidenavsLockedOpen) {
-      $scope.sidenavsLockedOpen = sidenavsLockedOpen;
+    }, function(wide) {
+      $scope.sidenavsLockedOpen = wide && !$location.path().startsWith('/calc/');
     });
 
     $scope.isCurrentLocation = function(location) {
