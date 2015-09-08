@@ -471,6 +471,11 @@ jscalc-date-input {
 .settings {
   padding: 5px 20px !important;
 
+  h2 {
+    margin: 15px 0 24px;
+    line-height: 24px;
+  }
+
   .warning {
     color: map-get($color-red, '500');
     font-size: 14px;
