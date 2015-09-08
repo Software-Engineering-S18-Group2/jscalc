@@ -715,6 +715,8 @@ md-toolbar {
 .published-aside {
   background-color: #000 !important;
   color: #fff;
+  /* Prevents margins from collapsing. */
+  overflow: auto;
 
   md-icon {
     color: #fff;
