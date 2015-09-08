@@ -1,10 +1,10 @@
-h2 Table Output Settings
+h2.md-title Table Output Settings
 .content(ng-if="settingsModel.metaOutput")
   div(ng-include="'/partials/settings_output_common'")
-  h3 Columns
+  h3.md-subhead Columns
   div
     .column(ng-repeat='column in settingsModel.metaOutput.metaOutputs track by column.id')
-      h4
+      h4.md-body-2
         | Column {{$index + 1}}
         .config-icons
           md-button.md-icon-button(aria-label='Delete', ng-click="deleteColumn(settingsModel.metaOutput.metaOutputs, column.id)")
@@ -12,8 +12,8 @@ h2 Table Output Settings
       md-input-container
         label Property name
         input(ng-model='column.name')
-      .warning(ng-if='isNameConflict(settingsModel.metaOutput.metaOutputs, column)')
-        | This name conflicts with that of another column.
+        div(ng-messages="{'name-conflict': isNameConflict(settingsModel.metaOutput.metaOutputs, column)}")
+          div(ng-message="name-conflict") This name conflicts with another column.
       md-input-container
         label Header
         input(ng-model='column.label')
@@ -24,6 +24,7 @@ h2 Table Output Settings
         label Currency sign
         input(ng-model='column.currencySign')
       jscalc-mover(items="settingsModel.metaOutput.metaOutputs", item-id="column.id", get-label="getLabel", get-id="getId")
-      md-checkbox.md-hue-3(ng-model='column.percent') Display in percent
+      .checkbox-row
+        md-checkbox.md-primary(ng-model='column.percent') Display in percent
   .button-row
     md-button.md-primary(ng-click="addColumn(settingsModel.metaOutput)") Add column

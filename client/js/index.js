@@ -5,6 +5,7 @@
 //= require angular-resource/angular-resource.min
 //= require angular-animate/angular-animate.min
 //= require angular-aria/angular-aria.min
+//= require angular-messages/angular-messages.min
 //= require angular-material/angular-material.min
 //= require angularytics/dist/angularytics.min
 //= require angular-ui-ace/ui-ace.min

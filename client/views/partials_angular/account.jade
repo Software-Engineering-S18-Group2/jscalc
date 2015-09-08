@@ -2,7 +2,7 @@ md-toolbar
   div.md-toolbar-tools.md-hue-3(ng-include="'/partials/toolbar_tools'", ng-controller='ToolbarToolsCtrl')
 md-content.account-settings-content
   section.md-padding
-    h3 Email
+    h3.md-subhead Email
     p {{user.email}}
     md-input-container
       label New email
@@ -12,7 +12,7 @@ md-content.account-settings-content
       md-progress-circular(md-mode='indeterminate', ng-show='processingEmail')
   md-divider
   md-content.section.md-padding
-    h3 Password
+    h3.md-subhead Password
     md-input-container
       label Current password
       input(type='password', ng-model='passwordParams.oldPassword')
@@ -27,7 +27,7 @@ md-content.account-settings-content
       md-progress-circular(md-mode='indeterminate', ng-show='processingPassword')
   md-divider
   md-content.section.md-padding
-    h3 Delete account
+    h3.md-subhead Delete account
     .action-row
       md-button.md-primary.md-raised(ng-disabled='processingDeleteAccount' ng-click='deleteAccount()') Delete account
       md-progress-circular(md-mode='indeterminate', ng-show='processingDeleteAccount')

@@ -1,11 +1,12 @@
-h2 Value Output Settings
+h2.md-title Value Output Settings
 .content(ng-if="settingsModel.metaOutput")
   div(ng-include="'/partials/settings_output_common'")
-  h3 Number Format
+  h3.md-subhead Number Format
   md-input-container
     label Decimal places
     input(type='number', ng-model='settingsModel.metaOutput.decimalPlaces')
   md-input-container
     label Currency sign
     input(ng-model='settingsModel.metaOutput.currencySign')
-  md-checkbox.md-hue-3(ng-model='settingsModel.metaOutput.percent') Display in percent
+  .checkbox-row
+    md-checkbox.md-primary(ng-model='settingsModel.metaOutput.percent') Display in percent

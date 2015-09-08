@@ -1,36 +1,38 @@
 md-toolbar
   div.md-toolbar-tools(ng-include="'/partials/toolbar_tools'", ng-controller='ToolbarToolsCtrl')
-md-content.md-padding.welcome(flex)
-  .centered
-    .title
-      md-icon(md-svg-icon="/img/icons/jscalc_full_bleed_24.svg")
-      .name JSCalc
-      .beta beta
-    .description
-      | JSCalc makes it easy to create a custom online calculator by writing a Javascript function that transforms inputs into outputs.
+md-content.welcome(flex)
+  .header
+    .centered.md-padding
+      .title
+        md-icon(md-svg-icon="/img/icons/jscalc_full_bleed_24.svg")
+        .name JSCalc
+        .beta beta
+      .description.md-title
+        | JSCalc makes it easy to create a custom online calculator by writing a Javascript function that transforms inputs into outputs.
+  .centered.md-padding
     .demo-container
       iframe(src="https://youtube.com/embed/Jwbhnh75HsI?rel=0" frameborder="0" allowfullscreen)
     .section(layout='row', layout-sm='column', layout-align="space-between")
       .item(flex)
-        .heading Real-time calculations
+        h2.md-title Real-time calculations
         .content
           | Outputs are recalculated as soon as the user changes the value of an input. This is done in a parallel Web Worker thread, so the interface does not block even if the calculation takes some time.
       .item(flex)
-        .heading Variety of input types
+        h2.md-title Variety of input types
         .content
           | You can use number inputs, checkboxes, radio buttons, date inputs (they support absolute and relative dates), and a "repeating item" input type that lets the user enter multiple items, each with its own set of inputs.
     .section(layout='row', layout-sm='column', layout-align="space-between")
       .item(flex)
-        .heading Values or tables as outputs
+        h2.md-title Values or tables as outputs
         .content
           | You can display multiple values or tables as outputs, if necessary different ones depending on values of inputs. You can configure number formats in the UI, and so don't have to format outputs yourself in the script.
       .item(flex)
-        .heading Auto-hiding of unused inputs
+        h2.md-title Auto-hiding of unused inputs
         .content
           | You can configure an input to be automatically hidden if given the current values of other inputs, it is not accessed by the script, and so does not affect the calculation result (this is implemented using Javascript getters).
     .section(layout='row', layout-sm='column', layout-align="space-between")
       .item(flex)
-        .heading Powerful code editor
+        h2.md-title Powerful code editor
         .content
           | JSCalc uses the
           = ' '
@@ -38,7 +40,7 @@ md-content.md-padding.welcome(flex)
           = ' '
           | which supports syntax highlighting and JSHint warnings.
       .item(flex)
-        .heading Modern UI
+        h2.md-title Modern UI
         .content
           | Implemented using the great
           = ' '
@@ -47,11 +49,11 @@ md-content.md-padding.welcome(flex)
           | library.
     .section(layout='row', layout-sm='column', layout-align="space-between")
       .item(flex)
-        .heading Mobile-friendly
+        h2.md-title Mobile-friendly
         .content
           | The calculator that you create will work well not only on desktop, but also on a phone or a tablet.
       .item(flex)
-        .heading Open-source
+        h2.md-title Open-source
         .content
           | JSCalc is open-source. You are welcome to file issues in the
           = ' '

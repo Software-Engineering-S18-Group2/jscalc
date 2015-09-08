@@ -1,20 +1,23 @@
-h2 Calculator Settings
+h2.md-title Calculator Settings
 .content
   md-input-container
     label Title
     input(ng-model='settingsModel.name')
-  h3 Tab size in editor:
-  md-radio-group(ng-model='settingsModel.tabSize', jscalc-number-to-string, default, default-value="DEFAULTS.tabSize")
+  h3.md-subhead Tab size in editor:
+  md-radio-group.md-primary(ng-model='settingsModel.tabSize', jscalc-number-to-string, default, default-value="DEFAULTS.tabSize")
     md-radio-button.md-hue-3(value='2', aria-label='2 spaces') 2 spaces
     md-radio-button.md-hue-3(value='4', aria-label='4 spaces') 4 spaces
   div(style="height: 4px")
-  h3 Include libraries:
-  md-checkbox.md-hue-3(ng-model='settingsModel.libraries.lodash') Lo-Dash
-  .comment
-    a(href='https://lodash.com/', target='_blank') Website
-  md-checkbox.md-hue-3(ng-model='settingsModel.libraries.moment') Moment.js
-  .comment
-    a(href='http://momentjs.com/', target='_blank') Website
-  md-checkbox.md-hue-3(ng-model='settingsModel.libraries.mathjs') Math.js
-  .comment
-    a(href='http://mathjs.org/', target='_blank') Website
+  h3.md-subhead Include libraries:
+  .checkbox-row
+    md-checkbox.md-primary(ng-model='settingsModel.libraries.lodash') Lo-Dash
+    .comment
+      a(href='https://lodash.com/', target='_blank') Website
+  .checkbox-row
+    md-checkbox.md-primary(ng-model='settingsModel.libraries.moment') Moment.js
+    .comment
+      a(href='http://momentjs.com/', target='_blank') Website
+  .checkbox-row
+    md-checkbox.md-primary(ng-model='settingsModel.libraries.mathjs') Math.js
+    .comment
+      a(href='http://mathjs.org/', target='_blank') Website

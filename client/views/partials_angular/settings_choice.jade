@@ -1,4 +1,4 @@
-h2 Choice Input Settings
+h2.md-title Choice Input Settings
 .content(ng-if="settingsModel.metaInput")
   div(ng-include="'/partials/settings_input_common'")
   md-input-container
@@ -6,10 +6,10 @@ h2 Choice Input Settings
     md-select(ng-model="settingsModel.metaInput.presentationType")
       md-option(ng-value="'radio'") Radio
       md-option(ng-value="'dropdown'") Dropdown
-  h3 Choices
+  h3.md-subhead Choices
   div
     .choice(ng-repeat='choice in settingsModel.metaInput.choices track by choice.id')
-      h4
+      h4.md-body-2
         | Option {{$index + 1}}
         .config-icons
           md-button.md-icon-button(aria-label='Delete', ng-click="deleteChoice(settingsModel.metaInput.choices, choice.id)")

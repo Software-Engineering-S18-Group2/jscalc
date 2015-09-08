@@ -3,7 +3,10 @@
 $seam-border-color: #E0E0E0;
 $header-color: rgba(0,0,0,0.54);
 $muted-on-dark-color: rgba(255, 255, 255, 0.6);
-$primary-color-palette: $color-cyan;
+$muted-on-dark-primary-color: rgba(33,150,243,0.8);
+$primary-color: rgb(33,150,243);
+$accent-color: rgb(255,255,0);
+$accent-hue-3-color: rgb(255,214,0);
 $sidenav-width: 250px;
 
 code, pre {
@@ -22,7 +25,7 @@ code, pre {
 
 
 a, .link-button {
-  color: map-get($primary-color-palette, '600');
+  color: $primary-color;
   text-decoration: none;
   font-weight: 400;
   outline: none;
@@ -43,11 +46,7 @@ a, .link-button {
 
 
 md-sidenav {
-  background-color: #FAFAFA;
-
-  md-content {
-    background-color: transparent !important;
-  }
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 
@@ -77,35 +76,33 @@ md-sidenav {
     color: inherit;
 
     &.active {
-      color: map-get($primary-color-palette, '400');
+      color: $primary-color;
     }
   }
 
   .section {
-    color: $header-color;
+    color: $muted-on-dark-color;
   }
 
   #logo {
     font-size: 20px;
+    font-weight: 500;
     line-height: 64px;
-    border-bottom: 1px solid $seam-border-color;
-    margin-bottom: 12px;
-    font-weight: normal;
     padding-left: 65px;
-    color: map-get($primary-color-palette, '400') !important;
+    color: #fff !important;
 
     md-icon {
       position: absolute;
-      top: 15px;
+      top: 16px;
       left: 24px;
       width: 33px;
       height: 33px;
-      opacity: 0.8;
+      color: #fff;
     }
 
     .beta {
       font-size: 10px;
-      color: #46B946;
+      color: $accent-color;
       margin-left: 4px;
     }
   }
@@ -167,7 +164,7 @@ md-sidenav {
 
   .md-button {
     margin-left: -6px;
-    margin-right: 14px;
+    margin-right: 12px;
   }
 }
 
@@ -212,7 +209,7 @@ md-sidenav {
 
     md-icon {
       vertical-align: top;
-      color: map-get($primary-color-palette, '400');
+      color: $primary-color;
       margin-top: 6px;
     }
   }
@@ -230,15 +227,16 @@ md-sidenav {
 
 
 .input-row {
-  md-input-container {
+  md-input-container, md-select {
     padding: 4px 2px 12px;
+    margin: 0;
   }
 
-  md-input-container:first-child {
+  md-input-container:first-child, md-select:first-child {
     padding-left: 0;
   }
 
-  md-input-container:last-child {
+  md-input-container:last-child, md-select:last-child {
     padding-right: 0;
   }
 
@@ -259,13 +257,13 @@ md-sidenav {
 
 .hidden-indicator {
   display: none;
-  background-color: rgba(43, 175, 43, 0.87);
+  background-color: $accent-hue-3-color;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 500;
   color: #FFF;
   padding: 0px 7px;
-  margin: 0 10px;
+  margin: 0 6px;
 }
 
 .edit-mode .hidden .hidden-indicator {
@@ -362,7 +360,7 @@ jscalc-date-input {
   height: 48px;
   width: 48px;
   margin-right: 12px;
-  color: #FFEB3B;
+  color: $accent-hue-3-color;
 }
 
 
@@ -395,7 +393,7 @@ jscalc-date-input {
     font-weight: 500;
     font-size: 12px;
     vertical-align: bottom;
-    border-bottom: 2px solid map-get($primary-color-palette, '400');
+    border-bottom: 2px solid $primary-color;
     border-top: 0;
   }
 }
@@ -464,37 +462,51 @@ jscalc-date-input {
     resize: none;
 
     &:focus {
-      border-color: map-get($primary-color-palette, '600');
+      border-color: $primary-color;
     }
   }
 }
 
 
 .settings {
+  padding: 5px 20px !important;
+
   .warning {
     color: map-get($color-red, '500');
     font-size: 14px;
   }
 
   .choice, .column {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
-
 
   .button-row {
-    margin-left: -6px;
-    margin-right: -6px;
+    margin: 20px -14px;
   }
 
-  md-checkbox {
-    margin-left: 0;
-  }
-
-  .comment {
-    margin-top: -7px;
-    font-size: 12px;
+  .checkbox-row {
     padding-bottom: 20px;
-    margin-left: 28px;
+
+    md-checkbox {
+      margin-left: 0;
+    }
+
+    .comment {
+      margin-top: -4px;
+      font-size: 12px;
+      line-height: 17px;
+      margin-left: 28px;
+      color: $muted-on-dark-color;
+
+      a {
+        color: $muted-on-dark-primary-color;
+      }
+    }
+  }
+
+  md-input-container {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -588,6 +600,11 @@ md-toolbar {
 
 
 .welcome {
+  .header {
+    background-color: #1E88E5;
+    margin-bottom: 31px;
+  }
+
   .centered {
     margin-left: auto;
     margin-right: auto;
@@ -596,9 +613,9 @@ md-toolbar {
 
 
   .title {
-    color: map-get($primary-color-palette, '400');
-    margin: 120px 0 30px;
-
+    color: #fff;
+    margin: 35px 0 30px;
+    font-weight: 500;
 
     md-icon {
       height: 75px;
@@ -607,6 +624,7 @@ md-toolbar {
       margin-right: 11px;
       margin-top: -8px;
       margin-bottom: -8px;
+      color: #fff;
     }
 
 
@@ -620,16 +638,16 @@ md-toolbar {
     .beta {
       display: inline-block;
       font-size: 15px;
-      color: #46B946;
+      color: $accent-color;
       margin-left: 8px;
     }
   }
 
 
   .description {
-    font-size: 24px;
+    color: #fff;
     line-height: 30px;
-    margin: 48px 0 20px;
+    margin: 31px 0 20px;
   }
 
 
@@ -644,10 +662,8 @@ md-toolbar {
   }
 
 
-  .heading {
-    color: #26C6DA;
-    font-size: 20px;
-    font-weight: bold;
+  h2 {
+    color: $primary-color;
     margin-bottom: 9px;
   }
 
@@ -700,7 +716,7 @@ md-toolbar {
   }
 
   a, .link-button {
-    color: rgba(0, 172, 193, 0.8);
+    color: $muted-on-dark-primary-color;
   }
 
   .section {
@@ -840,6 +856,8 @@ md-input-container input {
 
   .welcome {
     .title {
+      margin-top: 97px;
+
       md-icon {
         height: 150px;
         width: 150px;

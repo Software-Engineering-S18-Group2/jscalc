@@ -8,6 +8,7 @@ var jscalcApp = angular.module('jscalcApp', [
   'ngRoute',
   'ngMaterial',
   'ui.ace',
+  'ngMessages',
 
   'jscalcControllers',
   'jscalcDirectives',
@@ -123,9 +124,7 @@ var jscalcApp = angular.module('jscalcApp', [
 })
 
 .config(function($mdThemingProvider) {
-  var lightTextMap = $mdThemingProvider.extendPalette('cyan', {
-    'contrastLightColors': '500 600 700 800 900',
-    'contrastStrongLightColors': '500 600 700 800'
+  var lightTextMap = $mdThemingProvider.extendPalette('blue', {
   });
   $mdThemingProvider.definePalette('lightText', lightTextMap);
   $mdThemingProvider.theme('default')

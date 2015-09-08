@@ -2,5 +2,6 @@
   .title-row
     .title {{metaInput.label || '[Label]'}}:
     .config-icons(ng-include="'/partials/input_config_icons'")
-  md-select(ng-model='inputsInner[metaInput.id]', aria-label="{{metaInput.label || '[Label]'}}")
-    md-option(ng-repeat='choice in metaInput.choices', ng-value='choice.value') {{choice.label}}
+  .content-row
+    md-select(ng-model='inputsInner[metaInput.id]', aria-label="{{metaInput.label || '[Label]'}}")
+      md-option(ng-repeat='choice in metaInput.choices', ng-value='choice.value') {{choice.label}}

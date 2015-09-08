@@ -1,11 +1,12 @@
 md-input-container
   label Property name
   input(ng-model='settingsModel.metaInput.name')
-.warning(ng-if='isNameConflict(settingsModel.metaInputs, settingsModel.metaInput)')
-  | This name conflicts with that of another input.
+  div(ng-messages="{'name-conflict': isNameConflict(settingsModel.metaInputs, settingsModel.metaInput)}")
+    div(ng-message="name-conflict") This name conflicts with another input.
 md-input-container
   label {{settingsModel.metaInput.type == 'list' ? 'Caption (singular)' : 'Label'}}
   input(ng-model='settingsModel.metaInput.label')
 jscalc-mover(items="settingsModel.metaInputs", item-id="settingsModel.metaInput.id", get-label="getLabel", get-id="getId")
-md-checkbox.md-hue-3(ng-model='settingsModel.metaInput.autohide') Auto-hide when not applicable
-.comment Hides the input if given current values of other inputs, the script does not read this input's value.
+.checkbox-row
+  md-checkbox.md-primary(ng-model='settingsModel.metaInput.autohide') Auto-hide when not applicable
+  .comment Hides the input if given current values of other inputs, the script does not read this input's value.
