@@ -37,7 +37,7 @@ exports.postSource = function(req, res, next) {
     if (err) return next(err);
     var isNew = false;
     if (!calc) {
-      var isNew = true;
+      isNew = true;
       calc = new Calc({
         _id: req.params.calcId,
         permissions: [{user: req.user.id, level: 'owner'}],
