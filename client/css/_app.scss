@@ -4,7 +4,9 @@ $seam-border-color: #E0E0E0;
 $header-color: rgba(0,0,0,0.54);
 $muted-on-dark-color: rgba(255, 255, 255, 0.6);
 $muted-on-dark-primary-color: rgba(33,150,243,0.8);
+$muted-on-dark-highlight-color: rgba(255, 255, 255, 0.85);
 $primary-color: rgb(33,150,243);
+$primary-color-darker: #1E88E5;
 $accent-color: rgb(255,255,0);
 $accent-hue-3-color: rgb(255,214,0);
 $sidenav-width: 250px;
@@ -607,7 +609,7 @@ md-toolbar {
 
 .welcome {
   .header {
-    background-color: #1E88E5;
+    background-color: $primary-color-darker;
     margin-bottom: 31px;
   }
 
@@ -714,7 +716,7 @@ md-toolbar {
 
 
 .published-aside {
-  background-color: #000 !important;
+  background-color: $primary-color-darker !important;
   color: #fff;
   /* Prevents margins from collapsing. */
   overflow: auto;
@@ -724,7 +726,7 @@ md-toolbar {
   }
 
   a, .link-button {
-    color: $muted-on-dark-primary-color;
+    color: $muted-on-dark-highlight-color;
   }
 
   .section {
