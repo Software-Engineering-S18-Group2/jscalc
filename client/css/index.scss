@@ -52,6 +52,10 @@ md-sidenav {
 
 
 .md-sidenav-left {
+  md-content {
+    padding: 12px 0;
+  }
+
   a, .section, button {
     text-decoration: none;
     line-height: 44px;
@@ -62,12 +66,12 @@ md-sidenav {
     color: inherit;
     border: none;
     margin: 0;
-    padding: 0 24px;
+    padding: 0 20px;
     position: relative;
     font-weight: 500;
 
     &.indent {
-      padding-left: 48px;
+      padding-left: 57px;
     }
   }
 
@@ -77,45 +81,33 @@ md-sidenav {
     color: inherit;
 
     &.active {
-      color: $primary-color;
+      color: $accent-color;
     }
   }
 
   .section {
-    color: $muted-on-dark-color;
+    color: rgba(255, 255, 255, 0.5);;
   }
 
-  #logo {
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 64px;
-    padding-left: 65px;
-    color: #fff !important;
+  button {
+    width: 100%;
+    text-align: left;
+    outline: none;
 
-    md-icon {
-      position: absolute;
-      top: 16px;
-      left: 24px;
-      width: 33px;
-      height: 33px;
-      color: #fff;
-    }
-
-    .beta {
-      font-size: 10px;
-      color: $accent-color;
-      margin-left: 4px;
+    &:focus {
+      background-color: rgba(158,158,158,0.2) !important;
     }
   }
 
   .new-calculator-icon {
     position: absolute;
     top: 10px;
-    left: 19px;
+    left: 52px;
+    color: #fff;
   }
 
   .new-calculator-label {
-    margin-left: 21px;
+    margin-left: 26px;
   }
 }
 
@@ -621,40 +613,36 @@ md-toolbar {
 
   .title {
     color: #fff;
-    margin: 35px 0 30px;
-    font-weight: 500;
-
-    md-icon {
-      height: 75px;
-      width: 75px;
-      vertical-align: top;
-      margin-right: 11px;
-      margin-top: -8px;
-      margin-bottom: -8px;
-      color: #fff;
-    }
-
+    margin: 45px 0 0;
+    text-align: center;
 
     .name {
       display: inline-block;
-      font-size: 45px;
+      font-size: 50px;
       line-height: 60px;
+      font-weight: 100;
     }
-
 
     .beta {
       display: inline-block;
-      font-size: 15px;
-      color: $accent-color;
-      margin-left: 8px;
+      position: relative;
+      font-size: 12px;
+      color: yellow;
+      margin-left: 12px;
+      text-transform: uppercase;
+      border: 1px solid yellow;
+      border-radius: 100px;
+      padding: 0px 7px;
+      top: -6px;
     }
   }
 
-
   .description {
     color: #fff;
-    line-height: 30px;
-    margin: 31px 0 20px;
+    line-height: 20px;
+    margin: 4px 0 46px;
+    text-align: center;
+    font-size: 14px;
   }
 
 
@@ -807,18 +795,38 @@ md-input-container input {
 }
 
 
+@media (min-width: 600px) {
+  .welcome {
+    .title {
+      margin: 56px 0 0;
+
+      .name {
+        font-size: 80px;
+        line-height: 120px;
+      }
+
+      .beta {
+        font-size: 18px;
+        margin-left: 22px;
+        border-width: 2px;
+        padding: 4px 12px;
+        font-weight: 500;
+        top: -9px;
+      }
+    }
+
+    .description {
+      font-size: 20px;
+      margin: -11px 0 71px;
+    }
+  }
+}
+
+
 @media (min-width: 960px) {
   #toolbar-source {
     md-tabs {
       margin-left: 37px;
-    }
-
-    md-tab {
-      max-width: 106px;
-
-      md-tab-label {
-        font-size: 15px;
-      }
     }
   }
 
@@ -859,33 +867,6 @@ md-input-container input {
     /* Because of the border on #inputs */
     .item-prototype {
       margin-right: -19px;
-    }
-  }
-
-
-  .welcome {
-    .title {
-      margin-top: 97px;
-
-      md-icon {
-        height: 150px;
-        width: 150px;
-        margin-top: -15px;
-        margin-bottom: -15px;
-        margin-right: 22px;
-      }
-
-
-      .name {
-        font-size: 90px;
-        line-height: 120px;
-      }
-
-
-      .beta {
-        font-size: 30px;
-        margin-left: 15px;
-      }
     }
   }
 }

@@ -42,15 +42,11 @@ jscalcControllers.controller('JscalcCtrl', [
     };
 
     $scope.toggleNav = function() {
-      $timeout(function() {
-        $mdSidenav('left').toggle();
-      });
+      $mdSidenav('left').toggle();
     };
 
     $scope.closeNav = function() {
-      $timeout(function() {
-        $mdSidenav('left').close();
-      });
+      $mdSidenav('left').close();
     }
 
     $scope.getRandomString = function(length) {
@@ -63,6 +59,7 @@ jscalcControllers.controller('JscalcCtrl', [
     };
 
     $scope.new = function() {
+      $scope.closeNav();
       var id = $scope.getRandomString(16);
       $scope.calcs[id] = {doc: {}, saved: false};
       $location.path('/source/' + id);

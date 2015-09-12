@@ -108,8 +108,6 @@ var jscalcApp = angular.module('jscalcApp', [
     '/img/icons/ic_save_24px.svg',
     '/img/icons/ic_settings_24px.svg',
     '/img/icons/ic_warning_24px.svg',
-    '/img/icons/jscalc_24.svg',
-    '/img/icons/jscalc_full_bleed_24.svg',
     '/img/icons/number_input_24.svg',
     '/img/icons/number_output_24.svg',
     '/img/icons/twitter.svg',
