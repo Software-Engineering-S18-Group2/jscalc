@@ -1,0 +1,6 @@
+div.embed(ng-if='calc !== null', flex, layout-fill)
+  jscalc-calc(flex, layout='column', doc="calc.doc", inputs='inputs', defaults='defaults', edit-mode='false', focus-first-input='focusFirstInput')
+  div.powered-by.column
+    | Powered by
+    = ' '
+    a(href='https://jscalc.io', target="_blank") JSCalc.io

@@ -64,6 +64,11 @@ var jscalcApp = angular.module('jscalcApp', [
         controller: 'PublishedCtrl'
       }).
 
+      when('/embed/:calcId', {
+        templateUrl: '/partials/embed',
+        controller: 'EmbedCtrl'
+      }).
+
       when('/account', {
         templateUrl: '/partials/account',
         controller: 'AccountCtrl'

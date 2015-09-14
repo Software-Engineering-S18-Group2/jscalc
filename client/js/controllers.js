@@ -859,6 +859,40 @@ jscalcControllers.controller('PublishedCtrl', [
     };
   }]);
 
+jscalcControllers.controller('EmbedCtrl', [
+  '$scope',
+  '$routeParams',
+  'Calc',
+  '$location',
+  '$log',
+  function($scope, $routeParams, Calc, $location, $log) {
+    $scope.calcId = $routeParams.calcId;
+    $scope.calc = null;
+    $scope.inputs = {};
+    if ($location.hash()) {
+      try {
+        $scope.defaults = angular.fromJson($location.hash());
+      } catch (e) {
+        $log.warn('Hash fragment could not be JSON-parsed.', e);
+      }
+    }
+    $scope.view.isEditMode = false;
+    $scope.view.isCalcMode = false;
+    $scope.view.showCreateCalcButton = false;
+    $scope.title = '';
+    $scope.view.title = '';
+    $scope.focusFirstInput = ($location.search().autofocus === '1');
+    console.log($location.search().autofocus, $scope.focusFirstInput)
+    Calc.get({calcId: $scope.calcId}, function(calc) {
+      $scope.calc = {doc: calc.doc};
+      var caption = $scope.getCalcNameOrPlaceholder(calc.doc ? calc.doc.name: null);
+      $scope.title = caption;
+      $scope.view.title = caption;
+      $scope.view.description = (calc.doc && calc.doc.description) || 'An online calculator';
+      $scope.view.isCalcMode = true;
+    });
+  }]);
+
 jscalcControllers.controller('ToolbarToolsCtrl', ['$scope',
   function($scope) {
   }]);

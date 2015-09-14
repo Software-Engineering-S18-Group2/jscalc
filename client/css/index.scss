@@ -1,4 +1,4 @@
-$seam-border-color: #E0E0E0;
+$seam-border-color: rgba(0,0,0,0.12);
 $header-color: rgba(0,0,0,0.54);
 $muted-on-dark-color: rgba(255, 255, 255, 0.7);
 $muted-on-dark-primary-color: rgba(33,150,243,0.8);
@@ -10,9 +10,9 @@ $accent-hue-3-color: rgb(255,214,0);
 $warning-color: #e51c23;
 $sidenav-width: 250px;
 
-code, pre {
-  font-family: Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace;
-  font-size: 12px;
+code, pre, .code, .ace_editor {
+  font-family: 'Roboto Mono', Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace;
+  font-size: 13px;
 }
 
 @mixin z1 {
@@ -22,6 +22,47 @@ code, pre {
 
 @mixin z2 {
   box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
+}
+
+
+@mixin io-row {
+  #io-container {
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    overflow: initial;
+  }
+
+  #inputs, #outputs {
+    box-sizing: border-box;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Because of the border on #inputs */
+  #inputs {
+    padding-right: 19px;
+    border-right: 1px solid $seam-border-color;
+  }
+
+  .list-input-container {
+    & > .item > .content-row {
+      margin-left: 50px;
+    }
+
+    /* Because of the border on #inputs */
+    .item-prototype {
+      margin-right: -19px;
+    }
+  }
 }
 
 
@@ -148,7 +189,7 @@ md-sidenav {
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 
-#inputs, #outputs, #cheat-sheet {
+#inputs, #outputs, #cheat-sheet, #link, #embed {
   background-color: #fff;
 
   .frame-title {
@@ -162,7 +203,7 @@ md-sidenav {
 }
 
 
-#inputs, #outputs, #cheat-sheet, #share, .published-aside {
+#inputs, #outputs, #cheat-sheet, #link, #embed, .published-aside {
   padding: 0px 20px;
 
   .frame-title {
@@ -405,7 +446,7 @@ jscalc-date-input {
   }
 
   pre {
-    margin-left: 20px;
+    margin-left: 0px;
   }
 }
 
@@ -419,22 +460,16 @@ jscalc-date-input {
 }
 
 
-#share {
-  .link-title {
-    padding-top: 20px;
-  }
-
+#link, #embed {
   .link {
     padding-top: 22px;
   }
 
   .description-title {
-    color: $header-color;
-    font-weight: 500;
     padding-top: 22px;
   }
 
-  .description {
+  .textarea-container {
     padding: 6px 0 20px;
     display: flex;
     position: relative;
@@ -446,8 +481,15 @@ jscalc-date-input {
     word-wrap: break-word;
   }
 
+  md-checkbox {
+    margin-left: 0;
+    margin-top: -4px;
+    margin-bottom: 16px;
+  }
+
   textarea {
     border: 1px solid $seam-border-color;
+    padding: 8px;
     outline: none;
     height: 82px;
     max-width: 600px;
@@ -765,6 +807,35 @@ md-toolbar {
 }
 
 
+.powered-by {
+  display: none;
+  font-size: 12px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 1px 7px;
+  color: $header-color;
+  background-color: #fff;
+  border: 1px solid $seam-border-color;
+  border-bottom: none;
+  border-right: none;
+
+  a {
+    color: inherit !important;
+    font-weight: 500;
+  }
+}
+
+
+.embed {
+  overflow: auto;
+
+  .powered-by {
+    display: block;
+  }
+}
+
+
 @-moz-document url-prefix() {
   .layout-fill {
     min-height: 0;
@@ -823,6 +894,23 @@ md-input-container input {
 }
 
 
+@media (min-width: 675px) {
+  .embed {
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    overflow: initial;
+
+    @include io-row;
+  }
+}
+
+
 @media (min-width: 960px) {
   #toolbar-source {
     md-tabs {
@@ -830,43 +918,17 @@ md-input-container input {
     }
   }
 
-
-  #io-container {
-    overflow: initial;
-  }
-
-
-  /* Because of the border on #inputs */
-  #inputs {
-    padding-right: 19px;
-  }
-
-
-  #inputs, #outputs, #cheat-sheet {
+  #cheat-sheet {
+    display: block;
+    border-left: 1px solid $seam-border-color;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
 
-
-  #cheat-sheet {
-    display: block;
-    border-left: 1px solid $seam-border-color;
-  }
-
-
-  #inputs {
+  #link {
+    padding-right: 19px;
     border-right: 1px solid $seam-border-color;
   }
 
-
-  .list-input-container {
-    & > .item > .content-row {
-      margin-left: 50px;
-    }
-
-    /* Because of the border on #inputs */
-    .item-prototype {
-      margin-right: -19px;
-    }
-  }
+  @include io-row;
 }

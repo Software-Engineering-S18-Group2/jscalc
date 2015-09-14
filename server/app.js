@@ -160,6 +160,7 @@ var maybePrerender = function(req, res, next) {
 app.get('/', maybePrerender, homeController.index);
 app.get('/source/:calcId', maybePrerender, homeController.index);
 app.get('/calc/:calcId', maybeServeMetatags, maybePrerender, homeController.index);
+app.get('/embed/:calcId', maybePrerender, homeController.index);
 app.get('/account', maybePrerender, homeController.index);
 app.get('/partials/:name', partialsController.partials);
 app.post('/api/login', userController.postLogin);

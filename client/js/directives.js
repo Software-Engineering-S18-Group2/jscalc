@@ -410,7 +410,7 @@ angular.module('jscalcDirectives', [])
           };
 
           $timeout(function() {
-            if (!$scope.focusFirstInput) { return; }
+            if (!($scope.focusFirstInput && $scope.focusFirstInput())) { return; }
             var inputEls = document.querySelectorAll('#inputs .md-input, #inputs md-select, #inputs md-checkbox, #inputs md-radio-group');
             var firstDisplayed = _.find(inputEls, function(el) {
               return el.offsetParent !== null;
