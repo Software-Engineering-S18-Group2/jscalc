@@ -22,4 +22,5 @@ h2.md-title Choice Input Settings
         input(ng-model='choice.value')
       jscalc-mover(items="settingsModel.metaInput.choices", item-id="choice.id", get-label="getLabel", get-id="getId")
   .button-row
-    md-button.md-primary(ng-click="addChoice(settingsModel.metaInput)") Add choice
+    .button-row-inner
+      md-button.md-primary(ng-click="addChoice(settingsModel.metaInput)") Add choice

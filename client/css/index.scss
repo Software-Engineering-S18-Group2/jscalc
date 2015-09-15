@@ -222,12 +222,23 @@ md-sidenav {
 
 .input-row, .output-row, .button-row {
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 42px;
 
   .comment {
     font-size: 12px;
     margin-top: 10px;
   }
+}
+
+
+.button-row-inner {
+    margin: -17px 0px;
+    display: inline-block;
+}
+
+
+.input-container-row {
+  margin-bottom: -26px;
 }
 
 
@@ -261,22 +272,22 @@ md-sidenav {
 
 
 .input-row {
-  md-input-container, md-select {
-    padding: 4px 2px 12px;
-    margin: 0;
+  .content-row {
+    padding-top: 2px;
   }
 
-  md-input-container:first-child, md-select:first-child {
+  md-input-container:first-child {
     padding-left: 0;
   }
 
-  md-input-container:last-child, md-select:last-child {
+  md-input-container:last-child {
     padding-right: 0;
   }
 
   md-slider {
     margin-left: 0;
     margin-right: 20px;
+    margin-bottom: 10px;
   }
 
   md-radio-group {
@@ -343,20 +354,12 @@ jscalc-date-input {
     height: 37px;
   }
 
-
-  .footer {
-    margin-top: 5px;
-    margin-bottom: -5px;
-
-    md-button {
-      margin-right: -6px;
-    }
-  }
-
   .md-button {
     font-size: 12px;
     margin-left: -6px;
-    margin-top: -4px;
+    margin-right: -6px;
+    margin-top: -3px;
+    margin-bottom: -14px;
   }
 }
 
@@ -400,7 +403,7 @@ jscalc-date-input {
 
 .value-output-container {
   .content-row {
-    margin-top: 12px;
+    margin-top: 14px;
     font-size: 16px;
   }
 }

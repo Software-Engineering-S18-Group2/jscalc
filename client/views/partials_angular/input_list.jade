@@ -9,7 +9,8 @@
       div
         .input-row(ng-repeat='metaInput in metaInputOuter.metaInputs track by metaInput.id', ng-include='getInputTemplateName(metaInput)', ng-init='inputsInner = metaInputOuter.itemPrototype; metaInputs = metaInputOuter.metaInputs; hidden = false')
       .button-row
-        md-button.md-primary(ng-click="addInput({$event: $event, metaInputs: metaInputOuter.metaInputs, nested: true})") Add input
+        .button-row-inner
+          md-button.md-primary(ng-click="addInput({$event: $event, metaInputs: metaInputOuter.metaInputs, nested: true})") Add input
   .item.item-actual(ng-repeat='listItem in inputsInner[metaInput.id]', ng-init='indexListItem = $index; editMode = false')
     .title-row.title-row-list
       .title {{metaInput.label || '[Item name]'}} {{$index + 1}}
@@ -19,4 +20,5 @@
     .content-row
       .input-row(ng-repeat='metaInput in metaInputOuter.metaInputs track by metaInput.id', ng-include='getInputTemplateName(metaInput)', ng-init='inputsInner = listItem; metaInputs = metaInputOuter.metaInputs', ng-class="{'hidden': metaInput.autohide && !usedInputs[metaInputOuter.id].properties[indexListItem].properties[metaInput.id].used}")
   .button-row
-    md-button.md-primary(ng-click="addItem(inputsInner[metaInput.id], metaInput)") Add {{metaInput.label || '[Item name]'}}
+    .button-row-inner
+      md-button.md-primary(ng-click="addItem(inputsInner[metaInput.id], metaInput)") Add {{metaInput.label || '[Item name]'}}
