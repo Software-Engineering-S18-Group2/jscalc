@@ -2,7 +2,6 @@ $seam-border-color: rgba(0,0,0,0.12);
 $header-color: rgba(0,0,0,0.54);
 $muted-on-dark-color: rgba(255, 255, 255, 0.7);
 $muted-on-dark-primary-color: rgba(33,150,243,0.8);
-$muted-on-dark-highlight-color: rgba(255, 255, 255, 0.9);
 $primary-color: rgb(33,150,243);
 $primary-color-darker: #1E88E5;
 $accent-color: rgb(255,255,0);
@@ -755,7 +754,8 @@ md-toolbar {
   }
 
   a, .link-button {
-    color: $muted-on-dark-highlight-color;
+    color: inherit;
+    font-weight: 500;
   }
 
   .section {
@@ -768,7 +768,7 @@ md-toolbar {
   }
 
   .section.description {
-    color: $muted-on-dark-color;
+    color: rgba(255, 255, 255, 0.8);
     word-wrap: break-word;
   }
 
@@ -778,7 +778,7 @@ md-toolbar {
 
   .footer {
     margin-bottom: 15px;
-    color: $muted-on-dark-color;
+    color: rgba(255, 255, 255, 0.8);
 
     .md-button {
       margin: -12px 0;
@@ -790,7 +790,7 @@ md-toolbar {
       md-icon {
         vertical-align: top;
         margin-top: 6px;
-        color: $muted-on-dark-color;
+        color: rgba(255, 255, 255, 0.8);
       }
     }
   }
