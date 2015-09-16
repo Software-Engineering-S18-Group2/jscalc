@@ -27,23 +27,20 @@ var jscalcApp = angular.module('jscalcApp', [
 
 .constant('INPUT_TYPES', [
   {type: 'number', title: 'Number',
-      default: null, iconUrl: '/img/icons/number_input_24.svg'},
+      default: null},
   {type: 'binary', title: 'Checkbox',
-      default: false, iconUrl: '/img/icons/ic_check_box_24px.svg'},
+      default: false},
   {type: 'date', title: 'Date',
-      default: {"params":{"delta":0,"units":"days"},"type":"relative"},
-      iconUrl: '/img/icons/ic_insert_invitation_24px.svg'},
+      default: {"params":{"delta":0,"units":"days"},"type":"relative"}},
   {type: 'choice', title: 'Radio/Dropdown',
-      default: null, iconUrl: '/img/icons/ic_radio_button_on_24px.svg'},
+      default: null},
   {type: 'list', title: 'Repeating item',
-      default: [], iconUrl: '/img/icons/ic_playlist_add_24px.svg'}
+      default: []}
 ])
 
 .constant('OUTPUT_TYPES', [
-  {type: 'value', title: 'Value',
-      iconUrl: '/img/icons/number_output_24.svg'},
-  {type: 'table', title: 'Table',
-      iconUrl: '/img/icons/ic_border_all_24px.svg'}
+  {type: 'value', title: 'Value'},
+  {type: 'table', title: 'Table'}
 ])
 
 .config(['$routeProvider', '$locationProvider',
@@ -101,20 +98,12 @@ var jscalcApp = angular.module('jscalcApp', [
   // subsequent $http calls will look there first.
   var urls = [
     '/img/icons/ic_add_24px.svg',
-    '/img/icons/ic_arrow_forward_24px.svg',
-    '/img/icons/ic_border_all_24px.svg',
-    '/img/icons/ic_check_box_24px.svg',
     '/img/icons/ic_delete_24px.svg',
-    '/img/icons/ic_insert_invitation_24px.svg',
     '/img/icons/ic_menu_24px.svg',
     '/img/icons/ic_more_vert_24px.svg',
-    '/img/icons/ic_playlist_add_24px.svg',
-    '/img/icons/ic_radio_button_on_24px.svg',
     '/img/icons/ic_save_24px.svg',
     '/img/icons/ic_settings_24px.svg',
     '/img/icons/ic_warning_24px.svg',
-    '/img/icons/number_input_24.svg',
-    '/img/icons/number_output_24.svg',
     '/img/icons/twitter.svg',
     '/img/icons/twitter-box.svg',
     '/img/icons/facebook-box.svg',

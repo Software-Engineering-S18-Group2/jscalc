@@ -6,11 +6,13 @@ angular.module('jscalcDirectives', [])
   .directive('jscalcCalc', [
     '$mdToast',
     'DEFAULTS',
+    'INPUT_TYPES',
+    'OUTPUT_TYPES',
     '$location',
     '$timeout',
     'jscalcDateInput',
     '$filter',
-    function($mdToast, DEFAULTS, $location, $timeout, jscalcDateInput,
+    function($mdToast, DEFAULTS, INPUT_TYPES, OUTPUT_TYPES, $location, $timeout, jscalcDateInput,
         $filter) {
       return {
         restrict: 'E',
@@ -33,6 +35,10 @@ angular.module('jscalcDirectives', [])
         },
         link: function($scope, element, attr) {
           $scope.DEFAULTS = DEFAULTS;
+          $scope.INPUT_TYPES = INPUT_TYPES;
+          $scope.NESTED_INPUT_TYPES = angular.copy(INPUT_TYPES);
+          _.remove($scope.NESTED_INPUT_TYPES, {type: 'list'});
+          $scope.OUTPUT_TYPES = OUTPUT_TYPES;
           // Either an object {blobUrl: <URL for the blob containing worker
           // script>}, or if due to browser limitations using blobUrl is
           // impossible (useEval = true), an object containing the script to be

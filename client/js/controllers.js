@@ -173,10 +173,9 @@ jscalcControllers.controller('SourceCtrl', [
   '$q',
   'DEFAULTS',
   'INPUT_TYPES',
-  '$mdBottomSheet',
   '$document',
   function($scope, $routeParams, $timeout, Source, $mdToast, $location, $q,
-      DEFAULTS, INPUT_TYPES, $mdBottomSheet, $document) {
+      DEFAULTS, INPUT_TYPES, $document) {
 
     /**
      * UI and calculator resource.
@@ -480,59 +479,46 @@ jscalcControllers.controller('SourceCtrl', [
       }
     };
 
-    $scope.addInput = function($event, metaInputs, nested) {
-      $mdBottomSheet.show({
-        templateUrl: '/partials/bottom_sheet_inputs',
-        controller: 'InputsBottomSheetCtrl',
-        targetEvent: $event,
-        locals: {nested: nested}
-      }).then(function(inputType) {
-        var metaInput = {
-          id: getNewId(metaInputs),
-          name: getNewName(function(f) {
-            _.forEach(metaInputs, function(metaInput) {
-              f(metaInput.name);
-            });
-          }),
-          type: inputType
-        };
-        if (inputType == 'binary') {
-          metaInput.presentationType = 'checkbox';
-        }
-        if (inputType == 'choice') {
-          metaInput.presentationType = 'radio';
-        }
-        if (inputType == 'list') {
-          metaInput.metaInputs = [];
-          metaInput.itemPrototype = {};
-        }
-        metaInputs.push(metaInput);
-        if (!$scope.calc.doc.defaults) {
-          $scope.calc.doc.defaults = {};
-        }
-        fixInputs($scope.calc.doc.defaults, $scope.calc.doc.metaInputs);
-        fixInputs($scope.inputs, $scope.calc.doc.metaInputs);
-      });
+    $scope.addInput = function($event, metaInputs, nested, inputType) {
+      var metaInput = {
+        id: getNewId(metaInputs),
+        name: getNewName(function(f) {
+          _.forEach(metaInputs, function(metaInput) {
+            f(metaInput.name);
+          });
+        }),
+        type: inputType
+      };
+      if (inputType == 'binary') {
+        metaInput.presentationType = 'checkbox';
+      }
+      if (inputType == 'choice') {
+        metaInput.presentationType = 'radio';
+      }
+      if (inputType == 'list') {
+        metaInput.metaInputs = [];
+        metaInput.itemPrototype = {};
+      }
+      metaInputs.push(metaInput);
+      if (!$scope.calc.doc.defaults) {
+        $scope.calc.doc.defaults = {};
+      }
+      fixInputs($scope.calc.doc.defaults, $scope.calc.doc.metaInputs);
+      fixInputs($scope.inputs, $scope.calc.doc.metaInputs);
     };
 
-    $scope.addOutput = function($event) {
-      $mdBottomSheet.show({
-        templateUrl: '/partials/bottom_sheet_outputs',
-        controller: 'OutputsBottomSheetCtrl',
-        targetEvent: $event
-      }).then(function(outputType) {
-        if (!('metaOutputs' in $scope.calc.doc)) {
-          $scope.calc.doc.metaOutputs = [];
-        }
-        $scope.calc.doc.metaOutputs.push({
-          id: getNewId($scope.calc.doc.metaOutputs),
-          name: getNewName(function(f) {
-            _.forEach($scope.calc.doc.metaOutputs, function(metaOutput) {
-              f(metaOutput.name);
-            });
-          }),
-          type: outputType
-        })
+    $scope.addOutput = function($event, outputType) {
+      if (!('metaOutputs' in $scope.calc.doc)) {
+        $scope.calc.doc.metaOutputs = [];
+      }
+      $scope.calc.doc.metaOutputs.push({
+        id: getNewId($scope.calc.doc.metaOutputs),
+        name: getNewName(function(f) {
+          _.forEach($scope.calc.doc.metaOutputs, function(metaOutput) {
+            f(metaOutput.name);
+          });
+        }),
+        type: outputType
       });
     };
 
@@ -732,31 +718,6 @@ jscalcControllers.controller('SourceCtrl', [
     };
   }]);
 
-jscalcControllers.controller('InputsBottomSheetCtrl', [
-  '$scope',
-  '$mdBottomSheet',
-  'INPUT_TYPES',
-  'nested',
-  function($scope, $mdBottomSheet, INPUT_TYPES, nested) {
-    $scope.inputTypes = angular.copy(INPUT_TYPES);
-    if (nested) {
-      _.remove($scope.inputTypes, {type: 'list'});
-    }
-    $scope.hideBottomSheet = function(result) {
-      $mdBottomSheet.hide(result);
-    };
-  }]);
-
-jscalcControllers.controller('OutputsBottomSheetCtrl', [
-  '$scope',
-  '$mdBottomSheet',
-  'OUTPUT_TYPES',
-  function($scope, $mdBottomSheet, OUTPUT_TYPES) {
-    $scope.OUTPUT_TYPES = OUTPUT_TYPES;
-    $scope.hideBottomSheet = function(result) {
-      $mdBottomSheet.hide(result);
-    };
-  }]);
 
 jscalcControllers.controller('PublishedCtrl', [
   '$scope',

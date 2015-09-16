@@ -9,7 +9,7 @@
     #tab-content(ng-if='calc !== null', flex, layout='column', layout-fill)
       div(ng-show='selectedTabIndex == 0', flex, layout='column', layout-fill)
         jscalc-calc#calc-source(flex, layout='column', layout-fill, doc='calc.doc', inputs='inputs', edit-mode='true',
-        add-input='addInput($event, metaInputs, nested)', add-output='addOutput($event)', configure-input='configureInput(metaInputs, metaInput)', delete-input='deleteInput(metaInputs, id)', configure-output='configureOutput(metaOutputs, metaOutput)', delete-output='deleteOutput(id)', goto-line='gotoLine(lineNumber)', is-active='ioVisible()')
+        add-input='addInput($event, metaInputs, nested, type)', add-output='addOutput($event, type)', configure-input='configureInput(metaInputs, metaInput)', delete-input='deleteInput(metaInputs, id)', configure-output='configureOutput(metaOutputs, metaOutput)', delete-output='deleteOutput(id)', goto-line='gotoLine(lineNumber)', is-active='ioVisible()')
       div(ng-show='selectedTabIndex == 1', flex, layout='column', layout-fill)
         #script-container(flex, layout='row', layout-sm='column', layout-fill)
           #script(flex)

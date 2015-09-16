@@ -195,9 +195,22 @@ md-sidenav {
     color: $header-color;
   }
 
-  .md-button {
+  .md-button, md-menu {
+    margin: 6px 8px;
     margin-left: -6px;
     margin-right: 12px;
+  }
+
+  .md-button {
+    padding: 0 6px;
+  }
+
+  .md-menu {
+    padding: 0;
+  }
+
+  md-menu > .md-button {
+    margin: 0;
   }
 }
 
@@ -247,7 +260,7 @@ md-sidenav {
   white-space: nowrap;
 
   .md-button {
-    margin: -12px 0;
+    margin: -12px 0 !important;
     width: 36px;
     height: 36px;
     line-height: 36px;
@@ -550,24 +563,6 @@ jscalc-date-input {
   md-input-container {
     padding-left: 0;
     padding-right: 0;
-  }
-}
-
-
-md-bottom-sheet {
-  .md-button {
-    overflow: visible;
-  }
-
-  .md-grid-text {
-    width: 90px !important;
-  }
-
-  md-icon {
-    height: 48px;
-    width: 48px;
-    opacity: 0.54;
-    color: black;
   }
 }
 

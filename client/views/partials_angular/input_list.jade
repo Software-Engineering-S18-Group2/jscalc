@@ -10,7 +10,11 @@
         .input-row(ng-repeat='metaInput in metaInputOuter.metaInputs track by metaInput.id', ng-include='getInputTemplateName(metaInput)', ng-init='inputsInner = metaInputOuter.itemPrototype; metaInputs = metaInputOuter.metaInputs; hidden = false')
       .button-row
         .button-row-inner
-          md-button.md-primary(ng-click="addInput({$event: $event, metaInputs: metaInputOuter.metaInputs, nested: true})") Add input
+          md-menu
+            md-button.md-primary(ng-click="$mdOpenMenu($event)") Add input
+            md-menu-content
+              md-menu-item(ng-repeat='inputType in NESTED_INPUT_TYPES')
+                md-button(ng-click="addInput({$event: $event, metaInputs: metaInputOuter.metaInputs, nested: true, type: inputType.type})") {{inputType.title}}
   .item.item-actual(ng-repeat='listItem in inputsInner[metaInput.id]', ng-init='indexListItem = $index; editMode = false')
     .title-row.title-row-list
       .title {{metaInput.label || '[Item name]'}} {{$index + 1}}
