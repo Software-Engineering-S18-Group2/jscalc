@@ -640,13 +640,12 @@ md-toolbar {
 .welcome {
   .header {
     background-color: $primary-color-darker;
-    margin-bottom: 31px;
+    margin-bottom: -18px;
   }
 
   .centered {
     margin-left: auto;
     margin-right: auto;
-    max-width: 800px;
   }
 
 
@@ -720,6 +719,10 @@ md-toolbar {
         height: 36px;
       }
     }
+  }
+
+  .demo-outer-container {
+    max-width: 800px;
   }
 
   .demo-container {
@@ -868,7 +871,7 @@ md-input-container input {
 @media (min-width: 600px) {
   .welcome {
     .title {
-      margin: 56px 0 0;
+      margin: 40px 0 0;
 
       .name {
         font-size: 80px;
@@ -887,7 +890,8 @@ md-input-container input {
 
     .description {
       font-size: 20px;
-      margin: -11px 0 71px;
+      margin: 0 0 61px;
+      line-height: 24px;
     }
   }
 }
