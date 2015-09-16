@@ -260,7 +260,7 @@ md-sidenav {
   white-space: nowrap;
 
   .md-button {
-    margin: -12px 0 !important;
+    margin: -12px 12px -12px -6px !important;
     width: 36px;
     height: 36px;
     line-height: 36px;
@@ -277,7 +277,7 @@ md-sidenav {
 .title-row {
   .title {
     display: inline-block;
-    margin-right: 16px;
+    margin-right: 26px;
     color: $header-color;
     font-weight: 500;
   }
@@ -341,7 +341,7 @@ md-sidenav {
 .checkbox-input-container {
   md-checkbox {
     display: inline-block;
-    margin: 0 15px 0 0;
+    margin: 0 26px 0 0;
   }
 }
 
