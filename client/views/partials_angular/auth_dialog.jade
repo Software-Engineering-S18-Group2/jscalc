@@ -7,20 +7,20 @@ md-dialog#auth-dialog
       md-input-container
         label Password
         input(type='password', ng-model='params.password')
-      md-input-container(ng-if='!signInMode')
+      md-input-container.fade-in(ng-if='!signInMode')
         label Retype password
         input(type='password', ng-model='params.confirmPassword')
     .text-rows
-      .text-row.row-error(ng-if="errorMessage") {{errorMessage}}
-      .text-row(ng-if='!signInMode')
+      .text-row.row-error.fade-in(ng-if="errorMessage") {{errorMessage}}
+      .text-row.fade-in(ng-if='!signInMode')
         | Have an account?
         =  ' '
         button.link-button(ng-click='toggleMode()') Sign in
-      .text-row(ng-if='signInMode')
+      .text-row.fade-in(ng-if='signInMode')
         | New user?
         =  ' '
         button.link-button(ng-click='toggleMode()') Sign up
-      .text-row.row-forgot(ng-if='signInMode')
+      .text-row.row-forgot.fade-in(ng-if='signInMode')
         button.link-button(ng-click='forgot()') Forgot password?
   .md-actions(layout="row")
     md-button(ng-click='cancel()') Cancel

@@ -3,7 +3,7 @@ h2.md-title Table Output Settings
   div(ng-include="'/partials/settings_output_common'")
   h3.md-subhead Columns
   div
-    .column(ng-repeat='column in settingsModel.metaOutput.metaOutputs track by column.id')
+    .column.fade-in(ng-repeat='column in settingsModel.metaOutput.metaOutputs track by column.id')
       h4.md-body-2
         | Column {{$index + 1}}
         .config-icons

@@ -2,15 +2,15 @@
   .title-row
     span.title {{metaOutput.label || '[Label]'}}
     .config-icons(ng-include="'/partials/output_config_icons'")
-  .comment(ng-if='!outputs[metaOutput.id]') The table will be displayed when the script returns some rows for it.
-  .content-row(ng-if="outputs[metaOutput.id]")
+  .comment.fade-in(ng-if='!outputs[metaOutput.id]') The table will be displayed when the script returns some rows for it.
+  .content-row.fade-in(ng-if="outputs[metaOutput.id]")
     table
       thead
         tr
-          th(ng-repeat='column in metaOutput.metaOutputs track by column.id') {{column.label || '[Column header]'}}
+          th.fade-in(ng-repeat='column in metaOutput.metaOutputs track by column.id') {{column.label || '[Column header]'}}
       tbody
-        tr(ng-repeat='row in outputs[metaOutput.id] track by $index')
-          td(ng-repeat='column in metaOutput.metaOutputs track by column.id')
+        tr.fade-in(ng-repeat='row in outputs[metaOutput.id] track by $index')
+          td.fade-in(ng-repeat='column in metaOutput.metaOutputs track by column.id')
             span(ng-if='row[column.id].type != "boolean"')
               | {{row[column.id].value}}
             span(ng-if='row[column.id].type == "boolean"')

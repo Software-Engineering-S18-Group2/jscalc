@@ -2,8 +2,8 @@
   .title-row
     span.title {{metaOutput.label || '[Label]'}}:
     .config-icons(ng-include="'/partials/output_config_icons'")
-  .comment(ng-if='!outputs[metaOutput.id]') The output will be displayed when the script returns a value for it.
-  .content-row(ng-if='outputs[metaOutput.id]')
+  .comment.fade-in(ng-if='!outputs[metaOutput.id]') The output will be displayed when the script returns a value for it.
+  .content-row.fade-in(ng-if='outputs[metaOutput.id]')
     span.output-text(ng-if='outputs[metaOutput.id].type != "boolean"')
       | {{outputs[metaOutput.id].value}}
     span.output-boolean(ng-if='outputs[metaOutput.id].type == "boolean"')

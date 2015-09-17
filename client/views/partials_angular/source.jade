@@ -62,8 +62,8 @@
         #share-container(flex, layout-gt-md='row', layout-fill)
           md-content#link(flex)
             h2.frame-title Link
-            div.link-title(ng-show='newAndNotSaved') After you save this calculator, it will become available on the web at the following URL:
-            div.link-title(ng-show='!newAndNotSaved') This calculator is published on the web at the following URL:
+            div.link-title.fade-in(ng-show='newAndNotSaved') After you save this calculator, it will become available on the web at the following URL:
+            div.link-title.fade-in(ng-show='!newAndNotSaved') This calculator is published on the web at the following URL:
             div.link
               a(href='/calc/{{calcId}}') https://jscalc.io/calc/{{calcId}}
             div.description-title Description (1-2 sentences, line breaks will be ignored, links & emails will be auto-detected):
@@ -73,8 +73,8 @@
             h2.frame-title Embed
             div
               md-checkbox.md-primary(ng-model='focusFirstInput') Set focus on the first input when the page is opened.
-            div(ng-show='newAndNotSaved') Save the calculator, then paste this code to embed on your website or blog:
-            div(ng-show='!newAndNotSaved') Paste this code to embed on your website or blog:
+            div.fade-in(ng-show='newAndNotSaved') Save the calculator, then paste this code to embed on your website or blog:
+            div.fade-in(ng-show='!newAndNotSaved') Paste this code to embed on your website or blog:
             .textarea-container
               textarea.code(columns="1", aria-label="Embed code to copy", readonly)
                 | <iframe src="https://jscalc.io/embed/{{calcId}}{{focusFirstInput ? '?autofocus=1' : ''}}" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0" style="border: 1px solid rgba(0,0,0,0.12)"></iframe>

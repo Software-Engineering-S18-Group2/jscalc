@@ -6,6 +6,7 @@ var jscalcApp = angular.module('jscalcApp', [
   'angularytics',
   'http-auth-interceptor',
   'ngRoute',
+  'ngAnimate',
   'ngMaterial',
   'ui.ace',
   'ngMessages',

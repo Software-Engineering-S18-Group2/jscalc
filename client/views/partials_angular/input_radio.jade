@@ -3,4 +3,4 @@
     .title {{metaInput.label || '[Label]'}}:
     .config-icons(ng-include="'/partials/input_config_icons'")
   md-radio-group.md-primary(ng-model='inputsInner[metaInput.id]')
-    md-radio-button.md-hue-3(ng-repeat='choice in metaInput.choices', ng-value='choice.value', aria-label='choice.label') {{choice.label}}
+    md-radio-button.md-hue-3.fade-in(ng-repeat='choice in metaInput.choices', ng-value='choice.value', aria-label='choice.label') {{choice.label}}

@@ -3,7 +3,7 @@
     .title {{metaInput.label || '[Label]'}}:
     .config-icons(ng-include="'/partials/input_config_icons'")
   .content-row(layout="row", layout-align="start center").input-container-row
-    div(ng-if="metaInput.slider" flex="80")
+    div.fade-in(ng-if="metaInput.slider" flex="80")
       md-slider.md-primary(ng-if="metaInput.sliderStep", ng-model="inputsInner[metaInput.id]", min="{{getValueOrDefault(metaInput.sliderMin, DEFAULTS.sliderMin)}}", max="{{getValueOrDefault(metaInput.sliderMax, DEFAULTS.sliderMax)}}", step="{{metaInput.sliderStep}}", aria-label="{{metaInput.label || '[Label]'}}")
       md-slider.md-primary(ng-if="!metaInput.sliderStep", ng-model="inputsInner[metaInput.id]", min="{{getValueOrDefault(metaInput.sliderMin, DEFAULTS.sliderMin)}}", max="{{getValueOrDefault(metaInput.sliderMax, DEFAULTS.sliderMax)}}", aria-label="{{metaInput.label || '[Label]'}}")
     md-input-container(flex)

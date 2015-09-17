@@ -37,7 +37,7 @@ html(lang='en', ng-app='jscalcApp', ng-controller='JscalcCtrl')
       md-content#side-nav(flex)
         a(href='/', ng-class="{active: isCurrentLocation('/')}", ng-click="closeNav()") Home
         .section Your Calculators
-        a.indent(ng-repeat="calc in calcList | orderBy:['caption', 'url']", href="{{calc.url}}", ng-class="{active: isCurrentLocation(calc.url)}", ng-click="closeNav()") {{calc.caption}}
+        a.fade-in.indent(ng-repeat="calc in calcList | orderBy:['caption', 'url']", href="{{calc.url}}", ng-class="{active: isCurrentLocation(calc.url)}", ng-click="closeNav()") {{calc.caption}}
         button.indent(ng-click='new()')
           md-icon.new-calculator-icon(md-svg-icon="/img/icons/ic_add_24px.svg")
           div.new-calculator-label New Calculator

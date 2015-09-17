@@ -11,11 +11,11 @@
               md-menu-content
                 md-menu-item(ng-repeat='inputType in INPUT_TYPES')
                   md-button(ng-click="addInput({$event: $event, metaInputs: doc.metaInputs, nested: false, type: inputType.type})") {{inputType.title}}
-            md-button(ng-if="showDefaultsButtons()", ng-click="updateDefaults()") Update defaults
-            md-button(ng-if="showDefaultsButtons()", ng-click="loadDefaults()") Load defaults
+            md-button.fade-in(ng-if="showDefaultsButtons()", ng-click="updateDefaults()") Update defaults
+            md-button.fade-in(ng-if="showDefaultsButtons()", ng-click="loadDefaults()") Load defaults
   #outputs
     h2.frame-title Outputs
-    .button-row(ng-if="workerError")
+    .button-row.fade-in(ng-if="workerError")
       .button-row-inner
         div(layout='row', layout-align="start center")
           md-icon.outputs-warning(md-svg-icon="/img/icons/ic_warning_24px.svg")
@@ -31,10 +31,10 @@
             md-menu-content
               md-menu-item(ng-repeat='outputType in OUTPUT_TYPES')
                 md-button(ng-click="addOutput({$event: $event, type: outputType.type})") {{outputType.title}}
-          md-button(ng-if="!debugMode", ng-click="toggleDebugMode()") Switch to debug mode
-          md-button(ng-if="debugMode", ng-click="toggleDebugMode()") Switch to normal mode
-          md-button(ng-if="debugMode", ng-click="calculate()") Calculate
-    .debug-comment(ng-if="debugMode && debugSupported")
+          md-button.fade-in(ng-if="!debugMode", ng-click="toggleDebugMode()") Switch to debug mode
+          md-button.fade-in(ng-if="debugMode", ng-click="toggleDebugMode()") Switch to normal mode
+          md-button.fade-in(ng-if="debugMode", ng-click="calculate()") Calculate
+    .debug-comment.fade-in(ng-if="debugMode && debugSupported")
       | You are in debug mode. The script is not run automatically but only when you click CALCULATE button above. To pause execution at some point in your script, insert
       = ' '
       code
@@ -45,7 +45,7 @@
       code
         a(href='https://developer.mozilla.org/en-US/docs/Web/API/Console.log', target='_blank') console.log()
       | .
-    .debug-comment(ng-if="debugMode && !debugSupported")
+    .debug-comment.fade-in(ng-if="debugMode && !debugSupported")
       | Sorry, as far as I can tell, as of this writing Firefox and Safari do not support debugging web workers (and the script is executed in a web worker), so please use Chrome or IE11 if you would like to set breakpoints using
       = ' '
       code

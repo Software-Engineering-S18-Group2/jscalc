@@ -3,7 +3,7 @@ h2.md-title Number Input Settings
   div(ng-include="'/partials/settings_input_common'")
   .checkbox-row
     md-checkbox.md-primary(ng-model='settingsModel.metaInput.slider') Display slider
-  div(ng-if="settingsModel.metaInput.slider")
+  div.fade-in(ng-if="settingsModel.metaInput.slider")
     md-input-container
       label Slider minimum value
       input(type='number', ng-model='settingsModel.metaInput.sliderMin', required, default, default-value="DEFAULTS.sliderMin")

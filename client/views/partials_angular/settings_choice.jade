@@ -8,7 +8,7 @@ h2.md-title Choice Input Settings
       md-option(ng-value="'dropdown'") Dropdown
   h3.md-subhead Choices
   div
-    .choice(ng-repeat='choice in settingsModel.metaInput.choices track by choice.id')
+    .choice.fade-in(ng-repeat='choice in settingsModel.metaInput.choices track by choice.id')
       h4.md-body-2
         | Option {{$index + 1}}
         .config-icons
