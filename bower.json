@@ -8,12 +8,12 @@
   "dependencies": {
     "angular-material": "0.11.0-master-255179d",
     "angularytics": "0.4.0",
-    "angular-route": "1.4.5",
+    "angular-route": null,
     "angular-ui-ace": "0.2.3",
     "angular-ui-sortable": "0.13.4",
     "angular-http-auth": "1.2.2",
-    "angular-resource": "1.4.5",
-    "angular-messages": "1.4.5",
+    "angular-resource": null,
+    "angular-messages": null,
     "lodash": "3.10.1",
     "moment": "2.10.6",
     "mathjs": "2.1.1"
