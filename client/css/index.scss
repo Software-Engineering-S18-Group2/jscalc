@@ -86,7 +86,7 @@ a, .link-button {
 }
 
 
-.fade-in.ng-enter, .fade-in.ng-move {
+.fade-in.ng-enter {
   -webkit-transition:0.5s ease-in all;
   -moz-transition:0.5s ease-in all;
   -o-transition:0.5s ease-in all;
@@ -94,14 +94,8 @@ a, .link-button {
   opacity:0;
 }
 
-/*
- The ng-enter-active and ng-move-active
- are where the transition destination properties
- are set so that the animation knows what to
- animate.
-*/
-.fade-in.ng-enter.ng-enter-active,
-.fade-in.ng-move.ng-move-active {
+
+.fade-in.ng-enter.ng-enter-active {
   opacity:1;
 }
 
