@@ -1,5 +1,3 @@
-//= require jquery/dist/jquery.min
-//= require jquery-ui/jquery-ui.min
 //= require angular/angular.min
 //= require angular-route/angular-route.min
 //= require angular-resource/angular-resource.min
