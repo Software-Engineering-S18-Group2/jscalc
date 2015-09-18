@@ -14,6 +14,10 @@ code, pre, .code, .ace_editor {
   font-size: 13px;
 }
 
+md-checkbox {
+  line-height: 20px;
+}
+
 @mixin z1 {
   box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
@@ -512,6 +516,8 @@ jscalc-date-input {
     display: block;
     border-radius: 0;
     resize: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
 
     &:focus {
       border-color: $primary-color;
@@ -549,7 +555,6 @@ jscalc-date-input {
     }
 
     .comment {
-      margin-top: -4px;
       font-size: 12px;
       line-height: 17px;
       margin-left: 28px;
@@ -570,13 +575,13 @@ jscalc-date-input {
 
 #auth-dialog {
   md-content {
-    width: 250px;
+    max-width: 250px;
     background: transparent;
     padding: 12px;
   }
 
   .text-rows {
-    margin-top: 34px;
+    margin-top: 12px;
   }
 
   .text-row {
@@ -590,6 +595,11 @@ jscalc-date-input {
 
   md-progress-circular {
     margin-right: -16px;
+  }
+
+  md-input-container {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
