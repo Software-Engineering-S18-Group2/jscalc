@@ -99,7 +99,7 @@ jscalcControllers.controller('JscalcCtrl', [
       $scope.calcList = newValue;
     }, true);
 
-    $scope.login = function($event) {
+    $scope.login = function($event, signInMode) {
       return $mdDialog.show({
             targetEvent: $event,
             controller: 'AuthDialogCtrl',
@@ -107,7 +107,8 @@ jscalcControllers.controller('JscalcCtrl', [
             onComplete: function(scope, element) {
               element[0].querySelector('#email').focus();
             },
-            clickOutsideToClose: true
+            clickOutsideToClose: true,
+            locals: {signInMode: signInMode}
           }).then(function() {
             authService.loginConfirmed();
             if ($scope.user === null) {
@@ -864,8 +865,9 @@ jscalcControllers.controller('AuthDialogCtrl', [
   '$http',
   '$q',
   'Angularytics',
-  function($scope, $mdDialog, $http, $q, Angularytics) {
-    $scope.signInMode = false;
+  'signInMode',
+  function($scope, $mdDialog, $http, $q, Angularytics, signInMode) {
+    $scope.signInMode = signInMode;
     $scope.canceler = null;
     $scope.params = {};
 
