@@ -1,5 +1,5 @@
 .list-input-container(ng-init='metaInputOuter = metaInput')
-  .item.item-prototype(ng-if='editMode')
+  .item.item-prototype(ng-if='editMode' ng-init="inListItemPrototype = true")
     .title-row.title-row-list
       .title Prototype of {{metaInput.label || '[Item name]'}}
       .config-icons(ng-include="'/partials/input_config_icons'")
@@ -7,7 +7,7 @@
       | This prototype of a repeating item will not be displayed in the published calculator. Use it to configure (1) inputs that each item consists of, and (2) initial values for newly added items.
     .content-row
       div
-        .input-row.fade-in(ng-repeat='metaInput in metaInputOuter.metaInputs track by metaInput.id', ng-include='getInputTemplateName(metaInput)', ng-init='inputsInner = metaInputOuter.itemPrototype; metaInputs = metaInputOuter.metaInputs; hidden = false')
+        .input-row.fade-in(ng-repeat='metaInput in metaInputOuter.metaInputs track by metaInput.id', ng-include='getInputTemplateName(metaInput)', ng-init='inputsInner = metaInputOuter.itemPrototype; metaInputs = metaInputOuter.metaInputs')
       .button-row
         .button-row-inner
           md-menu
@@ -15,14 +15,14 @@
             md-menu-content
               md-menu-item(ng-repeat='inputType in NESTED_INPUT_TYPES')
                 md-button(ng-click="addInput({$event: $event, metaInputs: metaInputOuter.metaInputs, nested: true, type: inputType.type})") {{inputType.title}}
-  .item.item-actual.fade-in(ng-repeat='listItem in inputsInner[metaInput.id]', ng-init='indexListItem = $index; editMode = false')
+  .item.item-actual.fade-in(ng-repeat='listItem in inputsInner[metaInput.id]', ng-init='indexListItem = $index; inListItem = true', jscalc-list-item)
     .title-row.title-row-list
       .title {{metaInput.label || '[Item name]'}} {{$index + 1}}
       .config-icons
         md-button.md-icon-button(aria-label='Delete', ng-click="deleteItem(inputsInner[metaInput.id], $index)")
           md-icon(md-svg-icon="/img/icons/ic_delete_24px.svg")
     .content-row
-      .input-row.fade-in(ng-repeat='metaInput in metaInputOuter.metaInputs track by metaInput.id', ng-include='getInputTemplateName(metaInput)', ng-init='inputsInner = listItem; metaInputs = metaInputOuter.metaInputs', ng-class="{'hidden': metaInput.autohide && !usedInputs[metaInputOuter.id].properties[indexListItem].properties[metaInput.id].used}")
+      .input-row.fade-in(ng-repeat='metaInput in metaInputOuter.metaInputs | filter:showInput track by metaInput.id', ng-include='getInputTemplateName(metaInput)', ng-init='inputsInner = listItem; metaInputs = metaInputOuter.metaInputs')
   .button-row
     .button-row-inner
       md-button.md-primary(ng-click="addItem(inputsInner[metaInput.id], metaInput)") Add {{metaInput.label || '[Item name]'}}

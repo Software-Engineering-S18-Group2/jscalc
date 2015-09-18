@@ -1,1 +1,1 @@
-.input-row.fade-in(ng-repeat='metaInput in doc.metaInputs track by metaInput.id', ng-include='getInputTemplateName(metaInput)', ng-init='inputsInner = inputs; metaInputs=doc.metaInputs', ng-class="{'hidden': metaInput.autohide && !usedInputs[metaInput.id].used}")
+.input-row.fade-in(ng-repeat='metaInput in doc.metaInputs | filter:showInput track by metaInput.id', ng-include='getInputTemplateName(metaInput)', ng-init='inputsInner = inputs; metaInputs=doc.metaInputs')

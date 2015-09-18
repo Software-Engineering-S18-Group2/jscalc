@@ -50,6 +50,7 @@ angular.module('jscalcDirectives', [])
           $scope.workerBuzy = false;
           $scope.workerError = null;
           $scope.debugMode = false;
+          $scope.initialRunCompleted = false;
           var recalculationScheduled = false;
           var calculationTimeoutPromise = null;
           // Set to true while asleep (isActive retuns false) if script has to
@@ -415,19 +416,55 @@ angular.module('jscalcDirectives', [])
             return value;
           };
 
-          $timeout(function() {
-            if (!($scope.focusFirstInput && $scope.focusFirstInput())) { return; }
-            var inputEls = document.querySelectorAll('#inputs .md-input, #inputs md-select, #inputs md-checkbox, #inputs md-radio-group');
-            var firstDisplayed = _.find(inputEls, function(el) {
-              return el.offsetParent !== null;
-            });
-            if (firstDisplayed) {
-              firstDisplayed.focus();
+          $scope.inputAutohidden = function(metaInput) {
+            return metaInput.autohide && !_.property(['usedInputs', metaInput.id, 'used'])($scope);
+          };
+
+          $scope.showInput = function(metaInput) {
+            return $scope.editMode || !$scope.inputAutohidden(metaInput);
+          };
+
+          $scope.outputAutohidden = function(metaOutput) {
+            return !_.property(['outputs', metaOutput.id])($scope);
+          };
+
+          $scope.showOutput = function(metaOutput) {
+            return $scope.editMode || !$scope.outputAutohidden(metaOutput);
+          };
+
+          var unregisterOutputsWatch = $scope.$watch('outputs', function(outputs) {
+            if (angular.isDefined(outputs)) {
+              unregisterOutputsWatch();
+              $scope.initialRunCompleted = true;
+              $timeout(function() {
+                if (!($scope.focusFirstInput && $scope.focusFirstInput())) { return; }
+                var inputEls = document.querySelectorAll('#inputs .md-input, #inputs md-select, #inputs md-checkbox, #inputs md-radio-group');
+                var firstDisplayed = _.find(inputEls, function(el) {
+                  return el.offsetParent !== null;
+                });
+                if (firstDisplayed) {
+                  firstDisplayed.focus();
+                }
+              });
             }
           });
         }
       };
     }])
+  .directive('jscalcListItem', function() {
+    return {
+      restrict: 'A',
+      link: function($scope, element, attrs) {
+        $scope.inputAutohidden = function(metaInput) {
+          return ($scope.metaInputOuter.autohide && !_.property(['usedInputs', $scope.metaInputOuter.id, 'used'])($scope)) || (metaInput.autohide && !_.property(['usedInputs', $scope.metaInputOuter.id, 'properties', $scope.indexListItem, 'properties', metaInput.id, 'used'])($scope));
+        };
+
+        $scope.showInput = function(metaInput) {
+          return $scope.editMode || !$scope.inputAutohidden(metaInput);
+        };
+      }
+    }
+  })
   .directive('default', function() {
     return {
       restrict: 'A',

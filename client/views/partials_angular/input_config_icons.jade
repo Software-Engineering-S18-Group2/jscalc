@@ -1,6 +1,6 @@
-md-button.md-icon-button(ng-if='editMode', aria-label='Configure', ng-click="configureInput({metaInputs: metaInputs, metaInput: metaInput})")
+md-button.md-icon-button(ng-if='!inListItem && editMode', aria-label='Configure', ng-click="configureInput({metaInputs: metaInputs, metaInput: metaInput})")
   md-icon(md-svg-icon="/img/icons/ic_settings_24px.svg")
-md-button.md-icon-button(ng-if='editMode', aria-label='Delete', ng-click="deleteInput({metaInputs: metaInputs, id: metaInput.id})")
+md-button.md-icon-button(ng-if='!inListItem && editMode', aria-label='Delete', ng-click="deleteInput({metaInputs: metaInputs, id: metaInput.id})")
   md-icon(md-svg-icon="/img/icons/ic_delete_24px.svg")
-.hidden-indicator
+.hidden-indicator.fade-in(ng-if="!inListItemPrototype && inputAutohidden(metaInput)")
   .content Hidden

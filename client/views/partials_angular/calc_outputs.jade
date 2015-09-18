@@ -1,2 +1,1 @@
-.output-row.fade-in(ng-repeat='metaOutput in doc.metaOutputs track by metaOutput.id')
-  div.fade-in(ng-if='editMode || outputs[metaOutput.id]', ng-class="{'hidden': !outputs[metaOutput.id]}", ng-include='getOutputTemplateName(metaOutput)')
+.output-row.fade-in(ng-repeat='metaOutput in doc.metaOutputs | filter:showOutput track by metaOutput.id', ng-include='getOutputTemplateName(metaOutput)')

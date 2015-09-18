@@ -253,7 +253,7 @@ md-sidenav {
 
   .comment {
     font-size: 12px;
-    margin-top: 10px;
+    margin-top: 14px;
   }
 }
 
@@ -328,27 +328,14 @@ md-sidenav {
 
 
 .hidden-indicator {
-  display: none;
+  display: inline-block;
   background-color: $accent-hue-3-color;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 500;
   color: #FFF;
   padding: 0px 7px;
-  margin: 0 6px;
-}
-
-.edit-mode .hidden .hidden-indicator {
-  display: inline-block;
-}
-
-
-.hidden {
-  display: none;
-}
-
-.edit-mode .hidden {
-  display: block;
+  margin: -1px 3px;
 }
 
 
