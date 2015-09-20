@@ -6,8 +6,10 @@ var bodyParser = require('body-parser');
 var compress = require('compression');
 var connectAssets = require('connect-assets');
 var cookieParser = require('cookie-parser');
-// Configure header to be the one used by Angular.
-var csrf = require('lusca').csrf({header: 'x-xsrf-token'});
+// Configure header & cookie to be the ones used by Angular. "secret"
+// replaces the default value '_csrfSecret' because that triggers a
+// bug in cookie-session.
+var csrf = require('lusca').csrf({angular: true, secret: 'csrfSecret'});
 var errorHandler = require('errorhandler');
 var express = require('express');
 var expressValidator = require('express-validator');
@@ -99,10 +101,6 @@ app.use(passport.session());
 app.use(flash());
 if (process.env.NODE_ENV !== 'development') {
   app.use(csrf);
-  app.use(function(req, res, next) {
-    res.cookie('XSRF-TOKEN', res.locals._csrf);
-    next();
-  });
 }
 
 var maybeServeMetatags = function(req, res, next) {
