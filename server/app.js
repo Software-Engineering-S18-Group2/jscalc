@@ -171,7 +171,8 @@ app.post('/forgot', userController.postForgot);
 app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
 app.post('/api/signup', userController.postSignup);
-app.get('/api/account', passportConf.isAuthenticated, userController.getAccount);
+// PUT instead of GET to enable csrf check, needed to prevent requests from web worker.
+app.put('/api/account', passportConf.isAuthenticated, userController.getAccount);
 app.post('/api/account/email', passportConf.isAuthenticated, userController.postAccountEmail);
 app.post('/api/account/password', passportConf.isAuthenticated, userController.postAccountPassword);
 app.delete('/api/account', passportConf.isAuthenticated, userController.deleteAccount);

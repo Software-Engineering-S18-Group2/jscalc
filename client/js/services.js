@@ -7,6 +7,7 @@ var jscalcServices = angular.module('jscalcServices', ['ngResource']);
 jscalcServices.factory('User', ['$resource', 'toastInterceptor',
   function($resource, toastInterceptor){
     return $resource('/api/account', {}, {
+      get: {method:'PUT', interceptor: toastInterceptor},
       saveEmail: {method:'POST', url: '/api/account/email',
           interceptor: toastInterceptor},
       savePassword: {method:'POST', url: '/api/account/password',
