@@ -18,9 +18,7 @@ var mongoose = require('mongoose');
 var request = require('request');
 var passport = require('passport');
 var path = require('path');
-var session = require('express-session');
-
-var MongoStore = require('connect-mongo')(session);
+var session = require('cookie-session');
 
 /**
  * Controllers (route handlers).
@@ -92,14 +90,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(session({
-  resave: true,
-  saveUninitialized: true,
   secret: process.env.SESSION_SECRET || 'test',
-  store: new MongoStore({
-    url: process.env.MONGOLAB_URI,
-    autoReconnect: true
-  }),
-  cookie: {maxAge: 30 * 24 * 3600000}
+  maxAge: 30 * 24 * 3600000,
+  signed: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
