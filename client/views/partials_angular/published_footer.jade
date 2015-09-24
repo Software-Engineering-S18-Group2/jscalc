@@ -13,3 +13,7 @@ md-menu(md-theme="default")
       md-button(ng-click="login($event, true)") Sign in
     md-menu-item(ng-show="user.$resolved")
       md-button(ng-click="logout()") Sign out
+    md-menu-item
+      md-button(ng-href="/terms") Terms of Service
+    md-menu-item
+      md-button(ng-href="/privacy") Privacy Policy

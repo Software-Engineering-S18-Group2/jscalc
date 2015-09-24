@@ -42,4 +42,6 @@ html(lang='en', ng-app='jscalcApp', ng-controller='JscalcCtrl')
           md-icon.new-calculator-icon(md-svg-icon="/img/icons/ic_add_24px.svg")
           div.new-calculator-label New Calculator
         a(href='/account', ng-show='user.$resolved', ng-class="{active: isCurrentLocation('/account')}", ng-click="closeNav()") Account Settings
+        a(href='/terms', ng-class="{active: isCurrentLocation('/terms')}", ng-click="closeNav()") Terms of Service
+        a(href='/privacy', ng-class="{active: isCurrentLocation('/privacy')}", ng-click="closeNav()") Privacy Policy
     div(role='main', layout='column', layout-fill, ng-view='ng-view')

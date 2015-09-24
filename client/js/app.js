@@ -72,6 +72,16 @@ var jscalcApp = angular.module('jscalcApp', [
         controller: 'AccountCtrl'
       }).
 
+      when('/terms', {
+        templateUrl: '/partials/terms',
+        controller: 'TermsCtrl'
+      }).
+
+      when('/privacy', {
+        templateUrl: '/partials/privacy',
+        controller: 'PrivacyCtrl'
+      }).
+
       when('/', {
         templateUrl: '/partials/welcome',
         controller: 'WelcomeCtrl'

@@ -1022,3 +1022,25 @@ jscalcControllers.controller('WelcomeCtrl', [
     $scope.view.title = 'Build a Custom Online Calculator';
     $scope.view.description = 'Create a custom online calculator by writing a Javascript function that transforms inputs into outputs.';
   }]);
+
+
+jscalcControllers.controller('TermsCtrl', [
+  '$scope',
+  function($scope) {
+    $scope.view.isEditMode = false;
+    $scope.view.isCalcMode = false;
+    $scope.view.showCreateCalcButton = false;
+    $scope.title = $scope.view.title = 'Terms of Service';
+    $scope.view.description = '';
+  }]);
+
+
+jscalcControllers.controller('PrivacyCtrl', [
+  '$scope',
+  function($scope) {
+    $scope.view.isEditMode = false;
+    $scope.view.isCalcMode = false;
+    $scope.view.showCreateCalcButton = false;
+    $scope.title = $scope.view.title = 'Privacy Policy';
+    $scope.view.description = '';
+  }]);

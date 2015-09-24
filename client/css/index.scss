@@ -18,6 +18,12 @@ md-checkbox {
   line-height: 20px;
 }
 
+
+md-menu-item > a.md-button span {
+  line-height: 48px;
+}
+
+
 @mixin z1 {
   box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
@@ -612,6 +618,21 @@ jscalc-date-input {
 
   .md-button {
     margin-left: 0;
+  }
+}
+
+
+.doc {
+  padding: 8px 20px 30px;
+
+  .content {
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h2 {
+    margin-top: 30px;
   }
 }
 

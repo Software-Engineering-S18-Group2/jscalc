@@ -87,6 +87,8 @@ app.use('/bower_components',
     {maxAge: 3600000}));
 app.use('/js', express.static(path.join(clientDir, 'js'),
     {maxAge: 3600000}));
+app.use('/html', express.static(path.join(clientDir, 'html'),
+    {maxAge: 3600000}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressValidator());
@@ -153,6 +155,8 @@ app.get('/source/:calcId', maybePrerender, homeController.index);
 app.get('/calc/:calcId', maybeServeMetatags, maybePrerender, homeController.index);
 app.get('/embed/:calcId', maybePrerender, homeController.index);
 app.get('/account', maybePrerender, homeController.index);
+app.get('/terms', maybePrerender, homeController.index);
+app.get('/privacy', maybePrerender, homeController.index);
 app.get('/partials/:name', partialsController.partials);
 app.post('/api/login', userController.postLogin);
 app.get('/api/logout', userController.logout);
