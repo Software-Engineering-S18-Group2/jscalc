@@ -1019,8 +1019,9 @@ jscalcControllers.controller('WelcomeCtrl', [
     $scope.view.isEditMode = false;
     $scope.view.isCalcMode = false;
     $scope.view.showCreateCalcButton = true;
+    $scope.title = 'Welcome to JSCalc.io!';
     $scope.view.title = 'Build a Custom Online Calculator';
-    $scope.view.description = 'Create a custom online calculator by writing a Javascript function that transforms inputs into outputs.';
+    $scope.view.description = 'Create an online calculator by writing a single script, or have it built for you as a custom web app.';
   }]);
 
 

@@ -670,10 +670,8 @@ md-toolbar {
 
 
 .welcome {
-  .header {
-    background-color: $primary-color-darker;
-    margin-bottom: -18px;
-  }
+  background-color: $primary-color-darker;
+  color: #fff;
 
   .centered {
     margin-left: auto;
@@ -681,79 +679,49 @@ md-toolbar {
   }
 
 
-  .title {
-    color: #fff;
-    margin: 45px 0 0;
-    text-align: center;
-
-    .name {
-      display: inline-block;
-      font-size: 50px;
-      line-height: 60px;
-      font-weight: 100;
-    }
-
-    .beta {
-      display: inline-block;
-      position: relative;
-      font-size: 12px;
-      color: yellow;
-      margin-left: 12px;
-      text-transform: uppercase;
-      border: 1px solid yellow;
-      border-radius: 100px;
-      padding: 0px 7px;
-      top: -6px;
-    }
-  }
-
-  .description {
-    color: #fff;
-    line-height: 20px;
-    margin: 4px 0 46px;
-    text-align: center;
-    font-size: 14px;
-  }
-
-
-  .section {
-    margin-right: -40px;
-  }
-
-
-  .item {
-    margin: 20px 0;
-    margin-right: 40px;
+  a {
+    text-decoration: underline;
+    color: inherit;
   }
 
 
   h2 {
-    color: $primary-color;
-    margin-bottom: 9px;
+    margin-top: 21px;
+    margin-bottom: 17px;
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 1.1em;
+  }
+
+  .content {
+    font-size: 16px;
+    line-height: 23px;
+    margin-bottom: 12px;
   }
 
 
   .footer{
-    margin-top: 60px;
+    text-align: center;
+    margin-top: 30px;
 
 
     p {
-      margin: 5px 0;
+      margin-bottom: 5px;
     }
 
     .social-icon {
-      margin-right: 10px;
-      margin-bottom: 5px;
+      margin: 0 7px 5px;
       display: inline-block;
 
       md-icon {
         width: 36px;
         height: 36px;
+        color: #fff;
       }
     }
   }
 
-  .demo-outer-container {
+  .limit-width {
     // 901px is a magic number that makes YouTube begin showing
     // high-res thumbnail.
     max-width: 901px;
@@ -762,8 +730,6 @@ md-toolbar {
   .demo-container {
     position: relative;
     padding-bottom: 56.25%;
-    padding-top: 30px;
-    margin-bottom: 20px;
     height: 0;
     overflow: hidden;
 
@@ -905,28 +871,9 @@ md-input-container input {
 
 @media (min-width: 600px) {
   .welcome {
-    .title {
-      margin: 40px 0 0;
-
-      .name {
-        font-size: 80px;
-        line-height: 120px;
-      }
-
-      .beta {
-        font-size: 18px;
-        margin-left: 22px;
-        border-width: 2px;
-        padding: 4px 12px;
-        font-weight: 500;
-        top: -9px;
-      }
-    }
-
-    .description {
-      font-size: 20px;
-      margin: 0 0 61px;
-      line-height: 24px;
+    .item {
+      max-width: 400px;
+      margin: 32px 0;
     }
   }
 }

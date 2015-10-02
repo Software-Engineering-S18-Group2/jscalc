@@ -1,61 +1,20 @@
 md-toolbar
   div.md-toolbar-tools(ng-include="'/partials/toolbar_tools'", ng-controller='ToolbarToolsCtrl')
 md-content.welcome(flex)
-  .header
-    .centered.md-padding
-      .title
-        .name JSCalc.io
-        .beta beta
-      .description Create a custom online calculator by writing a single Javascript function.
-  .centered.md-padding
-    .section(layout='row', layout-sm='column', layout-align="space-between")
+  .centered.md-padding.limit-width
+    .grid.section(layout='row', layout-sm='column', layout-align="space-between")
       .item(flex)
-        h2.md-title Real-time calculations
+        h2 Create an online calculator
         .content
-          | Outputs are recalculated as soon as the user changes the value of an input. This is done in a parallel Web Worker thread, so the interface does not block even if the calculation takes some time.
+          | JSCalc.io lets you create a custom, embeddable, mobile-friendly online calculator by writing a single Javascript function. It's free and open-source. Watch it in action in the short video below.
+      .item(flex="15")
       .item(flex)
-        h2.md-title Variety of input types
+        h2 Custom development
         .content
-          | You can use number inputs, checkboxes, radio buttons, date inputs (they support absolute and relative dates), and a "repeating item" input type that lets the user enter multiple items, each with its own set of inputs.
-    .section(layout='row', layout-sm='column', layout-align="space-between")
-      .item(flex)
-        h2.md-title Values or tables as outputs
-        .content
-          | You can display multiple values or tables as outputs, if necessary different ones depending on values of inputs. You can configure number formats in the UI, and so don't have to format outputs yourself in the script.
-      .item(flex)
-        h2.md-title Auto-hiding of unused inputs
-        .content
-          | You can configure an input to be automatically hidden if given the current values of other inputs, it is not accessed by the script, and so does not affect the calculation result (this is implemented using Javascript getters).
-    .section(layout='row', layout-sm='column', layout-align="space-between")
-      .item(flex)
-        h2.md-title Powerful code editor
-        .content
-          | JSCalc uses the
+          | If your requirements are beyond what you can build yourself on JSCalc.io, we can use the same modern technologies to implement a calculator for you as a custom web app.
           = ' '
-          a(href='http://ace.c9.io/#nav=about', target='_blank') Ace open-source code editor
-          = ' '
-          | which supports syntax highlighting and JSHint warnings.
-      .item(flex)
-        h2.md-title Modern UI
-        .content
-          | Implemented using the great
-          = ' '
-          a(href='https://material.angularjs.org', target='_blank') Angular Material
-          = ' '
-          | library.
-    .section(layout='row', layout-sm='column', layout-align="space-between")
-      .item(flex)
-        h2.md-title Mobile-friendly
-        .content
-          | The calculator that you create will work well not only on desktop, but also on a phone or a tablet.
-      .item(flex)
-        h2.md-title Open-source
-        .content
-          | JSCalc is open-source. You are welcome to file issues in the
-          = ' '
-          a(href='https://github.com/ivan7237d/jscalc', target='_blank') GitHub repository
-          | .
-  .centered.md-padding.demo-outer-container
+          a(href='https://docs.google.com/forms/d/1-5jCJlfZQdJWIWKlkw1xLHcWRqGaTFrBrltRlnm-Ye4/viewform?usp=send_form', target='_blank') Click here to learn more.
+  .centered.md-padding.limit-width
     .demo-container
       iframe(src="https://www.youtube.com/embed/GLZ3bNQ9RP0?&color=white&modestbranding=1&showinfo=0&rel=0" frameborder="0" allowfullscreen)
   .centered.md-padding
