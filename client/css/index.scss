@@ -687,10 +687,10 @@ md-toolbar {
 
   h2 {
     margin-top: 21px;
-    margin-bottom: 17px;
-    font-size: 44px;
+    margin-bottom: 22px;
+    font-size: 36px;
     font-weight: 300;
-    line-height: 1.1em;
+    line-height: 1.15em;
   }
 
   .content {
@@ -897,6 +897,12 @@ md-input-container input {
 
 
 @media (min-width: 960px) {
+  .welcome {
+    h2 {
+      font-size: 44px;
+    }
+  }
+
   #toolbar-source {
     md-tabs {
       margin-left: 37px;
