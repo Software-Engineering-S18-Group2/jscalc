@@ -70,7 +70,9 @@
             div.link-title.fade-in(ng-show='!newAndNotSaved') This calculator is published on the web at the following URL:
             div.link
               a(href='/calc/{{calcId}}') https://jscalc.io/calc/{{calcId}}
-            div.description-title Description (1-2 sentences, line breaks will be ignored, links & emails will be auto-detected):
+            div.description-title Description
+            div.md-caption
+              | Text to display below the title, 1-2 sentences recommended. You can include URLs and emails – they will be automatically converted into links. Line breaks will be ignored. This text will also be used in the 'description' meta tag, so search engines would normally display it in search results.
             .textarea-container(layout="column")
               textarea(columns="1", ng-model="calc.doc.description", aria-label="Description")
           md-content#embed(flex)
