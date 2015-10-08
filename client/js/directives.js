@@ -155,7 +155,7 @@ angular.module('jscalcDirectives', [])
                 } else if (angular.isNumber(output)) {
                   var percentSign = '';
                   if (metaOutput.percent) {
-                    output = output / 100;
+                    output = output * 100;
                     percentSign = '%';
                   }
                   var currencySign = metaOutput.percent ? '' :
