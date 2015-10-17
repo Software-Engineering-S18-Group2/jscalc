@@ -1,34 +1,53 @@
-md-toolbar
+md-toolbar.welcome-toolbar
   div.md-toolbar-tools(ng-include="'/partials/toolbar_tools'", ng-controller='ToolbarToolsCtrl')
-md-content.welcome(flex)
-  .centered.md-padding.limit-width
-    .grid.section(layout='row', layout-sm='column', layout-align="space-between")
-      .item(flex)
-        h2 Create an online calculator
-        .content
-          | JSCalc.io lets you create a custom, embeddable, mobile-friendly online calculator by writing a single Javascript function. It's free and open-source. Watch it in action in the short video below.
-      .item(flex="10", hide-sm)
-      .item(flex)
-        h2 Custom development
-        .content
-          | If your requirements are beyond what you can build yourself on JSCalc.io, we can implement a calculator for you as an independent web application.
+md-content.welcome
+  .foreground
+    .md-padding.description
+      .grid.section(layout='column', layout-gt-md='row', layout-align="space-around")
+        .space(flex)
+        .item.item-left(flex)
+          h2.heading-1 Create a calculator
+          .content
+            | JSCalc.io is a free and open-source web service that reduces the task of creating a custom, embeddable, mobile-frindly online calculator to writing a single Javascript function. Watch it in action in the short video below.
+        .space(flex)
+        .item.item-right(flex)
+          h2.heading-2 Custom development
+          .content
+            | Do you need custom appearance, interactive behavior, charts, integration with your website and backend services?
+            = ' '
+            a(href='https://docs.google.com/forms/d/1-5jCJlfZQdJWIWKlkw1xLHcWRqGaTFrBrltRlnm-Ye4/viewform?usp=send_form', target='_blank') We'll build it
+            = ' '
+            | for you quickly on modern foundations such as
+            = ' '
+            a(href='https://angularjs.org/', target='_blank') Angular.js
+            = ' '
+            | and
+            = ' '
+            a(href='https://www.google.com/design/spec/material-design/introduction.html', target='_blank') Material Design
+            = ' '
+            | specifications.
+        .space(flex)
+    .centered.md-padding.limit-width
+      .demo-container
+        iframe(src="https://www.youtube.com/embed/bLIiqTTu8eo?&color=white&modestbranding=1&showinfo=0&rel=0" frameborder="0" allowfullscreen)
+    .centered.md-padding
+      .footer
+        p
+          a.social-icon(title='Twitter', href='https://twitter.com/ivan7237d', target='_blank')
+            md-icon(md-svg-icon="/img/icons/twitter.svg")
+          a.social-icon(title='Github', href='https://github.com/ivan7237d/jscalc', target='_blank')
+            md-icon(md-svg-icon="/img/icons/github.svg")
+        p
+          | © 2014-2015
           = ' '
-          a(href='https://docs.google.com/forms/d/1-5jCJlfZQdJWIWKlkw1xLHcWRqGaTFrBrltRlnm-Ye4/viewform?usp=send_form', target='_blank') Learn more
-  .centered.md-padding.limit-width
-    .demo-container
-      iframe(src="https://www.youtube.com/embed/bLIiqTTu8eo?&color=white&modestbranding=1&showinfo=0&rel=0" frameborder="0" allowfullscreen)
-  .centered.md-padding
-    .footer
-      p
-        a.social-icon(title='Twitter', href='https://twitter.com/ivan7237d', target='_blank')
-          md-icon(md-svg-icon="/img/icons/twitter.svg")
-        a.social-icon(title='Github', href='https://github.com/ivan7237d/jscalc', target='_blank')
-          md-icon(md-svg-icon="/img/icons/github.svg")
-      p
-        | © 2014-2015
-        = ' '
-        a(href='https://twitter.com/ivan7237d', target='_blank') Ivan Novikov
-      p
-        | Licensed under
-        = ' '
-        a(href='https://github.com/ivan7237d/jscalc/blob/master/LICENSE', target='_blank') MIT License
+          a(href='https://twitter.com/ivan7237d', target='_blank') Ivan Novikov
+          = ' '
+          | • Licensed under
+          = ' '
+          a(href='https://github.com/ivan7237d/jscalc/blob/master/LICENSE', target='_blank') MIT License
+          = ' '
+          | • Image credit:
+          = ' '
+          a(href='http://www.flickr.com/photos/farbwahl/3675824716/', target='_blank') Florian Sprenger
+          = ' '
+          | (used with permission)

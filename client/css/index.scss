@@ -669,10 +669,33 @@ md-toolbar {
   font-weight: 500;
 }
 
+md-toolbar .new-calculator-icon {
+  position: relative;
+  top: -1px;
+}
+
+
+.welcome-toolbar {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  background-color: rgba(58, 58, 58, 0.63) !important;
+}
+
 
 .welcome {
-  background-color: $primary-color-darker;
+  background-color: #000;
+  background-image: url(/img/muller.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
   color: #fff;
+  z-index: 0;
+
+  .foreground {
+    position: relative;
+    background-color: rgba(84, 84, 84, 0.78);
+  }
 
   .centered {
     margin-left: auto;
@@ -686,24 +709,41 @@ md-toolbar {
   }
 
 
+  .description {
+    padding: 82px 0 18px;
+  }
+
+
   .item {
-    margin: 32px 0;
+    text-align: left;
+    margin: 20px;
   }
 
 
   h2 {
     margin-top: -2px;
     margin-bottom: 13px;
-    font-size: 36px;
+    font-size: 49px;
     font-weight: 300;
     line-height: 1.15em;
+    font-family: 'Oswald';
+    text-transform: uppercase;
+  }
+
+
+  .heading-1 {
+    color: #FFF9C4;
+  }
+
+
+  .heading-2 {
+    color: #BBDEFB;
   }
 
   .content {
-    font-size: 18px;
-    font-weight: 300;
+    font-size: 16px;
     line-height: 1.4em;
-    margin-bottom: -8px;
+    font-weight: 500;
 
     a {
       text-decoration: none;
@@ -882,19 +922,6 @@ md-input-container input {
 }
 
 
-@media (min-width: 600px) {
-  .welcome {
-    .item {
-      margin: 32px 0;
-    }
-
-    h2 {
-      margin-bottom: 16px;
-    }
-  }
-}
-
-
 @media (min-width: 675px) {
   .embed {
     box-sizing: border-box;
@@ -915,7 +942,17 @@ md-input-container input {
 @media (min-width: 960px) {
   .welcome {
     h2 {
-      font-size: 44px;
+      font-size: 49px;
+      margin-bottom: 29px;
+    }
+
+    .description {
+      padding: 200px 0;
+    }
+
+    .item {
+      max-width: 400px;
+      min-width: 400px;
     }
   }
 
