@@ -19,10 +19,16 @@ jscalcControllers.controller('JscalcCtrl', [
   '$document',
   '$templateCache',
   '$q',
+  '$window',
+  '$mdSelect',
+  '$mdMenu',
   function($scope, $location, $mdSidenav, $timeout, User,
       $mdDialog, authService, $mdToast, $http, PRELOADED_DATA, $mdMedia,
-      $document, $templateCache, $q) {
-
+      $document, $templateCache, $q, $window, $mdSelect, $mdMenu) {
+    $window.addEventListener('blur', function() {
+      $mdSelect.hide();
+      $mdMenu.hide();
+    });
     $scope.user = PRELOADED_DATA.isAuthenticated ? User.get() : null;
     $scope.view = {};
     $scope.calcs = {};
