@@ -89,8 +89,8 @@ app.use('/js', express.static(path.join(clientDir, 'js'),
     {maxAge: 3600000}));
 app.use('/html', express.static(path.join(clientDir, 'html'),
     {maxAge: 3600000}));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(session({
