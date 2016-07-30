@@ -891,13 +891,14 @@ md-toolbar .new-calculator-icon {
 }
 
 
+md-input-container input[type="number"] {
+  width: 100%;
+}
+
+
 @-moz-document url-prefix() {
   .layout-fill {
     min-height: 0;
-  }
-
-  input[type="number"] {
-    width: auto;
   }
 
   md-input-container {
