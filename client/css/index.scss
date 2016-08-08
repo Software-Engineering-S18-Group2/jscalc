@@ -854,6 +854,52 @@ md-toolbar .new-calculator-icon {
     margin-left: -19px;
     margin-top: -2px;
   }
+
+  .bottom-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    margin: -10px -20px 0px;
+    padding: 16px 20px;
+    font-weight: 500;
+  }
+
+  .stash-tabs-icon {
+    display: inline-block;
+    -webkit-mask-image: url('/img/stash_tabs/icon.png');
+    -webkit-mask-size: contain;
+    background-color: #fff;
+    margin-top: 7px;
+    margin-left: 1px;
+    image-rendering: pixelated;
+    --size: 40px;
+    width: var(--size);
+    height: var(--size);
+  }
+
+  .bottom-section .stash-tabs {
+    font-size: 32px;
+    font-weight: 300;
+    margin-left: 20px;
+    margin-top: 3px;
+  }
+
+  .bottom-section .icon-row {
+    padding-bottom: 5px;
+    margin: 5px 0;
+  }
+
+  .bottom-section .next-button-row {
+    text-align: center;
+    margin-top: 22px;
+    margin-bottom: 15px;
+
+    md-icon {
+      border-radius: 50px;
+      width: 38px;
+      height: 38px;
+      background: #fff;
+    }
+  }
+
 }
 
 

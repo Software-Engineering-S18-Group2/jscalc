@@ -15,3 +15,4 @@
 //= require directives
 //= require filters
 //= require services
+//= require bowser/src/bowser.js

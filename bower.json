@@ -13,6 +13,7 @@
     "angular-http-auth": "1.2.2",
     "angular-resource": null,
     "angular-messages": null,
+    "bowser": "1.4.1",
     "lodash": "3.10.1",
     "moment": "2.10.6",
     "mathjs": "2.1.1"
