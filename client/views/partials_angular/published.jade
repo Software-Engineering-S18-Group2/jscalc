@@ -4,7 +4,7 @@ div(ng-if='calc !== null', flex, layout-gt-sm='row', layout-fill)
       h1.frame-title {{title}}
       .section.description(ng-show="calc.doc.description", ng-bind-html="calc.doc.description | jscalcLinkify")
       .section.share(hide-sm, ng-include="'/partials/published_share'")
-    .footer(hide-sm, ng-include="'/partials/published_footer'")
+      .footer(hide-sm, ng-include="'/partials/published_footer'")
     .bottom-section(hide-sm, ng-show="isDesktopChrome")
       .text-row Check out a new Chrome extension by the guy who built JSCalc!
       .icon-row(layout='row', layout-align="start center")

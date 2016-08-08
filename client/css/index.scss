@@ -810,10 +810,11 @@ md-toolbar .new-calculator-icon {
   a, .link-button {
     color: inherit;
     font-weight: 500;
+    text-decoration: underline;
   }
 
   .section {
-    margin: 31px 0;
+    margin: 31px 0 0;
     line-height: 19px;
   }
 
@@ -822,9 +823,9 @@ md-toolbar .new-calculator-icon {
   }
 
   .section.description {
-    color: rgba(255, 255, 255, 0.8);
     word-wrap: break-word;
     margin-bottom: 20px;
+    font-weight: 500;
   }
 
   .section.share {
@@ -832,8 +833,8 @@ md-toolbar .new-calculator-icon {
   }
 
   .footer {
-    margin-bottom: 15px;
-    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 24px;
+    font-weight: 500;
 
     .md-button {
       margin: -12px 0;
@@ -845,7 +846,6 @@ md-toolbar .new-calculator-icon {
       md-icon {
         vertical-align: top;
         margin-top: 6px;
-        color: rgba(255, 255, 255, 0.8);
       }
     }
   }
