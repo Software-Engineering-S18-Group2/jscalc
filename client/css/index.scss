@@ -937,7 +937,8 @@ md-toolbar .new-calculator-icon {
 }
 
 
-md-input-container input[type="number"] {
+md-input-container input[type="number"],
+md-input-container input[type="text"] {
   width: 100%;
 }
 

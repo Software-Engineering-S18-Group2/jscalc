@@ -667,6 +667,8 @@ jscalcControllers.controller('SourceCtrl', [
           s += prefix + '  ' + name + ':';
           if (metaInput.type == 'number') {
             s += ' <number or null>';
+          } else if (metaInput.type == 'string') {
+            s += ' <string>';
           } else if (metaInput.type == 'binary') {
             s += ' <boolean or null>';
           } else if (metaInput.type == 'date') {

@@ -29,6 +29,8 @@ var jscalcApp = angular.module('jscalcApp', [
 .constant('INPUT_TYPES', [
   {type: 'number', title: 'Number',
       default: null},
+  {type: 'string', title: 'Text',
+      default: null},
   {type: 'binary', title: 'Checkbox',
       default: false},
   {type: 'date', title: 'Date',
