@@ -6,7 +6,12 @@ div(ng-if='calc !== null', flex, layout-gt-sm='row', layout-fill)
       .section.share(hide-sm, ng-include="'/partials/published_share'")
       .footer(hide-sm, ng-include="'/partials/published_footer'")
     .bottom-section(hide-sm, ng-show="isDesktopChrome")
-      .text-row Check out a new Chrome extension by the guy who built JSCalc!
+      .text-row
+        | Check out a new Chrome extension by the same
+        = ' '
+        a(href='https://twitter.com/ivan7237d', target='_blank') guy
+        = ' '
+        | who built JSCalc!
       .icon-row(layout='row', layout-align="start center")
         .stash-tabs-icon
         .stash-tabs Stash Tabs
