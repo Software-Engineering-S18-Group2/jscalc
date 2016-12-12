@@ -735,14 +735,7 @@ jscalcControllers.controller('PublishedCtrl', [
   '$location',
   '$mdDialog',
   '$log',
-  'Angularytics',
-  function ($scope, $routeParams, Calc, $location, $mdDialog, $log, Angularytics) {
-    var isChrome = !(bowser.msie || bowser.msedge || bowser.firefox || bowser.safari || bowser.opera);
-    var isMobile = bowser.mobile || bowser.tablet;
-    $scope.isDesktopChrome = isChrome && !isMobile;
-    if ($scope.isDesktopChrome) {
-      Angularytics.trackEvent("Ad", "Displayed", "Stash Tabs");
-    }
+  function ($scope, $routeParams, Calc, $location, $mdDialog, $log) {
     $scope.calcId = $routeParams.calcId;
     $scope.calc = null;
     $scope.inputs = {};

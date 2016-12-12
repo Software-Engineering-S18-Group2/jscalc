@@ -5,20 +5,6 @@ div(ng-if='calc !== null', flex, layout-gt-sm='row', layout-fill)
       .section.description(ng-show="calc.doc.description", ng-bind-html="calc.doc.description | jscalcLinkify")
       .section.share(hide-sm, ng-include="'/partials/published_share'")
       .footer(hide-sm, ng-include="'/partials/published_footer'")
-    .bottom-section(hide-sm, ng-show="isDesktopChrome")
-      .text-row
-        | Check out a new Chrome extension by the same
-        = ' '
-        a(href='https://twitter.com/ivan7237d', target='_blank') guy
-        = ' '
-        | who built JSCalc!
-      .icon-row(layout='row', layout-align="start center")
-        .stash-tabs-icon
-        .stash-tabs Stash Tabs
-      .text-row A lightweight solution to the problem of too many tabs.
-      .next-button-row
-          a.md-icon-button(title='Stash Tabs', href="https://chrome.google.com/webstore/detail/stash-tabs/algjbeijehjogiaeljhpgcbdgcpfmpma", target='_blank')
-            md-icon(md-svg-icon="/img/icons/ic_navigate_next_white_24px.svg")
   jscalc-calc(flex, layout='column', doc="calc.doc", inputs='inputs', defaults='defaults', edit-mode='false', focus-first-input='true')
   .published-aside(hide-gt-sm, md-theme="alternative")
     .section.share(ng-include="'/partials/published_share'")
