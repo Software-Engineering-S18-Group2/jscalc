@@ -142,7 +142,7 @@ jscalcControllers.controller('JscalcCtrl', [
           return;
         }
       }
-      $http.get('/api/logout').success(function() {
+      $http.get('/api/logout').then(function() {
             $mdToast.show({
               template: '<md-toast>Signed out.</md-toast>',
               hideDelay: 3000
@@ -910,25 +910,23 @@ jscalcControllers.controller('AuthDialogCtrl', [
     $scope.signUp = function() {
       $scope.canceler = $q.defer();
       $http.post('/api/signup', $scope.params,
-          {timeout: $scope.canceler.promise}).success(function() {
+          {timeout: $scope.canceler.promise}).then(function() {
             $mdDialog.hide();
             Angularytics.trackEvent("Account", "Sign up");
-          }).
-          error(function(data) {
+          }, function(reason) {
             $scope.canceler = null;
-            $scope.errorMessage = data || 'Oops, an error.';
+            $scope.errorMessage = reason.data || 'Oops, an error.';
           });
     };
 
     $scope.signIn = function() {
       $scope.canceler = $q.defer();
       $http.post('/api/login', $scope.params,
-          {timeout: $scope.canceler.promise}).success(function() {
+          {timeout: $scope.canceler.promise}).then(function() {
             $mdDialog.hide();
-          }).
-          error(function(data) {
+          }, function(reason) {
             $scope.canceler = null;
-            $scope.errorMessage = data || 'Oops, an error.';
+            $scope.errorMessage = reason.data || 'Oops, an error.';
           });
     };
 
