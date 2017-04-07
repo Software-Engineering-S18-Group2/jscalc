@@ -21,3 +21,7 @@ h2.md-title Calculator Settings
     md-checkbox.md-primary(ng-model='settingsModel.libraries.mathjs') Math.js
     .comment
       a(href='http://mathjs.org/', target='_blank') Website
+  h3.md-subhead Localization:
+  md-input-container
+    md-select(ng-model="settingsModel.locale", default, default-value="DEFAULTS.locale")
+      md-option(ng-repeat="(locale, translation) in TRANSLATIONS" ng-value="locale") {{translation.language}}

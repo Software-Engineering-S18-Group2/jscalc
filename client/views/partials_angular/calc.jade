@@ -1,7 +1,7 @@
 #io-container(ng-if="initialRunCompleted", flex, layout-fill)
   #inputs
     form(novalidate='novalidate', name='inputsForm', role='form')
-      h2.frame-title Inputs
+      h2.frame-title {{TRANSLATIONS[doc.locale || DEFAULTS.locale].inputs}}
       div(ng-include="'/partials/calc_inputs'")
       .button-row(ng-if="editMode")
         .button-row-inner
@@ -14,7 +14,7 @@
             md-button.fade-in(ng-if="showDefaultsButtons()", ng-click="updateDefaults()") Update defaults
             md-button.fade-in(ng-if="showDefaultsButtons()", ng-click="loadDefaults()") Load defaults
   #outputs
-    h2.frame-title Outputs
+    h2.frame-title {{TRANSLATIONS[doc.locale || DEFAULTS.locale].outputs}}
     .button-row.fade-in(ng-if="workerError")
       .button-row-inner
         div(layout='row', layout-align="start center")

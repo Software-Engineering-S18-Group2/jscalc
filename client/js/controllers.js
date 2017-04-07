@@ -180,15 +180,17 @@ jscalcControllers.controller('SourceCtrl', [
   '$q',
   'DEFAULTS',
   'INPUT_TYPES',
+  'TRANSLATIONS',
   '$document',
   function($scope, $routeParams, $timeout, Source, $mdToast, $location, $q,
-      DEFAULTS, INPUT_TYPES, $document) {
+      DEFAULTS, INPUT_TYPES, TRANSLATIONS, $document) {
 
     /**
      * UI and calculator resource.
      */
 
     $scope.DEFAULTS = DEFAULTS;
+    $scope.TRANSLATIONS = TRANSLATIONS;
     $scope.view.isEditMode = false;
     $scope.view.isCalcMode = false;
     $scope.view.showCreateCalcButton = false;

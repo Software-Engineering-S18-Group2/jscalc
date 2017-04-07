@@ -8,11 +8,12 @@ angular.module('jscalcDirectives', [])
     'DEFAULTS',
     'INPUT_TYPES',
     'OUTPUT_TYPES',
+    'TRANSLATIONS',
     '$location',
     '$timeout',
     'jscalcDateInput',
     '$filter',
-    function($mdToast, DEFAULTS, INPUT_TYPES, OUTPUT_TYPES, $location, $timeout, jscalcDateInput,
+    function($mdToast, DEFAULTS, INPUT_TYPES, OUTPUT_TYPES, TRANSLATIONS, $location, $timeout, jscalcDateInput,
         $filter) {
       return {
         restrict: 'E',
@@ -39,6 +40,7 @@ angular.module('jscalcDirectives', [])
           $scope.NESTED_INPUT_TYPES = angular.copy(INPUT_TYPES);
           _.remove($scope.NESTED_INPUT_TYPES, {type: 'list'});
           $scope.OUTPUT_TYPES = OUTPUT_TYPES;
+          $scope.TRANSLATIONS = TRANSLATIONS;
           // Either an object {blobUrl: <URL for the blob containing worker
           // script>}, or if due to browser limitations using blobUrl is
           // impossible (useEval = true), an object containing the script to be

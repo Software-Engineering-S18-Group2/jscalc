@@ -23,7 +23,8 @@ var jscalcApp = angular.module('jscalcApp', [
   'dateInputValueType': 'relative',
   'script': "'use strict';\n\nreturn {};\n",
   'sliderMin': 0,
-  'sliderMax': 100
+  'sliderMax': 100,
+  'locale': 'en'
 })
 
 .constant('INPUT_TYPES', [
@@ -45,6 +46,19 @@ var jscalcApp = angular.module('jscalcApp', [
   {type: 'value', title: 'Value'},
   {type: 'table', title: 'Table'}
 ])
+
+.constant('TRANSLATIONS', {
+  'en': {
+    language: 'English',
+    inputs: 'Inputs',
+    outputs: 'Outputs'
+  },
+  'ru': {
+    language: 'Russian',
+    inputs: 'Входные данные',
+    outputs: 'Результаты'
+  }
+})
 
 .config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
