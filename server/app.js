@@ -9,7 +9,7 @@ var cookieParser = require('cookie-parser');
 // Configure header & cookie to be the ones used by Angular. "secret"
 // replaces the default value '_csrfSecret' because that triggers a
 // bug in cookie-session.
-var csrf = require('lusca').csrf({angular: true, secret: 'csrfSecret'});
+var csrf = require('lusca').csrf({ angular: true, secret: 'csrfSecret' });
 var errorHandler = require('errorhandler');
 var express = require('express');
 var expressValidator = require('express-validator');
@@ -49,11 +49,11 @@ var app = express();
 
 mongoose.connect(process.env.MONGOLAB_URI, {
   server: {
-    socketOptions: {keepAlive: 1}
+    socketOptions: { keepAlive: 1 },
   },
   replset: {
-    socketOptions: {keepAlive: 1}
-  }
+    socketOptions: { keepAlive: 1 },
+  },
 });
 mongoose.connection.on('error', function() {
   console.error('MongoDB Connection Error. Make sure MongoDB is running.');
@@ -70,34 +70,42 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(clientDir, 'views'));
 app.set('view engine', 'jade');
 app.use(compress());
-app.use(connectAssets({
-  paths: [
-    path.join(clientDir, 'bower_components'),
-    path.join(clientDir, 'js'),
-    path.join(clientDir, 'css')
-  ],
-  helperContext: app.locals,
-  compress: false
-}));
+app.use(
+  connectAssets({
+    paths: [
+      path.join(clientDir, 'bower_components'),
+      path.join(clientDir, 'js'),
+      path.join(clientDir, 'css'),
+    ],
+    helperContext: app.locals,
+    compress: false,
+  }),
+);
 app.use(logger('dev'));
-app.use('/img', express.static(path.join(clientDir, 'img'),
-    {maxAge: 3600000}));
-app.use('/bower_components',
-    express.static(path.join(clientDir, 'bower_components'),
-    {maxAge: 3600000}));
-app.use('/js', express.static(path.join(clientDir, 'js'),
-    {maxAge: 3600000}));
-app.use('/html', express.static(path.join(clientDir, 'html'),
-    {maxAge: 3600000}));
-app.use(bodyParser.json({limit: '5mb'}));
-app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
+app.use(
+  '/img',
+  express.static(path.join(clientDir, 'img'), { maxAge: 3600000 }),
+);
+app.use(
+  '/bower_components',
+  express.static(path.join(clientDir, 'bower_components'), { maxAge: 3600000 }),
+);
+app.use('/js', express.static(path.join(clientDir, 'js'), { maxAge: 3600000 }));
+app.use(
+  '/html',
+  express.static(path.join(clientDir, 'html'), { maxAge: 3600000 }),
+);
+app.use(bodyParser.json({ limit: '5mb' }));
+app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 app.use(expressValidator());
 app.use(cookieParser());
-app.use(session({
-  secret: process.env.SESSION_SECRET || 'test',
-  maxAge: 30 * 24 * 3600000,
-  signed: false
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'test',
+    maxAge: 30 * 24 * 3600000,
+    signed: false,
+  }),
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -106,13 +114,23 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 var maybeServeMetatags = function(req, res, next) {
-  if (req.headers['user-agent'].toLowerCase().indexOf('facebookexternalhit') == -1) {
+  if (
+    req.headers['user-agent'].toLowerCase().indexOf('facebookexternalhit') == -1
+  ) {
     return next();
   }
   return homeController.getCalcMetaTags(req, res, next);
 };
 
 var maybePrerender = function(req, res, next) {
+  // Disabling pre-rendering because phantomjscloud.com produces an error about
+  // insufficient credits. This needs further investigation - maybe the app
+  // really runs out of credit, or maybe we're calling their API incorrectly.
+  // For now it's best to disable pre-rendering because it will make sure
+  // the app is listed correctly in Google Search results, and the negative
+  // effect will only be on other search engines.
+  return next();
+
   // If there is no fragment in the query params
   // then we're not serving a crawler
   if (req.url.indexOf('?_escaped_fragment_=') == -1) {
@@ -123,27 +141,34 @@ var maybePrerender = function(req, res, next) {
    * Serve pre-rendered static page.
    */
 
-  request({
-    url: 'http://api.phantomjscloud.com/single/browser/v1/'
-        + process.env.PHANTOMJSCLOUD_KEY + '/',
-    qs: {
-      'requestType': 'raw',
-      'targetUrl': 'http://' + process.env.PRERENDER_HOST + req.path
-    }
-  }, function(err, resPrerendered, body) {
-    if (err) {
-      console.error(err);
-      return res.sendStatus(500);
-    }
+  request(
+    {
+      url:
+        'http://api.phantomjscloud.com/single/browser/v1/' +
+        process.env.PHANTOMJSCLOUD_KEY +
+        '/',
+      qs: {
+        requestType: 'raw',
+        targetUrl: 'http://' + process.env.PRERENDER_HOST + req.path,
+      },
+    },
+    function(err, resPrerendered, body) {
+      if (err) {
+        console.error(err);
+        return res.sendStatus(500);
+      }
 
-    var scriptTagRegex = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
+      var scriptTagRegex = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
 
-    var stripScriptTags = function(html) {
-      return html.replace(scriptTagRegex, '');
-    };
+      var stripScriptTags = function(html) {
+        return html.replace(scriptTagRegex, '');
+      };
 
-    res.send(stripScriptTags(body).replace('<meta name="fragment" content="!">', ''));
-  });
+      res.send(
+        stripScriptTags(body).replace('<meta name="fragment" content="!">', ''),
+      );
+    },
+  );
 };
 
 /**
@@ -152,7 +177,12 @@ var maybePrerender = function(req, res, next) {
 
 app.get('/', maybePrerender, homeController.index);
 app.get('/source/:calcId', maybePrerender, homeController.index);
-app.get('/calc/:calcId', maybeServeMetatags, maybePrerender, homeController.index);
+app.get(
+  '/calc/:calcId',
+  maybeServeMetatags,
+  maybePrerender,
+  homeController.index,
+);
 app.get('/embed/:calcId', maybePrerender, homeController.index);
 app.get('/account', maybePrerender, homeController.index);
 app.get('/terms', maybePrerender, homeController.index);
@@ -167,16 +197,44 @@ app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
 app.post('/api/signup', userController.postSignup);
 // PUT instead of GET to enable csrf check, needed to prevent requests from web worker.
-app.put('/api/account', passportConf.isAuthenticated, userController.getAccount);
-app.post('/api/account/email', passportConf.isAuthenticated, userController.postAccountEmail);
-app.post('/api/account/password', passportConf.isAuthenticated, userController.postAccountPassword);
-app.delete('/api/account', passportConf.isAuthenticated, userController.deleteAccount);
-app.get('/api/source/:calcId', passportConf.isAuthenticated, calcController.getSource);
-app.post('/api/source/:calcId', passportConf.isAuthenticated, calcController.postSource);
-app.delete('/api/source/:calcId', passportConf.isAuthenticated, calcController.deleteSource);
+app.put(
+  '/api/account',
+  passportConf.isAuthenticated,
+  userController.getAccount,
+);
+app.post(
+  '/api/account/email',
+  passportConf.isAuthenticated,
+  userController.postAccountEmail,
+);
+app.post(
+  '/api/account/password',
+  passportConf.isAuthenticated,
+  userController.postAccountPassword,
+);
+app.delete(
+  '/api/account',
+  passportConf.isAuthenticated,
+  userController.deleteAccount,
+);
+app.get(
+  '/api/source/:calcId',
+  passportConf.isAuthenticated,
+  calcController.getSource,
+);
+app.post(
+  '/api/source/:calcId',
+  passportConf.isAuthenticated,
+  calcController.postSource,
+);
+app.delete(
+  '/api/source/:calcId',
+  passportConf.isAuthenticated,
+  calcController.deleteSource,
+);
 app.get('/api/calc/:calcId', calcController.getCalc);
 app.get('/favicon.ico', function(req, res) {
-  res.sendFile(path.join(clientDir, 'img/favicon.ico'), {maxAge: 3600000});
+  res.sendFile(path.join(clientDir, 'img/favicon.ico'), { maxAge: 3600000 });
 });
 
 /**
@@ -184,7 +242,7 @@ app.get('/favicon.ico', function(req, res) {
  */
 
 if (process.env.NODE_ENV === 'development') {
-  app.use(errorHandler())
+  app.use(errorHandler());
 }
 
 /**
@@ -192,8 +250,11 @@ if (process.env.NODE_ENV === 'development') {
  */
 
 app.listen(app.get('port'), function() {
-  console.log('Express server listening on port %d in %s mode', app.get('port'),
-      app.get('env'));
+  console.log(
+    'Express server listening on port %d in %s mode',
+    app.get('port'),
+    app.get('env'),
+  );
 });
 
 module.exports = app;
