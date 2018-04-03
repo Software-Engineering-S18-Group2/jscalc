@@ -3,7 +3,7 @@
   "private": true,
   "name": "jscalc",
   "description": "A web app that lets users create custom online calculators",
-  "repository": "https://github.com/ivan7237d/jscalc",
+  "repository": "https://github.com/askinakhan/jscalc",
   "license": "MIT",
   "dependencies": {
     "async": "^0.9.0",
