@@ -1,9 +1,10 @@
 # JSCalc
 
-This repository is forked from https://github.com/askinakhan/jscalc.
+<p>This repository is forked from https://github.com/askinakhan/jscalc.
 
-JSCalc.io is a free and open-source web service that reduces the task of creating an embeddable, mobile-frindly calculator to writing a single Javascript function.
+JSCalc.io is a free and open-source web service that reduces the task of creating an embeddable, mobile-frindly calculator to writing a single Javascript function.</p>
 
+<h2> Youtube Demo </h2>
 To know how to use, please watch the <a href="https://www.youtube.com/watch?v=rZ4JfD-YdZY&list=RDrZ4JfD-YdZY">demo.
 
 ## Installing
