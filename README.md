@@ -10,8 +10,10 @@ To know how to use, please watch the <a href="https://www.youtube.com/watch?v=rZ
 ## Installing
 
 To run this on local machine you need following :
+
 1) node.JS
-2)MongoDB
+
+2) MongoDB
 
 
 ### Install node.js
@@ -42,23 +44,30 @@ To check if npm is installed
 Verify MongoDB:
 3) Once you start MongoDB from command prompt, you should see message like "[initandlisten] waiting for connections on port 27017"
 
-## Run
+<h2> Running your jscalc</h2> 
+
+## Clone the repository 
+
+1) clone this project $ git clone https://github.com/Software-Engineering-S18-Group2/jscalc.git
+2) cd jscalc
+
+### Run
 
     npm install
 
 which will also install Bower dependencies with `postinstall` hook.
 
-## Building
+### Building
 
 Currently no build is involved, `connect-assets` is used instead.
 
-## Running locally
+### Running locally
 
 Run
 
     MONGOLAB_URI=<Your Mongo DB URI> node server/app.js
 
-## Environment Variables
+### Environment Variables
 
 Of the environment variables listed below, the only one required for most of the functionality is `MONGOLAB_URI` (this can be the URI of either a local Mongo DB, or one hosted remotely on a service like Mongolab/MongoDB). `PHANTOMJSCLOUD_KEY` and `PRERENDER_HOST` are needed for serving static versions of pages to crawlers visiting `_escaped_fragment_` URIs (currently disabled, so these two variables aren't used). `SENDGRID_USER` and `SENDGRID_PASSWORD` are needed to send password reset emails. `SESSION_SECRET` will default to `test`.
 
