@@ -22,7 +22,7 @@ To run this on local machine you need following :
 3) Follow the prompts in the installer 
 4) Restart your computer.
 
-<b>Testing Node installation<b>
+<b>Testing Node installation</b>
 
 Test Node : 
 1) Open the Windows Command Prompt or command line tool or terminal
