@@ -79,6 +79,13 @@ Of the environment variables listed below, the only one required for most of the
     SESSION_SECRET=<session secret>
     SENDGRID_USER=<sendgrid.com user>
     SENDGRID_PASSWORD=<sendgrid.com password>
+ 
+<h2>Contributing</h2>
+If anyone wants to improve on this, please submit a pull request w/ your changes.
+
+<h2> Forking </h2>
+Forking for unique communities is quite welcome and encouraged, but please alter the colors or appearance at least a little bit so all forks don't look exactly the same. Feel free to submit a pull request on this file to add your fork to the list below once it is live.
+    
 
 ## License
 
