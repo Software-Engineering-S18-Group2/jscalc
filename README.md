@@ -12,8 +12,7 @@ To know how to use, please watch the <a href="https://www.youtube.com/watch?v=rZ
 To run this on local machine you need following :
 1) node.JS
 2)MongoDB
-3)Express.js
-4) Bower
+
 
 ### Install node.js
 
@@ -35,8 +34,15 @@ To check if npm is installed
 2) type <i> npm -v </i>
 3) This should print version number of npm installed on your computer.
 
+### Install MongoDB
 
-Run
+1) Download Mongo DB from <a href="https://www.mongodb.com/download-center?_ga=2.33066110.1905691052.1524679894-1233068672.1520485505#production">download center</a>.
+2) For setup MongoDB environment please follow the <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/">instructions</a> as specified based on your operating system.
+
+Verify MongoDB:
+3) Once you start MongoDB from command prompt, you should see message like "[initandlisten] waiting for connections on port 27017"
+
+## Run
 
     npm install
 
