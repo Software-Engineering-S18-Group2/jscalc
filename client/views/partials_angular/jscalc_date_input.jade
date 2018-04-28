@@ -1,12 +1,15 @@
 div.fade-in(ng-if="getType() == 'absolute'")
   .content(layout='row')
     md-input-container(flex="50")
+      label month
       md-select(ng-model="value.params.month", aria-label="Month")
         md-option(ng-repeat="month in months", ng-value="month.value") {{month.label}}
     md-input-container(flex)
+      label Date
       input(type="number", ng-model="value.params.day", aria-label="Day")
     span.form-text ,
     md-input-container(flex)
+      label Year
       input(type="number", ng-model="value.params.year", aria-label="Year")
   .footer(layout="row")
     md-button(ng-click="toggleType()")
