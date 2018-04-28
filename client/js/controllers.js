@@ -872,11 +872,12 @@ jscalcControllers.controller('ToolbarToolsCtrl', ['$scope',
 jscalcControllers.controller('AuthDialogCtrl', [
   '$scope',
   '$mdDialog',
+  '$mdToast',
   '$http',
   '$q',
   'Angularytics',
   'signInMode',
-  function($scope, $mdDialog, $http, $q, Angularytics, signInMode) {
+  function($scope, $mdDialog, $mdToast, $http, $q, Angularytics, signInMode) {
     $scope.signInMode = signInMode;
     $scope.canceler = null;
     $scope.params = {};
@@ -913,7 +914,11 @@ jscalcControllers.controller('AuthDialogCtrl', [
       $scope.canceler = $q.defer();
       $http.post('/api/signup', $scope.params,
           {timeout: $scope.canceler.promise}).then(function() {
-            $mdDialog.hide();
+          $mdToast.show({
+              template: '<md-toast>Hi! Welcome to JSCalc.io. TO know how to use, please click  <a href="https://www.youtube.com/watch?v=bLIiqTTu8eo" target="_blank"> here </md-toast>',
+              hideDelay: 3000
+          });
+          $mdDialog.hide();
             Angularytics.trackEvent("Account", "Sign up");
           }, function(reason) {
             $scope.canceler = null;
@@ -925,6 +930,10 @@ jscalcControllers.controller('AuthDialogCtrl', [
       $scope.canceler = $q.defer();
       $http.post('/api/login', $scope.params,
           {timeout: $scope.canceler.promise}).then(function() {
+          $mdToast.show({
+              template: '<md-toast>Welcome to JSCalc.io, You have successfully logged in.</md-toast>',
+              hideDelay: 3000
+          });
             $mdDialog.hide();
           }, function(reason) {
             $scope.canceler = null;
