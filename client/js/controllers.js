@@ -915,7 +915,7 @@ jscalcControllers.controller('AuthDialogCtrl', [
       $http.post('/api/signup', $scope.params,
           {timeout: $scope.canceler.promise}).then(function() {
           $mdToast.show({
-              template: '<md-toast>Hi! Welcome to JSCalc.io. TO know how to use, please click  <a href="https://www.youtube.com/watch?v=bLIiqTTu8eo" target="_blank">here </md-toast>',
+              template: '<md-toast>Hi! Welcome to JSCalc.io. TO know how to use, please click  <a href="https://www.youtube.com/watch?v=bLIiqTTu8eo" target="_blank"> here </md-toast>',
               hideDelay: 3000
           });
           $mdDialog.hide();
@@ -930,6 +930,10 @@ jscalcControllers.controller('AuthDialogCtrl', [
       $scope.canceler = $q.defer();
       $http.post('/api/login', $scope.params,
           {timeout: $scope.canceler.promise}).then(function() {
+          $mdToast.show({
+              template: '<md-toast>Welcome to JSCalc.io, You have successfully logged in.</md-toast>',
+              hideDelay: 3000
+          });
             $mdDialog.hide();
           }, function(reason) {
             $scope.canceler = null;
