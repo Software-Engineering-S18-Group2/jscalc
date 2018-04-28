@@ -1,7 +1,7 @@
 div.fade-in(ng-if="getType() == 'absolute'")
   .content(layout='row')
     md-input-container(flex="50")
-      label month
+      label Month
       md-select(ng-model="value.params.month", aria-label="Month")
         md-option(ng-repeat="month in months", ng-value="month.value") {{month.label}}
     md-input-container(flex)
@@ -11,17 +11,23 @@ div.fade-in(ng-if="getType() == 'absolute'")
     md-input-container(flex)
       label Year
       input(type="number", ng-model="value.params.year", aria-label="Year")
+  .content(layout="row")
+     label
   .footer(layout="row")
     md-button(ng-click="toggleType()")
       | Switch to relative date
 div.fade-in(ng-if="getType() == 'relative'")
   .content(layout='row')
     md-input-container(flex)
+      label Unit value
       input(type="number", ng-model="value.params.delta", aria-label="{{unit.label}} from now")
     md-input-container(flex)
+      label Unit
       md-select(ng-model="value.params.units", default, default-value="'days'", aria-label="Unit")
         md-option(ng-repeat="unit in units", ng-value="unit.value") {{unit.label}}
     span.form-text from now
+  .content(layout="row")
+    label
   .footer(layout="row")
     md-button(ng-click="toggleType()")
       | Switch to absolute date
