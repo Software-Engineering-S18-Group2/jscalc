@@ -7,4 +7,5 @@
       md-slider.md-primary(ng-if="metaInput.sliderStep", ng-model="inputsInner[metaInput.id]", min="{{getValueOrDefault(metaInput.sliderMin, DEFAULTS.sliderMin)}}", max="{{getValueOrDefault(metaInput.sliderMax, DEFAULTS.sliderMax)}}", step="{{metaInput.sliderStep}}", aria-label="{{metaInput.label || '[Label]'}}")
       md-slider.md-primary(ng-if="!metaInput.sliderStep", ng-model="inputsInner[metaInput.id]", min="{{getValueOrDefault(metaInput.sliderMin, DEFAULTS.sliderMin)}}", max="{{getValueOrDefault(metaInput.sliderMax, DEFAULTS.sliderMax)}}", aria-label="{{metaInput.label || '[Label]'}}")
     md-input-container(flex)
+      label Value
       input(type="number", ng-model="inputsInner[metaInput.id]", aria-label="{{metaInput.label || '[Label]'}}")
