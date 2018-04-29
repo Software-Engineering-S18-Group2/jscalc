@@ -20,7 +20,7 @@ div.fade-in(ng-if="getType() == 'relative'")
   .content(layout='row')
     md-input-container(flex)
       label Unit value
-      input(type="number", ng-model="value.params.delta", aria-label="{{unit.label}} from now")
+      input(type="number", ng-model="value.params.delta", aria-label="{{unit.label}} from now", autofocus="autofocus")
     md-input-container(flex)
       label Unit
       md-select(ng-model="value.params.units", default, default-value="'days'", aria-label="Unit")
