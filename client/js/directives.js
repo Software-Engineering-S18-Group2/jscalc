@@ -10,6 +10,7 @@ angular.module('jscalcDirectives', [])
     'OUTPUT_TYPES',
     'TRANSLATIONS',
     '$location',
+    '$window',
     '$timeout',
     'jscalcDateInput',
     '$filter',
@@ -507,11 +508,12 @@ angular.module('jscalcDirectives', [])
       templateUrl: '/partials/jscalc_date_input',
       scope: {
         value: '=ngModel',
-        defaultValueType: '@?'
+        defaultValueType: '@?',
+        trigger: '=jscalcDateInput'
       },
       compile: function(element, attr) {
         return {
-          pre: function($scope, element, attr) {
+          pre: function($scope,$window, element, attr) {
             $scope.months = [
               {value: 0, label: 'January'},
               {value: 1, label: 'February'},
@@ -543,29 +545,45 @@ angular.module('jscalcDirectives', [])
             }
 
             $scope.toggleType = function() {
+                console.log('hiiiii');
               var date = jscalcDateInput.toDate($scope.value,
                   $scope.defaultValueType);
               $scope.value.type = {'absolute': 'relative', 'relative': 'absolute'}[$scope.getType()];
               if (date) {
+                  console.log('In date');
                 if ($scope.getType() == 'absolute') {
                   $scope.value.params = {
                     day: date.date(),
                     month: date.month(),
                     year: date.year()
                   };
+                  console.log('123');
+                  $scope.setFocus = function () {
+                      console.log('456');
+                      var someEle = $window.getElementById('t');
+                      console.log('789');
+                      someEle.focus();
+                      console.log('10');
+                  };
+
                 } else {
+                    console.log('relative');
                   $scope.value.params = {
                     delta: date.diff(moment().startOf('day'), 'days'),
                     units: 'days'
                   };
                 }
               } else {
+                  console.log('out of date');
                 $scope.value.params = {};
               }
+
+                console.log('asjhgdjahsgdjhas');
             };
           }
         }
       }
+
     };
   }])
   .directive('jscalcMover', function() {
