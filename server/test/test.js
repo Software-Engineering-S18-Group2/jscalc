@@ -38,4 +38,16 @@ describe('server response', function () {
             done();
         });
     });
+
+    // test signup request
+    it('should return false for terms', function (done) {
+        request.post('http://localhost:3000/api/signup', function (err, res, body){
+            console.log(res);
+            var body = res.body;
+            assert.isFalse(body.includes("terms") );
+            done();
+        });
+    });
+
+
 });
