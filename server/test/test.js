@@ -1,14 +1,26 @@
-// This is a sample unit test.
+//During the test the env variable is set to test
 var assert = require('chai').assert;
 
-describe('math module', function(){
-    it('should add numbers', function () {
-        assert.equal((1+1), '2');
-        assert.strictEqual(127 + 319, 446);
+var expect = require('Chai').expect;
+var request = require('request');
+
+//Require the dev-dependencies
+var chai = require('chai');
+var chaiHttp = require('chai-http');
+
+chai.use(chaiHttp);
+//Our parent block
+describe('server response', function () {
+
+    // test http request
+    it('should return 200', function (done) {
+        request.get('http://localhost:3000', function (err, res, body){
+            //  assert.equals(res.statusCode,200);
+            //  console.log(res);
+            expect(res.statusCode).to.equal(200);
+            //expect(res.body).to.equal('wrong header');
+            done();
+        });
     });
 
-    it('should sub numbers', function () {
-        assert.equal((22-1), '21');
-        assert.strictEqual(127 - 7, 120);
-    });
 });
