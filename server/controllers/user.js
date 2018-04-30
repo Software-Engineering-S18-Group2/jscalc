@@ -4,6 +4,21 @@ var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('../models/User');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+
+var googleConfig = {
+    clientID     : "554469509258-kfk0bh3sdmfnbp3enkm0oupb9rjrahd2.apps.googleusercontent.com",
+    clientSecret : "qDP2haYLXkxoIStL1olubeWf",
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+};
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/#/profile',
+        failureRedirect: '/#/login'
+    }));
+
 
 /**
  * POST /login
@@ -33,6 +48,71 @@ exports.postLogin = function(req, res, next) {
     });
   })(req, res, next);
 };
+
+exports.postLoginWithGoogle = function (req,res,next) {
+    console.log("in server side");
+
+
+
+}
+
+
+
+function googleStrategy(token, refreshToken, profile, done) {
+    console.log(profile);
+    User
+        .findOne({'google.id': profile.id})
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return User.save(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * GET /logout
