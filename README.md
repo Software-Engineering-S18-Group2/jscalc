@@ -65,7 +65,7 @@ Currently no build is involved, `connect-assets` is used instead.
 
 Run
 
-    MONGOLAB_URI=<Your Mongo DB URI> node server/app.js
+    npm start or node server/app.js
 
 Open your favourite browser and open : http://localhost:3000/ 
     
