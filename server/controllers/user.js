@@ -65,14 +65,25 @@ exports.googleStrategy= function(token, refreshToken, profile, done) {
                 } else {
                     var email = profile.emails[0].value;
                     var emailParts = email.split("@");
-                    var newGoogleUser = {
+                    var newGoogleUser = new User({
                         email:     email,
                         google: {
                             id:    profile.id,
                             token: token
                         }
-                    };
-                    return User.save(newGoogleUser);
+                    });
+
+                    User.findOne({'email': email},function(err, existingUser) {
+                        if (!existingUser) {
+                            return User.create(newGoogleUser)
+                                .then(function (user) {
+                                    //return done(null,user);
+                                },function (error) {
+                                    //return done(error,null);
+                                });
+                        }
+
+                    })
                 }
             },
             function(err) {
@@ -87,24 +98,7 @@ exports.googleStrategy= function(token, refreshToken, profile, done) {
                 if (err) { return done(err); }
             }
         );
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+};
 
 
 

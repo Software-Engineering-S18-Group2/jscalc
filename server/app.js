@@ -174,10 +174,18 @@ var maybePrerender = function(req, res, next) {
 /**
  * Main routes.
  */
-var cors = require('cors');
 
-// use it before all route definitions
-app.use(cors({origin: '*'}));
+app.use(function (req, res, next) {
+// res.header("Access-Control-Allow-Origin", "*");
+// Asgn 6 - replace above line with this
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+// Asgn - 6
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
+});
+
 app.get('/', maybePrerender, homeController.index);
 app.get('/source/:calcId', maybePrerender, homeController.index);
 app.get(
@@ -244,7 +252,7 @@ app.get('/favicon.ico', function(req, res) {
 app.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect: '/account',
-        failureRedirect: '/terms'
+        failureRedirect: '/'
     }));
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 //var FacebookStrategy = require('passport-facebook').Strategy;
