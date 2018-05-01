@@ -4,20 +4,16 @@ var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('../models/User');
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
+// var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+// //var FacebookStrategy = require('passport-facebook').Strategy;
+//
+// var googleConfig = {
+//     clientID     : "554469509258-kfk0bh3sdmfnbp3enkm0oupb9rjrahd2.apps.googleusercontent.com",
+//     clientSecret : "qDP2haYLXkxoIStL1olubeWf",
+//     callbackURL  : "http://localhost:3000/auth/google/callback"
+// };
+//passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
-var googleConfig = {
-    clientID     : "554469509258-kfk0bh3sdmfnbp3enkm0oupb9rjrahd2.apps.googleusercontent.com",
-    clientSecret : "qDP2haYLXkxoIStL1olubeWf",
-    callbackURL  : process.env.GOOGLE_CALLBACK_URL
-};
-passport.use(new GoogleStrategy(googleConfig, googleStrategy));
-app.get('/auth/google/callback',
-    passport.authenticate('google', {
-        successRedirect: '/#/profile',
-        failureRedirect: '/#/login'
-    }));
 
 
 /**
@@ -58,8 +54,8 @@ exports.postLoginWithGoogle = function (req,res,next) {
 
 
 
-function googleStrategy(token, refreshToken, profile, done) {
-    console.log(profile);
+exports.googleStrategy= function(token, refreshToken, profile, done) {
+    console.log("hiii",profile);
     User
         .findOne({'google.id': profile.id})
         .then(

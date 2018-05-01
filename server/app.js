@@ -174,7 +174,10 @@ var maybePrerender = function(req, res, next) {
 /**
  * Main routes.
  */
+var cors = require('cors');
 
+// use it before all route definitions
+app.use(cors({origin: '*'}));
 app.get('/', maybePrerender, homeController.index);
 app.get('/source/:calcId', maybePrerender, homeController.index);
 app.get(
@@ -198,6 +201,7 @@ app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
 app.post('/api/signup', userController.postSignup);
 // PUT instead of GET to enable csrf check, needed to prevent requests from web worker.
+
 app.put(
     '/api/account',
     passportConf.isAuthenticated,
@@ -237,7 +241,20 @@ app.get('/api/calc/:calcId', calcController.getCalc);
 app.get('/favicon.ico', function(req, res) {
     res.sendFile(path.join(clientDir, 'img/favicon.ico'), { maxAge: 3600000 });
 });
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/account',
+        failureRedirect: '/terms'
+    }));
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+//var FacebookStrategy = require('passport-facebook').Strategy;
 
+var googleConfig = {
+    clientID     : "554469509258-kfk0bh3sdmfnbp3enkm0oupb9rjrahd2.apps.googleusercontent.com",
+    clientSecret : "qDP2haYLXkxoIStL1olubeWf",
+    callbackURL  : "http://localhost:3000/auth/google/callback"
+};
+passport.use(new GoogleStrategy(googleConfig, userController.googleStrategy));
 /**
  * 500 Error Handler.
  */
