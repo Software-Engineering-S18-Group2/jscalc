@@ -66,6 +66,69 @@ mongoose.connection.on('error', function() {
 var rootDir = path.join(__dirname, '..');
 var clientDir = path.join(rootDir, 'client');
 
+/**
+ * Creating Google strategy for code implementation.
+ */
+
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+//var FacebookStrategy = require('passport-facebook').Strategy;
+
+/*
+*   Config file is private.
+*    TODO : change the config file after the demo
+ */
+var googleConfig = {
+    clientID     : "554469509258-kfk0bh3sdmfnbp3enkm0oupb9rjrahd2.apps.googleusercontent.com",
+    clientSecret : "qDP2haYLXkxoIStL1olubeWf",
+    callbackURL  : "http://localhost:3000/auth/google/callback"
+};
+
+/*
+  TODO: config file for facebook
+ var facebookConfig = {
+
+     clientID     : fb.clientID,
+     clientSecret : fb.clientSecret,
+     callbackURL  : fb.callbackURL
+ };
+
+* */
+
+
+/*
+
+TODO: For future use facebook strategy.
+
+
+function facebookStrategy(token,refreshToken,profile,done){
+    userModel.findUserByFacebookId(profile.id)
+        .then(function (user) {
+            if(user){
+                return done(null,user);
+            }
+            else{
+                var newUser = {
+                    username: profile.displayName.replace(/ /g,""),
+                    facebook:{
+                        token:token,
+                        id:profile.id
+                    }
+                };
+                userModel
+                    .createUser(newUser)
+                    .then(function (user) {
+                        return done(null,user);
+                    },function (error) {
+                        return done(error,null);
+                    });
+            }
+        },function (error) {
+            return done(error,null);
+        });
+}
+
+ */
+
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(clientDir, 'views'));
 app.set('view engine', 'jade');
@@ -175,6 +238,14 @@ var maybePrerender = function(req, res, next) {
  * Main routes.
  */
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
+});
+
 app.get('/', maybePrerender, homeController.index);
 app.get('/source/:calcId', maybePrerender, homeController.index);
 app.get(
@@ -189,7 +260,8 @@ app.get('/terms', maybePrerender, homeController.index);
 app.get('/privacy', maybePrerender, homeController.index);
 app.get('/partials/:name', partialsController.partials);
 app.post('/api/login', userController.postLogin);
-app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }))
+//app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 app.get('/api/logout', userController.logout);
 app.get('/messages', userController.getMessages);
 app.get('/forgot', userController.getForgot);
@@ -198,6 +270,7 @@ app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
 app.post('/api/signup', userController.postSignup);
 // PUT instead of GET to enable csrf check, needed to prevent requests from web worker.
+
 app.put(
     '/api/account',
     passportConf.isAuthenticated,
@@ -238,6 +311,18 @@ app.get('/favicon.ico', function(req, res) {
     res.sendFile(path.join(clientDir, 'img/favicon.ico'), { maxAge: 3600000 });
 });
 
+/*
+This function will get called when it is redirected from the google.
+We need to specify where to go after redirection
+ */
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/account',
+        failureRedirect: '/'
+    }));
+
+
+passport.use(new GoogleStrategy(googleConfig, userController.googleStrategy));
 /**
  * 500 Error Handler.
  */

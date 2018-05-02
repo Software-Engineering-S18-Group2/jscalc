@@ -5,11 +5,13 @@ var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('../models/User');
 
+
+
 /**
  * POST /login
  * Sign in using email and password.
- * @param email
- * @param password
+ * @params email
+ * @params password
  */
 
 exports.postLogin = function(req, res, next) {
@@ -34,6 +36,69 @@ exports.postLogin = function(req, res, next) {
   })(req, res, next);
 };
 
+exports.postLoginWithGoogle = function (req,res,next) {
+    console.log("in server side");
+
+
+
+}
+
+
+/*
+GET: /auth/google
+This method checks user is new user or not.
+If he is a new user then it will crete the user
+ */
+
+exports.googleStrategy= function(token, refreshToken, profile, done) {
+    User
+        .findOne({'google.id': profile.id})
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = new User({
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    });
+
+                    User.findOne({'email': email},function(err, existingUser) {
+                        if (!existingUser) {
+                            return User.create(newGoogleUser)
+                                .then(function (user) {
+                                    //return done(null,user);
+                                },function (error) {
+                                    //return done(error,null);
+                                });
+                        }
+
+                    })
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+};
+
+
+
+
+
 /**
  * GET /logout
  * Log out.
@@ -47,8 +112,8 @@ exports.logout = function(req, res) {
 /**
  * POST /signup
  * Create a new local account.
- * @param email
- * @param password
+ * @params email
+ * @params password
  */
 
 exports.postSignup = function(req, res, next) {
@@ -101,7 +166,7 @@ exports.getAccount = function(req, res, next) {
 /**
  * POST /account/email
  * Update account email.
- * @param email
+ * @params email
  */
 
 exports.postAccountEmail = function(req, res, next) {
@@ -134,8 +199,8 @@ exports.postAccountEmail = function(req, res, next) {
 /**
  * POST /account/password
  * Update account password.
- * @param oldPassword
- * @param newPassword
+ * @params oldPassword
+ * @params newPassword
  */
 
 exports.postAccountPassword = function(req, res, next) {
@@ -223,7 +288,7 @@ exports.getReset = function(req, res) {
 /**
  * POST /reset/:token
  * Process the reset password request.
- * @param token
+ * @params token
  */
 
 exports.postReset = function(req, res, next) {
@@ -303,7 +368,7 @@ exports.getForgot = function(req, res) {
 /**
  * POST /forgot
  * Create a random token, then send user an email with a reset link.
- * @param email
+ * @params email
  */
 
 exports.postForgot = function(req, res, next) {

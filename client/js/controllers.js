@@ -910,6 +910,11 @@ jscalcControllers.controller('AuthDialogCtrl', [
       $mdDialog.cancel();
     };
 
+    $scope.loginWithGoogle = function () {
+        console.log('hiiii');
+        $http.get('/auth/google');
+    }
+
     $scope.signUp = function() {
       $scope.canceler = $q.defer();
       $http.post('/api/signup', $scope.params,
