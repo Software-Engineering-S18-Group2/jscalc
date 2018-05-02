@@ -84,6 +84,18 @@ var googleConfig = {
 };
 
 /*
+  TODO: config file for facebook
+ var facebookConfig = {
+
+     clientID     : fb.clientID,
+     clientSecret : fb.clientSecret,
+     callbackURL  : fb.callbackURL
+ };
+
+* */
+
+
+/*
 
 TODO: For future use facebook strategy.
 
@@ -251,7 +263,8 @@ app.get('/terms', maybePrerender, homeController.index);
 app.get('/privacy', maybePrerender, homeController.index);
 app.get('/partials/:name', partialsController.partials);
 app.post('/api/login', userController.postLogin);
-app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }))
+//app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 app.get('/api/logout', userController.logout);
 app.get('/messages', userController.getMessages);
 app.get('/forgot', userController.getForgot);
