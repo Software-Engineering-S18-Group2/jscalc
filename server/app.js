@@ -66,6 +66,23 @@ mongoose.connection.on('error', function() {
 var rootDir = path.join(__dirname, '..');
 var clientDir = path.join(rootDir, 'client');
 
+/**
+ * Creating Google strategy for code implementation.
+ */
+
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+//var FacebookStrategy = require('passport-facebook').Strategy;
+
+/*
+*   Config file is private.
+*    TODO : change the config file after the demo
+ */
+var googleConfig = {
+    clientID     : "554469509258-kfk0bh3sdmfnbp3enkm0oupb9rjrahd2.apps.googleusercontent.com",
+    clientSecret : "qDP2haYLXkxoIStL1olubeWf",
+    callbackURL  : "http://localhost:3000/auth/google/callback"
+};
+
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(clientDir, 'views'));
 app.set('view engine', 'jade');
@@ -254,14 +271,8 @@ app.get('/auth/google/callback',
         successRedirect: '/account',
         failureRedirect: '/'
     }));
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-//var FacebookStrategy = require('passport-facebook').Strategy;
 
-var googleConfig = {
-    clientID     : "554469509258-kfk0bh3sdmfnbp3enkm0oupb9rjrahd2.apps.googleusercontent.com",
-    clientSecret : "qDP2haYLXkxoIStL1olubeWf",
-    callbackURL  : "http://localhost:3000/auth/google/callback"
-};
+
 passport.use(new GoogleStrategy(googleConfig, userController.googleStrategy));
 /**
  * 500 Error Handler.
