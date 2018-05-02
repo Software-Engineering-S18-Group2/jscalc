@@ -83,6 +83,40 @@ var googleConfig = {
     callbackURL  : "http://localhost:3000/auth/google/callback"
 };
 
+/*
+
+TODO: For future use facebook strategy.
+
+
+function facebookStrategy(token,refreshToken,profile,done){
+    userModel.findUserByFacebookId(profile.id)
+        .then(function (user) {
+            if(user){
+                return done(null,user);
+            }
+            else{
+                var newUser = {
+                    username: profile.displayName.replace(/ /g,""),
+                    facebook:{
+                        token:token,
+                        id:profile.id
+                    }
+                };
+                userModel
+                    .createUser(newUser)
+                    .then(function (user) {
+                        return done(null,user);
+                    },function (error) {
+                        return done(error,null);
+                    });
+            }
+        },function (error) {
+            return done(error,null);
+        });
+}
+
+ */
+
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(clientDir, 'views'));
 app.set('view engine', 'jade');
