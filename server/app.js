@@ -310,6 +310,11 @@ app.get('/api/calc/:calcId', calcController.getCalc);
 app.get('/favicon.ico', function(req, res) {
     res.sendFile(path.join(clientDir, 'img/favicon.ico'), { maxAge: 3600000 });
 });
+
+/*
+This function will get called when it is redirected from the google.
+We need to specify where to go after redirection
+ */
 app.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect: '/account',
