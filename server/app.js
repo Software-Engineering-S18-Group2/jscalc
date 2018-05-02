@@ -47,7 +47,7 @@ var app = express();
  * Connect to MongoDB.
  */
 
-mongoose.connect("mongodb://localhost:27017/myproject", {
+mongoose.connect("mongodb://mongo/myproject", {
     server: {
         socketOptions: { keepAlive: 1 },
     },
