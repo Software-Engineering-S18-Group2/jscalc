@@ -4,4 +4,6 @@
     .config-icons(ng-include="'/partials/input_config_icons'")
   .content-row(layout="row", layout-align="start center").input-container-row
     md-input-container(flex)
-      input(type="text", ng-model="inputsInner[metaInput.id]", aria-label="{{metaInput.label || '[Label]'}}")
+      label text
+      input(ng-if="!metaInput.multiline",type="text", ng-model="inputsInner[metaInput.id]", aria-label="{{metaInput.label || '[Label]'}}")
+      textarea(ng-if="metaInput.multiline", type="text", ng-model="inputsInner[metaInput.id]", aria-label="{{metaInput.label || '[Label]'}}")

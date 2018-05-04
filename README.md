@@ -5,7 +5,7 @@
 JSCalc.io is a free and open-source web service that reduces the task of creating an embeddable, mobile-frindly calculator to writing a single Javascript function.</p>
 
 <h2> Youtube Demo </h2>
-To know how to use, please watch the <a href="https://www.youtube.com/watch?v=rZ4JfD-YdZY&list=RDrZ4JfD-YdZY">demo</a>.
+To know how to use, please watch the <a href="https://www.youtube.com/watch?v=bLIiqTTu8eo&t=1s">demo</a>.
 
 ## Installing
 
@@ -65,7 +65,7 @@ Currently no build is involved, `connect-assets` is used instead.
 
 Run
 
-    MONGOLAB_URI=<Your Mongo DB URI> node server/app.js
+    npm start or node server/app.js
 
 Open your favourite browser and open : http://localhost:3000/ 
     
