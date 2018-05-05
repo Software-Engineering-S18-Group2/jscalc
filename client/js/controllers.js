@@ -450,9 +450,17 @@ jscalcControllers.controller('SourceCtrl', [
     var getNewId = function(items) {
       var id = 0;
       _.forEach(items, function(item) {
-        if (item.id > id) {
-          id = item.id;
-        }
+
+          if (item.id > id) {
+              id = item.id;
+          }
+          if (item.type == "section") {
+            _.forEach(item.metaInputs, function (i) {
+                if (i.id > id) {
+                    id = i.id;
+                }
+            });
+          }
       });
       return id + 1;
     };
@@ -488,7 +496,15 @@ jscalcControllers.controller('SourceCtrl', [
       }
     };
 
+
     $scope.addInput = function($event, metaInputs, nested, inputType) {
+      console.log(nested);
+      var nestedIndex = -1;
+      if (nested != null && nested['$parent'] != null && nested['$parent']['$parent'] != null && nested['$parent']['$parent']['$parent'] != null) {
+        nestedIndex = nested['$parent']['$parent']['$parent']['$index'];
+        console.log(nested['$parent']['$parent']['$parent']['$index']);
+      }
+      console.log(metaInputs);
       var metaInput = {
         id: getNewId(metaInputs),
         name: getNewName(function(f) {
@@ -508,7 +524,18 @@ jscalcControllers.controller('SourceCtrl', [
         metaInput.metaInputs = [];
         metaInput.itemPrototype = {};
       }
-      metaInputs.push(metaInput);
+      if (inputType == 'section') {
+          metaInput.metaInputs = []
+      }
+      //metaInputs.push(metaInput);
+
+      if (nestedIndex == -1) {
+          metaInputs.push(metaInput);
+      }
+      else {
+          metaInputs[nestedIndex]['metaInputs'].push(metaInput);
+      }
+
       if (!$scope.calc.doc.defaults) {
         $scope.calc.doc.defaults = {};
       }
