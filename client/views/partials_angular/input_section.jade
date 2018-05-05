@@ -3,10 +3,14 @@
     .title {{metaInput.label || '[Label]'}}:
     .config-icons(ng-include="'/partials/input_config_icons'")
 
+  .content-row
+    div
+      .input-row.fade-in(ng-repeat='metaInput in metaInputOuter.metaInputs track by metaInput.id', ng-include='getInputTemplateName(metaInput)', ng-init='inputsInner = metaInputOuter.itemPrototype; metaInputs = metaInputOuter.metaInputs')
+
   .button-row
     .button-row-inner
       md-menu
         md-button.md-primary(ng-click="$mdOpenMenu($event)") Add input
         md-menu-content
           md-menu-item(ng-repeat='inputType in NESTED_INPUT_TYPES')
-            md-button(ng-click="addInput({$event: $event, metaInputs: metaInputs, nested: true, type: inputType.type,})") {{inputType.title}}
+            md-button(ng-click="addInput({$event: $event, metaInputs: metaInputs, nested: this, type: inputType.type,})") {{inputType.title}}
