@@ -498,13 +498,11 @@ jscalcControllers.controller('SourceCtrl', [
 
 
     $scope.addInput = function($event, metaInputs, nested, inputType) {
-      console.log(nested);
       var nestedIndex = -1;
-      if (nested != null && nested['$parent'] != null && nested['$parent']['$parent'] != null && nested['$parent']['$parent']['$parent'] != null) {
+      if (nested != null && nested['$parent'] != null && nested['$parent']['$parent'] != null
+          && nested['$parent']['$parent']['$parent'] != null) {
         nestedIndex = nested['$parent']['$parent']['$parent']['$index'];
-        console.log(nested['$parent']['$parent']['$parent']['$index']);
       }
-      console.log(metaInputs);
       var metaInput = {
         id: getNewId(metaInputs),
         name: getNewName(function(f) {
@@ -530,15 +528,12 @@ jscalcControllers.controller('SourceCtrl', [
       if (inputType == 'section') {
           metaInput.metaInputs = []
       }
-      //metaInputs.push(metaInput);
-
       if (nestedIndex == -1) {
           metaInputs.push(metaInput);
       }
       else {
           metaInputs[nestedIndex]['metaInputs'].push(metaInput);
       }
-
       if (!$scope.calc.doc.defaults) {
         $scope.calc.doc.defaults = {};
       }
@@ -555,9 +550,6 @@ jscalcControllers.controller('SourceCtrl', [
         name: getNewName(function(f) {
           _.forEach($scope.calc.doc.metaOutputs, function(metaOutput) {
             f(metaOutput.name);
-              _.forEach(metaInput.metaInputs, function(m) {
-                  f(m.name);
-              });
           });
         }),
         type: outputType
