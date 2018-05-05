@@ -1,14 +1,18 @@
 .section-input-container(ng-init='metaInputOuter = metaInput')
   .item.item-prototype(ng-if='editMode' ng-init="inListItemPrototype = true")
     .title-row
+      .config-icons(ng-init='sectionModel.metaInput=true')
+        md-button.md-icon-button(aria-label='Collapse/Expand', ng-model='sectionModel.metaInput' ng-click="sectionModel.metaInput=!sectionModel.metaInput")
+          md-icon(ng-if='!sectionModel.metaInput' md-svg-icon="/img/icons/ic_chevron_right_black_24px.svg")
+          md-icon(ng-if='sectionModel.metaInput', md-svg-icon="/img/icons/ic_expand_more_black_24px.svg")
       .title {{metaInput.label || '[Label]'}}:
-      .config-icons(ng-include="'/partials/input_config_icons'")
+      .config-icons(ng-if='sectionModel.metaInput', ng-include="'/partials/input_config_icons'")
 
-    .content-row
+    .content-row(ng-if='sectionModel.metaInput')
       div
         .input-row.fade-in(ng-repeat='metaInput in metaInputOuter.metaInputs track by metaInput.id', ng-include='getInputTemplateName(metaInput)', ng-init='inputsInner = metaInputOuter.itemPrototype; metaInputs = metaInputOuter.metaInputs')
 
-    .button-row
+    .button-row(ng-if='sectionModel.metaInput')
       .button-row-inner
         md-menu
           md-button.md-primary(ng-click="$mdOpenMenu($event)") Add input
