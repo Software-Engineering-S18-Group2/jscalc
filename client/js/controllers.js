@@ -510,6 +510,9 @@ jscalcControllers.controller('SourceCtrl', [
         name: getNewName(function(f) {
           _.forEach(metaInputs, function(metaInput) {
             f(metaInput.name);
+              _.forEach(metaInput.metaInputs, function(m) {
+                  f(m.name);
+              });
           });
         }),
         type: inputType
@@ -552,6 +555,9 @@ jscalcControllers.controller('SourceCtrl', [
         name: getNewName(function(f) {
           _.forEach($scope.calc.doc.metaOutputs, function(metaOutput) {
             f(metaOutput.name);
+              _.forEach(metaInput.metaInputs, function(m) {
+                  f(m.name);
+              });
           });
         }),
         type: outputType
@@ -582,6 +588,9 @@ jscalcControllers.controller('SourceCtrl', [
         value: getNewName(function(f) {
           _.forEach(metaInput.choices, function(choice) {
             f(choice.value);
+              _.forEach(metaInput.metaInputs, function(m) {
+                  f(m.name);
+              });
           });
         })
       });
@@ -623,6 +632,9 @@ jscalcControllers.controller('SourceCtrl', [
         name: getNewName(function(f) {
           _.forEach(metaOutput.metaOutputs, function(metaOutput) {
             f(metaOutput.name);
+              _.forEach(metaInput.metaInputs, function(m) {
+                  f(m.name);
+              });
           });
         }),
         type: 'value'
