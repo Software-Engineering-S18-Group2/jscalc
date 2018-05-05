@@ -624,9 +624,6 @@ jscalcControllers.controller('SourceCtrl', [
         name: getNewName(function(f) {
           _.forEach(metaOutput.metaOutputs, function(metaOutput) {
             f(metaOutput.name);
-              _.forEach(metaInput.metaInputs, function(m) {
-                  f(m.name);
-              });
           });
         }),
         type: 'value'
@@ -693,7 +690,7 @@ jscalcControllers.controller('SourceCtrl', [
             name = quote(name);
           }
           var s = '';
-          if (metaInput.type == 'list') {
+          if (metaInput.type == 'list' && metaInput.type == 'section') {
             s += prefix + '  // Careful: in UI items are numbered starting\n'
             s += prefix + '  // from 1, but array indexes start from 0.\n'
           }
@@ -721,7 +718,7 @@ jscalcControllers.controller('SourceCtrl', [
               joined = [joinedWithComma, choices[choices.length - 1]].join(', or ');
             }
             s += ' <' + joined + '>';
-          } else if (metaInput.type == 'list') {
+          } else if (metaInput.type == 'list' || metaInput.type == 'section') {
             s += ' [';
             s += f(prefix + '  ', metaInput.metaInputs) + ', ...]';
           }
