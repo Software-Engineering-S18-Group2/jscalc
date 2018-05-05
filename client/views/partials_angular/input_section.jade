@@ -17,5 +17,5 @@
         md-menu
           md-button.md-primary(ng-click="$mdOpenMenu($event)") Add input
           md-menu-content
-            md-menu-item(ng-repeat='inputType in NESTED_INPUT_TYPES')
-              md-button(ng-click="addInput({$event: $event, metaInputs: metaInputs, nested: this, type: inputType.type,})") {{inputType.title}}
+            md-menu-item(ng-repeat='inputType in NESTED_INPUT_TYPES', ng-if='inputType.title!="Section"')
+              md-button(ng-click="addInput({$event: $event, metaInputs: metaInputs, nested: this, type: inputType.type})") {{inputType.title}}
