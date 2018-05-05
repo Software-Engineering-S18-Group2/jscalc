@@ -39,6 +39,8 @@ var jscalcApp = angular.module('jscalcApp', [
   {type: 'choice', title: 'Radio/Dropdown',
       default: null},
   {type: 'list', title: 'Repeating item',
+      default: []},
+  {type: 'section', title: 'Section',
       default: []}
 ])
 

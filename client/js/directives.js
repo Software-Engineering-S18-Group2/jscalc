@@ -79,9 +79,9 @@ angular.module('jscalcDirectives', [])
                                 throw {name: 'JscalcNameConflictError',
                                     message: metaInput.name};
                             }
-                            if (metaInput.type == 'list') {
+                            if (metaInput.type == 'list' || metaInput.type == 'section') {
                                 convertedInputs[metaInput.name] = _.map(inputs[metaInput.id],
-                                    function(item) {
+                                    function (item) {
                                         return convertInputs(item, metaInput.metaInputs);
                                     });
                             } else if (metaInput.type == 'date') {
@@ -102,7 +102,7 @@ angular.module('jscalcDirectives', [])
                             if (!(metaInput.name in usedInputs)) return;
                             convertedUsedInputs[metaInput.id] =
                                 {used: usedInputs[metaInput.name].used};
-                            if (metaInput.type == 'list') {
+                            if (metaInput.type == 'list' || metaInput.type == 'section') {
                                 convertedUsedInputs[metaInput.id].properties =
                                     _.mapValues(usedInputs[metaInput.name].properties,
                                         function(item) {
