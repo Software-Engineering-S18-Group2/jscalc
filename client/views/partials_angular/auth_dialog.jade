@@ -24,6 +24,7 @@ md-dialog#auth-dialog
         button.link-button(ng-click='forgot()') Forgot password?
   .md-actions(layout="row")
     md-button(ng-click='cancel()') Cancel
+    a(href='/auth/google',target="_blank") Sign with google
     md-button.md-primary(ng-disabled='canceler !== null', ng-click="submit()") {{signInMode ? 'Sign in' : 'Sign up'}}
 md-progress-linear(md-mode='indeterminate', ng-show='canceler !== null', style="position: fixed; top: -5px; left: 0; right: 0;")
 

@@ -8,7 +8,10 @@ var userSchema = new mongoose.Schema({
 
   resetPasswordToken: String,
   resetPasswordExpires: Date,
-
+  google: {
+        id: String,
+        token: String
+    },
   calcs: [{type: String, ref: 'Calc'}]
 });
 
