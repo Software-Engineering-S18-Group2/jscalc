@@ -450,9 +450,17 @@ jscalcControllers.controller('SourceCtrl', [
     var getNewId = function(items) {
       var id = 0;
       _.forEach(items, function(item) {
-        if (item.id > id) {
-          id = item.id;
-        }
+
+          if (item.id > id) {
+              id = item.id;
+          }
+          if (item.type == "section") {
+            _.forEach(item.metaInputs, function (i) {
+                if (i.id > id) {
+                    id = i.id;
+                }
+            });
+          }
       });
       return id + 1;
     };
@@ -488,12 +496,21 @@ jscalcControllers.controller('SourceCtrl', [
       }
     };
 
+
     $scope.addInput = function($event, metaInputs, nested, inputType) {
+      var nestedIndex = -1;
+      if (nested != null && nested['$parent'] != null && nested['$parent']['$parent'] != null
+          && nested['$parent']['$parent']['$parent'] != null) {
+        nestedIndex = nested['$parent']['$parent']['$parent']['$index'];
+      }
       var metaInput = {
         id: getNewId(metaInputs),
         name: getNewName(function(f) {
           _.forEach(metaInputs, function(metaInput) {
             f(metaInput.name);
+              _.forEach(metaInput.metaInputs, function(m) {
+                  f(m.name);
+              });
           });
         }),
         type: inputType
@@ -508,7 +525,15 @@ jscalcControllers.controller('SourceCtrl', [
         metaInput.metaInputs = [];
         metaInput.itemPrototype = {};
       }
-      metaInputs.push(metaInput);
+      if (inputType == 'section') {
+          metaInput.metaInputs = []
+      }
+      if (nestedIndex == -1) {
+          metaInputs.push(metaInput);
+      }
+      else {
+          metaInputs[nestedIndex]['metaInputs'].push(metaInput);
+      }
       if (!$scope.calc.doc.defaults) {
         $scope.calc.doc.defaults = {};
       }
@@ -555,6 +580,9 @@ jscalcControllers.controller('SourceCtrl', [
         value: getNewName(function(f) {
           _.forEach(metaInput.choices, function(choice) {
             f(choice.value);
+              _.forEach(metaInput.metaInputs, function(m) {
+                  f(m.name);
+              });
           });
         })
       });
@@ -662,7 +690,7 @@ jscalcControllers.controller('SourceCtrl', [
             name = quote(name);
           }
           var s = '';
-          if (metaInput.type == 'list') {
+          if (metaInput.type == 'list' && metaInput.type == 'section') {
             s += prefix + '  // Careful: in UI items are numbered starting\n'
             s += prefix + '  // from 1, but array indexes start from 0.\n'
           }
@@ -690,7 +718,7 @@ jscalcControllers.controller('SourceCtrl', [
               joined = [joinedWithComma, choices[choices.length - 1]].join(', or ');
             }
             s += ' <' + joined + '>';
-          } else if (metaInput.type == 'list') {
+          } else if (metaInput.type == 'list' || metaInput.type == 'section') {
             s += ' [';
             s += f(prefix + '  ', metaInput.metaInputs) + ', ...]';
           }

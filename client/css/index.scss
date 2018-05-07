@@ -72,6 +72,17 @@ md-menu-item > a.md-button span {
       margin-right: -19px;
     }
   }
+
+  .section-input-container {
+    & > .item > .content-row {
+      margin-left: 50px;
+    }
+
+    /* Because of the border on #inputs */
+    .item-prototype {
+      margin-right: -19px;
+    }
+  }
 }
 
 
@@ -408,6 +419,25 @@ jscalc-date-input {
   }
 }
 
+.section-input-container {
+  .item {
+    margin-top: 24px;
+  }
+
+  & > .item > .content-row {
+    margin-left: 20px;
+  }
+
+  .item-prototype {
+    background-color: #F4F4F4;
+    padding: 15px 20px;
+    margin: 0 -20px;
+
+    .button-row {
+      margin-bottom: 0;
+    }
+  }
+}
 
 .debug-comment {
   font-size: 12px;
